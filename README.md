@@ -19,3 +19,8 @@ The React application should now be running.
 * restart parcel (npm start)
 * Delete .cache directory
 * Run `npm install` - perhaps also delete `node_modules` directory
+
+## Issues
+* While using TestRenderer.Act and .Create for testing and results in ``Error: Can't access .root on unmounted test renderer``
+* A workaround for this was using the old try/catch you see in _ApplistMessages.jsx_ instead of ``` setMessages(await messageApi.listMessages()); ``` which is not optimal
+* Issue was recreated using a clone from working lecture.

@@ -1,25 +1,42 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter, Link} from "react-router-dom";
-import {Route, Switch} from "react-router";
+import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
 import {AppListMessages} from "./AppListMessages";
 import {CreateNewMessage} from "./CreateNewMessage";
+import {EditMessage} from "./EditMessage";
 
 function Application () {
+
+    const messageApi = {
+        listMessages: async () => {
+            const res = await fetch("/api/messages");
+            if (!res.ok) {
+                throw new Error(`Something went wrong loading ${res.url}: ${res.statusText}`);
+            }
+            return await res.json();
+        },
+        getMessage: async (id) => {
+            const res = await fetch(`/api/messages/${id}`);
+            if (!res.ok) {
+                throw new Error(`Something went wrong loading ${res.url}: ${res.statusText}`);
+            }
+            return await res.json();
+        }
+    }
     return <BrowserRouter>
         <nav>
             <Link to={"/"}>Home page</Link>
         </nav>
         <main>
             <Switch>
-                <Route path={"/messages"}>
-                    <AppListMessages/>
+                <Route exact path={"/messages"}>
+                    <AppListMessages messageApi={messageApi}/>
                 </Route>
                 <Route path={"/create"}>
                     <CreateNewMessage/>
                 </Route>
                 <Route path={"/edit"}>
-                    <h1>Edit an existing book</h1>
+                    <EditMessage messageApi={messageApi}/>
                 </Route>
                 <Route exact path={"/"}>
                     <h1>Home page</h1>

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {InputField} from "./InputField";
 
 export function CreateNewMessage() {
     const [subject, setSubject] = useState("");
@@ -18,10 +19,10 @@ export function CreateNewMessage() {
     }
 
     return <form onSubmit={submit}>
-    <h1>Create a new message</h1>
-    <div><label>Subject: <input type="text" value={subject} onChange={e => setSubject(e.target.value)}/></label></div>
-    <div><label>Content: <input type="text" value={content} onChange={e => setContent(e.target.value)}/></label></div>
-    <div><label>Date: <input type="date" value={date} onChange={e => setDate(e.target.value)}/></label></div>
+        <h1>Create a new message</h1>
+        <InputField label={"Subject"} value={subject} onChangeValue={setSubject}/>
+        <InputField label={"Content"} value={content} onChangeValue={setContent}/>
+        <InputField label={"Date"} value={date} onChangeValue={setDate} type="date"/>
         <button>Submit</button>
     </form>;
 }
