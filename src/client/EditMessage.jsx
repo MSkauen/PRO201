@@ -49,7 +49,7 @@ function EditMessageForm({ message }) {
 export function EditMessage({ messageApi }) {
   const { id } = useParams();
 
-  const { loading, error, data, reload } = useLoading(
+  const { data: message, loading, error, reload } = useLoading(
     async () => await messageApi.getMessage(id),
     [id]
   );
@@ -58,9 +58,9 @@ export function EditMessage({ messageApi }) {
     return <ErrorView error={error} reload={reload()} />;
   }
 
-  if (loading || !data) {
+  if (loading || !message) {
     return <LoadingView />;
   }
 
-  return <EditMessageForm message={data} />;
+  return <EditMessageForm message={message} />;
 }

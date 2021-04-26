@@ -5,21 +5,21 @@ import { useLoading } from "./useLoading";
 import { ErrorView } from "./ErrorView";
 
 export function AppListMessages({ messageApi }) {
-  const { error, loading, data, reload } = useLoading(async () =>
-    messageApi.listMessages()
+  const { data: messages, error, loading, reload } = useLoading(
+    async () => await messageApi.listMessages()
   );
 
   if (error) {
     return <ErrorView error={error} reload={reload} />;
   }
-  if (loading) {
+  if (loading || !messages) {
     return <LoadingView />;
   }
 
   return (
     <>
       <h1>List messages</h1>
-      {data.map(({ id, subject }) => (
+      {messages.map(({ id, subject }) => (
         <li key={id}>
           <Link to={`/messages/${id}/edit`}>{subject}</Link>
         </li>
