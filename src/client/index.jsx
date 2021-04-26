@@ -39,7 +39,7 @@ function Application() {
           <Route path={"/create"}>
             <CreateNewMessage />
           </Route>
-          <Route path={"/edit"}>
+          <Route path={"/messages/:id/edit"}>
             <EditMessage messageApi={messageApi} />
           </Route>
           <Route exact path={"/"}>

@@ -21,7 +21,7 @@ export function AppListMessages({ messageApi }) {
       <h1>List messages</h1>
       {data.map(({ id, subject }) => (
         <li key={id}>
-          <Link to={`/edit?id=${id}`}>{subject}</Link>
+          <Link to={`/messages/${id}/edit`}>{subject}</Link>
         </li>
       ))}
     </>

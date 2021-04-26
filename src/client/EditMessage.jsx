@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { LoadingView } from "./LoadingView";
 import { InputField } from "./InputField";
 import { ErrorView } from "./ErrorView";
@@ -47,10 +47,12 @@ function EditMessageForm({ message }) {
 }
 
 export function EditMessage({ messageApi }) {
-  const { loading, error, data, reload } = useLoading(async () => {
-    let id = new URLSearchParams(location.search).get("id");
-    return await messageApi.getMessage(id);
-  });
+  const { id } = useParams();
+
+  const { loading, error, data, reload } = useLoading(
+    async () => await messageApi.getMessage(id),
+    [id]
+  );
 
   if (error) {
     return <ErrorView error={error} reload={reload()} />;
