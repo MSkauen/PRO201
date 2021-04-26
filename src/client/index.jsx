@@ -4,6 +4,34 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import { AppListMessages } from "./AppListMessages";
 import { CreateNewMessage } from "./CreateNewMessage";
 import { EditMessage } from "./EditMessage";
+import { ProfilePage } from "./ProfilePage";
+
+function LoginPage() {
+  return null;
+}
+
+function FrontPage() {
+  return (
+    <div>
+      <h1>Front page</h1>
+      <ul>
+        <li>
+          <Link to={"/profile"}>Profile page</Link>
+        </li>
+        <li>
+          <Link to={"/login"}>Login</Link>
+        </li>
+
+        <li>
+          <Link to={"/messages"}>List messages</Link>
+        </li>
+        <li>
+          <Link to={"/create"}>Create message</Link>
+        </li>
+      </ul>
+    </div>
+  );
+}
 
 function Application() {
   const messageApi = {
@@ -33,6 +61,13 @@ function Application() {
       </nav>
       <main>
         <Switch>
+          <Route path={"/profile"}>
+            <ProfilePage />
+          </Route>
+          <Route path={"/login"}>
+            <LoginPage />
+          </Route>
+
           <Route exact path={"/messages"}>
             <AppListMessages messageApi={messageApi} />
           </Route>
@@ -43,15 +78,7 @@ function Application() {
             <EditMessage messageApi={messageApi} />
           </Route>
           <Route exact path={"/"}>
-            <h1>Home page</h1>
-            <ul>
-              <li>
-                <Link to={"/messages"}>List messages</Link>
-              </li>
-              <li>
-                <Link to={"/create"}>Create message</Link>
-              </li>
-            </ul>
+            <FrontPage />
           </Route>
           <Route>Page not found</Route>
         </Switch>

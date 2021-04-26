@@ -1,5 +1,7 @@
 const express = require("express");
 const path = require("path");
+const https = require("https");
+const fs = require("fs");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -21,6 +23,10 @@ const messages = [
 
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
+
+app.get("/api/profile", (req, res) => {
+  res.json({ username: "Second" });
+});
 
 app.get("/api/messages", (req, res) => {
   console.log(messages);
@@ -46,15 +52,29 @@ app.post("/api/messages", (req, res) => {
   messages.push({ subject, content, date, id: messages.length + 1 });
   res.status(201).end();
 });
-
+/*
 app.use((req, res, next) => {
   if (req.method !== "GET" || req.path.startsWith("/api")) {
     return next();
   }
-
-  res.sendFile(path.resolve(__dirname, "..", "..", "dist", "index.html"));
+});
+*/
+app.use((req, res, next) => {
+  if (req.method === "GET" && !req.path.startsWith("/api")) {
+    res.sendFile(path.resolve(__dirname, "..", "..", "dist", "index.html"));
+  } else {
+    next();
+  }
 });
 
-app.listen(3000, () => {
-  console.log("Started on http://localhost:3000");
-});
+const server = https
+  .createServer(
+    {
+      key: fs.readFileSync("server.key"),
+      cert: fs.readFileSync("server.crt"),
+    },
+    app
+  )
+  .listen(3000, () => {
+    console.log(`Started on http://localhost:${server.address().port}`);
+  });
