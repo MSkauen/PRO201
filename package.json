@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server/server.js",
-    "dev": "parcel src/client/index.html"
+    "start": "concurrently \"npm run server\" \"npm run parcel\"",
+    "server": "nodemon --watch src/server src/server/server.js",
+    "parcel": "parcel watch src/client/index.html"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,8 @@
   },
   "homepage": "https://github.com/MSkauen/PG6301_Eksamen#readme",
   "devDependencies": {
+    "concurrently": "^6.0.2",
+    "nodemon": "^2.0.7",
     "parcel": "^1.12.3"
   },
   "dependencies": {
