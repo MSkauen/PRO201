@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { LoadingView } from "./LoadingView";
 import { InputField } from "./InputField";
+import { ErrorView } from "./ErrorView";
+import { useLoading } from "./useLoading";
 
 function EditMessageForm({ message }) {
   const [subject, setSubject] = useState(message.subject);
@@ -45,30 +47,18 @@ function EditMessageForm({ message }) {
 }
 
 export function EditMessage({ messageApi }) {
-  const [message, setMessage] = useState();
-  const [error, setError] = useState();
-
-  const location = useLocation();
-
-  async function loadMessage() {
-    try {
-      let id = new URLSearchParams(location.search).get("id");
-      console.log({ id });
-      setMessage(await messageApi.getMessage(id));
-    } catch (e) {
-      setError(e);
-    }
-  }
-
-  useEffect(loadMessage, []);
+  const { loading, error, data, reload } = useLoading(async () => {
+    let id = new URLSearchParams(location.search).get("id");
+    return await messageApi.getMessage(id);
+  });
 
   if (error) {
-    return <div>Something went wrong: {error.toString()}</div>;
+    return <ErrorView error={error} reload={reload()} />;
   }
 
-  if (!message) {
+  if (loading || !data) {
     return <LoadingView />;
   }
 
-  return <EditMessageForm message={message} />;
+  return <EditMessageForm message={data} />;
 }
