@@ -3,7 +3,7 @@ const path = require("path");
 const https = require("https");
 const fs = require("fs");
 const bodyParser = require("body-parser");
-
+const cookieParser = require("cookie-parser");
 const app = express();
 
 const messages = [
@@ -22,10 +22,20 @@ const messages = [
 ];
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
 
 app.get("/api/profile", (req, res) => {
-  res.json({ username: "Second" });
+  let username = req.cookies.username; // = "Second";
+  if (!username) {
+    return res.status(401).send();
+  }
+  res.json({ username });
+});
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body;
+  res.cookie("username", username);
+  res.end();
 });
 
 app.get("/api/messages", (req, res) => {

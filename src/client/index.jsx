@@ -5,10 +5,7 @@ import { AppListMessages } from "./AppListMessages";
 import { CreateNewMessage } from "./CreateNewMessage";
 import { EditMessage } from "./EditMessage";
 import { ProfilePage } from "./ProfilePage";
-
-function LoginPage() {
-  return null;
-}
+import { LoginPage } from "./LoginPage";
 
 function FrontPage() {
   return (
