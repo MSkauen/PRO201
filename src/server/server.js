@@ -4,7 +4,19 @@ const https = require("https");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
 const app = express();
+
+app.use(
+  session({
+    secret: "347gh4h6kf6",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 const messages = [
   {
@@ -21,12 +33,10 @@ const messages = [
   },
 ];
 
-app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
 
 app.get("/api/profile", (req, res) => {
-  let username = req.cookies.username; // = "Second";
+  const { username } = req.session; // = "Second";
   if (!username) {
     return res.status(401).send();
   }
@@ -34,7 +44,7 @@ app.get("/api/profile", (req, res) => {
 });
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
-  res.cookie("username", username);
+  req.session.username = username;
   res.end();
 });
 
