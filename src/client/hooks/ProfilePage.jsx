@@ -6,7 +6,7 @@ import { fetchJson } from "../lib/http";
 
 export function ProfilePage() {
   const { data, error, loading, reload } = useLoading(() =>
-    fetchJson("https://webapps.kristiania.no:3000/api/profile", {
+    fetchJson("/api/profile", {
       method: "POST",
       body: JSON.stringify({}),
       headers: {

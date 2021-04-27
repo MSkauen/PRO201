@@ -3,9 +3,12 @@ import { ProfilePage } from "./hooks/ProfilePage";
 import { LoginPage } from "./hooks/LoginPage";
 import { AppListMessages } from "./hooks/AppListMessages";
 import { CreateNewMessage } from "./hooks/CreateNewMessage";
+import { CreateNewUser } from "./hooks/CreateNewUser";
 import { EditMessage } from "./hooks/EditMessage";
+import { EditUser } from "./hooks/EditUser";
 import { FrontPage } from "./FrontPage";
 import React from "react";
+import { AppListUsers } from "./hooks/AppListUsers";
 
 export function Application() {
   const messageApi = {
@@ -28,6 +31,26 @@ export function Application() {
       return await res.json();
     },
   };
+  const userApi = {
+    listUsers: async () => {
+      const res = await fetch("/api/users");
+      if (!res.ok) {
+        throw new Error(
+          `Something went wrong loading ${res.url}: ${res.statusText}`
+        );
+      }
+      return await res.json();
+    },
+    getUser: async (id) => {
+      const res = await fetch(`/api/users/${id}`);
+      if (!res.ok) {
+        throw new Error(
+          `Something went wrong loading ${res.url}: ${res.statusText}`
+        );
+      }
+      return await res.json();
+    },
+  };
   return (
     <BrowserRouter>
       <nav>
@@ -40,6 +63,16 @@ export function Application() {
           </Route>
           <Route path={"/login"}>
             <LoginPage />
+          </Route>
+
+          <Route exact path={"/users"}>
+            <AppListUsers userApi={userApi} />
+          </Route>
+          <Route path={"/newuser"}>
+            <CreateNewUser />
+          </Route>
+          <Route path={"/users/:id/edit"}>
+            <EditUser userApi={userApi} />
           </Route>
 
           <Route exact path={"/messages"}>

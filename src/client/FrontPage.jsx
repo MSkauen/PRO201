@@ -14,6 +14,13 @@ export function FrontPage() {
         </li>
 
         <li>
+          <Link to={"/users"}>List users</Link>
+        </li>
+        <li>
+          <Link to={"/newuser"}>Create user</Link>
+        </li>
+
+        <li>
           <Link to={"/messages"}>List messages</Link>
         </li>
         <li>

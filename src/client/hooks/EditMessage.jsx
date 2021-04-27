@@ -7,15 +7,16 @@ import { useLoading } from "../lib/useLoading";
 
 function EditMessageForm({ message }) {
   const [subject, setSubject] = useState(message.subject);
-  const [content, setContent] = useState(message.content);
+    const [recipient, setRecipient] = useState(message.recipient);
+    const [content, setContent] = useState(message.content);
   const [date, setDate] = useState(message.date);
 
   async function submit(e) {
     e.preventDefault();
-    console.log("Submitting", { subject, content, date });
+    console.log("Submitting", { recipient, subject, content, date });
     await fetch(`/api/messages/${message.id}`, {
       method: "PUT",
-      body: JSON.stringify({ subject, content, date }),
+      body: JSON.stringify({ recipient, subject, content, date }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -25,6 +26,11 @@ function EditMessageForm({ message }) {
   return (
     <form onSubmit={submit}>
       <h1>Edit an existing message ({subject})</h1>
+        <InputField
+            label={"Recipient"}
+            value={recipient}
+            onChangeValue={setRecipient}
+        />
       <InputField
         label={"Subject"}
         value={subject}

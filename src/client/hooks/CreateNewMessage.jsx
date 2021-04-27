@@ -3,15 +3,21 @@ import { InputField } from "../components/InputField";
 
 export function CreateNewMessage() {
   const [subject, setSubject] = useState("");
+  const [recipient, setRecipient] = useState("");
   const [content, setContent] = useState("");
   const [date, setDate] = useState("");
 
   async function submit(e) {
     e.preventDefault();
-    console.log("Submitting", { subject, content, date });
+
+    const res = await fetch("/api/profile", {});
+    const json = await res.json();
+    let sender = json.username;
+
+    console.log("Submitting", { sender, recipient, subject, content, date });
     await fetch("/api/messages", {
       method: "POST",
-      body: JSON.stringify({ subject, content, date }),
+      body: JSON.stringify({ sender, recipient, subject, content, date }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -25,6 +31,11 @@ export function CreateNewMessage() {
         label={"Subject"}
         value={subject}
         onChangeValue={setSubject}
+      />
+      <InputField
+        label={"Recipient"}
+        value={recipient}
+        onChangeValue={setRecipient}
       />
       <InputField
         label={"Content"}

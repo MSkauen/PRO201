@@ -6,6 +6,8 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
+const cookieParser = require("cookie-parser");
+const req = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
@@ -19,11 +21,15 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 passport.use(
   new LocalStrategy((username, password, done) => {
-    if (username === "second" && password === "123456") {
+    const user = users.find((m) => m.firstName === username);
+
+    if (username === user.firstName && password === "123456") {
       done(null, { username, is_admin: true });
+      req.session.username = username;
     } else {
       done(null, false, { message: "Invalid username/password" });
     }
@@ -49,15 +55,48 @@ app.use(passport.session());
 const messages = [
   {
     id: 1,
+    sender: "admin",
+    recipient: "second",
     subject: "First contact",
     content: "Hello World",
     date: "2021-12-03",
   },
   {
     id: 2,
+    sender: "second",
+    recipient: "admin",
     subject: "Exam time",
     content: "Hello Dreamer",
     date: "2021-12-05",
+  },
+  {
+    id: 3,
+    sender: "",
+    recipient: "second, admin",
+    subject: "Exsdfam time",
+    content: "Hellsdfo Dreamer",
+    date: "2021-12-05",
+  },
+];
+
+const users = [
+  {
+    id: 1,
+    firstName: "admin",
+    lastName: "First contact",
+    email: "Hello World",
+  },
+  {
+    id: 2,
+    firstName: "second",
+    lastName: "First contact",
+    email: "Hello World",
+  },
+  {
+    id: 3,
+    firstName: "second2",
+    lastName: "second contact",
+    email: "Hello World",
   },
 ];
 
@@ -99,26 +138,68 @@ app.post("/api/login", passport.authenticate("local"), (req, res) => {
 });
 
 app.get("/api/messages", (req, res) => {
-  res.json(messages);
+  if (!req.user) {
+    return res.status(401).send();
+  }
+  const { username } = req.user;
+  console.log(username);
+  const myMessages = messages.filter((m) => m.recipient.includes(username));
+  console.log(myMessages);
+  res.json(myMessages);
 });
 
 app.get("/api/messages/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const message = messages.find((m) => m.id === id);
+  console.log(message);
+
   res.json(message);
 });
 
 app.put("/api/messages/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const messageIndex = messages.findIndex((m) => m.id === id);
-  const { subject, content, date } = req.body;
-  messages[messageIndex] = { subject, content, date, id };
+  const { sender, recipient, subject, content, date } = req.body;
+  messages[messageIndex] = { sender, recipient, subject, content, date, id };
   res.status(200).end();
 });
 
 app.post("/api/messages", (req, res) => {
-  const { subject, content, date } = req.body;
-  messages.push({ subject, content, date, id: messages.length + 1 });
+  const { sender, recipient, subject, content, date } = req.body;
+  messages.push({
+    sender,
+    recipient,
+    subject,
+    content,
+    date,
+    id: messages.length + 1,
+  });
+  res.status(201).end();
+});
+
+app.get("/api/users", (req, res) => {
+  res.json(users);
+});
+
+app.get("/api/users/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const user = users.find((m) => m.id === id);
+  console.log(user);
+
+  res.json(user);
+});
+
+app.put("/api/users/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const userIndex = users.findIndex((m) => m.id === id);
+  const { firstName, lastName, email } = req.body;
+  users[userIndex] = { firstName, lastName, email, id };
+  res.status(200).end();
+});
+
+app.post("/api/users", (req, res) => {
+  const { firstName, lastName, email } = req.body;
+  users.push({ firstName, lastName, email, id: users.length + 1 });
   res.status(201).end();
 });
 /*
@@ -136,6 +217,11 @@ app.use((req, res, next) => {
   }
 });
 
+app.listen(3000, () => {
+  console.log("Application started on http://localhost:3000");
+});
+
+/*
 const server = https
   .createServer(
     {
@@ -147,3 +233,4 @@ const server = https
   .listen(3000, () => {
     console.log(`Started on http://localhost:${server.address().port}`);
   });
+*/
