@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run parcel\"",
-    "server": "nodemon --watch src/server src/server/server.js",
-    "parcel": "parcel watch src/client/index.html",
+    "start": "concurrently \"npm run start:express\" \"npm run start:parcel\"",
+    "start:express": "nodemon --watch src/server src/server/server.js",
+    "start:parcel": "parcel watch src/client/html/index.html",
     "test": "jest",
     "format": "prettier --write src"
   },

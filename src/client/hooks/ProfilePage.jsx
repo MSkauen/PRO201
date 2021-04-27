@@ -1,8 +1,8 @@
 import React from "react";
-import { LoadingView } from "./LoadingView";
-import { useLoading } from "./useLoading";
-import { ErrorView } from "./ErrorView";
-import { fetchJson } from "./http";
+import { LoadingView } from "../components/LoadingView";
+import { useLoading } from "../lib/useLoading";
+import { ErrorView } from "../components/ErrorView";
+import { fetchJson } from "../lib/http";
 
 export function ProfilePage() {
   const { data, error, loading, reload } = useLoading(() =>

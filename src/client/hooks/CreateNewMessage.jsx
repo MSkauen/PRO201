@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InputField } from "./InputField";
+import { InputField } from "../components/InputField";
 
 export function CreateNewMessage() {
   const [subject, setSubject] = useState("");

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router";
-import { LoadingView } from "./LoadingView";
-import { InputField } from "./InputField";
-import { ErrorView } from "./ErrorView";
-import { useLoading } from "./useLoading";
+import React, { useState } from "react";
+import { useParams } from "react-router";
+import { LoadingView } from "../components/LoadingView";
+import { InputField } from "../components/InputField";
+import { ErrorView } from "../components/ErrorView";
+import { useLoading } from "../lib/useLoading";
 
 function EditMessageForm({ message }) {
   const [subject, setSubject] = useState(message.subject);
