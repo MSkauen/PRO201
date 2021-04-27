@@ -11,8 +11,8 @@ function checkResults(res, url) {
   }
 }
 
-export async function fetchJson(url) {
-  const res = await fetch(url);
+export async function fetchJson(url, options) {
+  const res = await fetch(url, options);
   checkResults(res, url);
   return await res.json();
 }
