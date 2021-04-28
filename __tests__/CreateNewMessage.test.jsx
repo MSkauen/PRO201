@@ -3,21 +3,29 @@ import TestRenderer from "react-test-renderer";
 import React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
-import { AppListMessages } from "../src/client/hooks/AppListMessages";
+import { CreateNewMessage } from "../src/client/hooks/CreateNewMessage";
 import { MemoryRouter } from "react-router";
 
 const messageApi = {
-  listMessages: async () => [{ id: 1, subject: "Hello world", sender: "Ola" }],
+  listMessages: async () => [
+    {
+      id: 1,
+      subject: "Hello world",
+      sender: "Ola",
+      recipient: "admin",
+      content: "Hello test",
+    },
+  ],
 };
 
-describe("message list page", () => {
-  it("show message sender on dom", async () => {
+describe("create message page", () => {
+  it("create message on dom", async () => {
     const container = document.createElement("div");
     document.body.appendChild(container);
     await act(async () => {
       ReactDOM.render(
         <MemoryRouter>
-          <AppListMessages messageApi={messageApi} />
+          <CreateNewMessage messageApi={messageApi} />
         </MemoryRouter>,
         container
       );
@@ -33,7 +41,7 @@ describe("message list page", () => {
     await act(async () => {
       ReactDOM.render(
         <MemoryRouter>
-          <AppListMessages messageApi={messageApi} />
+          <CreateNewMessage messageApi={messageApi} />
         </MemoryRouter>,
         container
       );

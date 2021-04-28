@@ -4,6 +4,7 @@ import { LoadingView } from "../components/LoadingView";
 import { InputField } from "../components/InputField";
 import { ErrorView } from "../components/ErrorView";
 import { useLoading } from "../lib/useLoading";
+import "../css/stylesheet.css";
 
 function EditUserForm({ user }) {
   const [firstName, setFirstName] = useState(user.firstName);
@@ -35,7 +36,11 @@ function EditUserForm({ user }) {
         value={lastName}
         onChangeValue={setLastName}
       />
-      <InputField label={"Email"} value={email} onChangeValue={setEmail} />
+      <InputField
+        label={"Email address"}
+        value={email}
+        onChangeValue={setEmail}
+      />
       <button>Submit</button>
     </form>
   );

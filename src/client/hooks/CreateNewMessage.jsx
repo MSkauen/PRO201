@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { InputField } from "../components/InputField";
+import "../css/stylesheet.css";
 
-export function CreateNewMessage() {
+export function CreateNewMessage({ messageApi }) {
   const [subject, setSubject] = useState("");
   const [recipient, setRecipient] = useState("");
   const [content, setContent] = useState("");

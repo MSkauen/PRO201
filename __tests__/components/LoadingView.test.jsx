@@ -1,4 +1,4 @@
-import { LoadingView } from "../src/client/components/LoadingView";
+import { LoadingView } from "../../src/client/components/LoadingView";
 import TestRenderer from "react-test-renderer";
 
 import React from "react";

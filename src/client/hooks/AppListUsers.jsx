@@ -3,6 +3,7 @@ import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
 import { Link } from "react-router-dom";
+import "../css/stylesheet.css";
 
 export function AppListUsers({ userApi }) {
   const { data: users, error, loading, reload } = useLoading(
@@ -19,9 +20,11 @@ export function AppListUsers({ userApi }) {
   return (
     <>
       <h1>List users</h1>
-      {users.map(({ id, firstName }) => (
+      {users.map(({ id, firstName, lastName }) => (
         <li key={id}>
-          <Link to={`/users/${id}/edit`}>{firstName}</Link>
+          <Link to={`/users/${id}/edit`}>
+            {firstName} {lastName}
+          </Link>
         </li>
       ))}
     </>

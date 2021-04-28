@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { InputField } from "../components/InputField";
+import "../css/stylesheet.css";
 
-export function CreateNewUser() {
+export function CreateNewUser({ messapeApi }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");

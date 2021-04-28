@@ -4,52 +4,30 @@ import { LoginPage } from "./hooks/LoginPage";
 import { AppListMessages } from "./hooks/AppListMessages";
 import { CreateNewMessage } from "./hooks/CreateNewMessage";
 import { CreateNewUser } from "./hooks/CreateNewUser";
-import { EditMessage } from "./hooks/EditMessage";
+import { EditResponse } from "./hooks/EditResponse";
 import { EditUser } from "./hooks/EditUser";
 import { FrontPage } from "./FrontPage";
 import React from "react";
 import { AppListUsers } from "./hooks/AppListUsers";
 
+async function fetchJSON(url = "/api/messages") {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(
+      `Something went wrong loading ${res.url}: ${res.statusText}`
+    );
+  }
+  return await res.json();
+}
+
 export function Application() {
   const messageApi = {
-    listMessages: async () => {
-      const res = await fetch("/api/messages");
-      if (!res.ok) {
-        throw new Error(
-          `Something went wrong loading ${res.url}: ${res.statusText}`
-        );
-      }
-      return await res.json();
-    },
-    getMessage: async (id) => {
-      const res = await fetch(`/api/messages/${id}`);
-      if (!res.ok) {
-        throw new Error(
-          `Something went wrong loading ${res.url}: ${res.statusText}`
-        );
-      }
-      return await res.json();
-    },
+    listMessages: async () => await fetchJSON("/api/messages"),
+    getMessage: async (id) => await fetchJSON(`/api/messages/${id}`),
   };
   const userApi = {
-    listUsers: async () => {
-      const res = await fetch("/api/users");
-      if (!res.ok) {
-        throw new Error(
-          `Something went wrong loading ${res.url}: ${res.statusText}`
-        );
-      }
-      return await res.json();
-    },
-    getUser: async (id) => {
-      const res = await fetch(`/api/users/${id}`);
-      if (!res.ok) {
-        throw new Error(
-          `Something went wrong loading ${res.url}: ${res.statusText}`
-        );
-      }
-      return await res.json();
-    },
+    listUsers: async () => await fetchJSON("/api/users"),
+    getUser: async (id) => await fetchJSON(`/api/users/${id}`),
   };
   return (
     <BrowserRouter>
@@ -82,7 +60,7 @@ export function Application() {
             <CreateNewMessage />
           </Route>
           <Route path={"/messages/:id/edit"}>
-            <EditMessage messageApi={messageApi} />
+            <EditResponse messageApi={messageApi} />
           </Route>
           <Route exact path={"/"}>
             <FrontPage />

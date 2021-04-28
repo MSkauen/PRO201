@@ -57,7 +57,7 @@ const messages = [
     id: 1,
     sender: "admin",
     recipient: "second",
-    subject: "First contact",
+    subject: "Exam",
     content: "Hello World",
     date: "2021-12-03",
   },
@@ -65,16 +65,8 @@ const messages = [
     id: 2,
     sender: "second",
     recipient: "admin",
-    subject: "Exam time",
+    subject: "Exam",
     content: "Hello Dreamer",
-    date: "2021-12-05",
-  },
-  {
-    id: 3,
-    sender: "",
-    recipient: "second, admin",
-    subject: "Exsdfam time",
-    content: "Hellsdfo Dreamer",
     date: "2021-12-05",
   },
 ];
@@ -83,20 +75,14 @@ const users = [
   {
     id: 1,
     firstName: "admin",
-    lastName: "First contact",
-    email: "Hello World",
+    lastName: "Hello world",
+    email: "admin@mail.no",
   },
   {
     id: 2,
-    firstName: "second",
+    firstName: "user",
     lastName: "First contact",
-    email: "Hello World",
-  },
-  {
-    id: 3,
-    firstName: "second2",
-    lastName: "second contact",
-    email: "Hello World",
+    email: "user@mail.no",
   },
 ];
 

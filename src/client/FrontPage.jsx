@@ -14,17 +14,17 @@ export function FrontPage() {
         </li>
 
         <li>
-          <Link to={"/users"}>List users</Link>
+          <Link to={"/users"}>Users</Link>
         </li>
         <li>
           <Link to={"/newuser"}>Create user</Link>
         </li>
 
         <li>
-          <Link to={"/messages"}>List messages</Link>
+          <Link to={"/messages"}>Messages</Link>
         </li>
         <li>
-          <Link to={"/create"}>Create message</Link>
+          <Link to={"/create"}>Send message</Link>
         </li>
       </ul>
     </div>

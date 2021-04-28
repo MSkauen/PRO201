@@ -3,6 +3,7 @@ import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
 import { fetchJson } from "../lib/http";
+import "../css/stylesheet.css";
 
 export function ProfilePage() {
   const { data, error, loading, reload } = useLoading(() =>

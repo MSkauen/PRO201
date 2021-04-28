@@ -4,19 +4,26 @@ import { LoadingView } from "../components/LoadingView";
 import { InputField } from "../components/InputField";
 import { ErrorView } from "../components/ErrorView";
 import { useLoading } from "../lib/useLoading";
+import "../css/stylesheet.css";
 
-function EditMessageForm({ message }) {
+export function EditMessageForm({ message }) {
   const [subject, setSubject] = useState(message.subject);
-    const [recipient, setRecipient] = useState(message.recipient);
-    const [content, setContent] = useState(message.content);
+  const [recipient, setRecipient] = useState(message.sender);
+  const [content, setContent] = useState();
   const [date, setDate] = useState(message.date);
+  let sender;
 
   async function submit(e) {
     e.preventDefault();
-    console.log("Submitting", { recipient, subject, content, date });
-    await fetch(`/api/messages/${message.id}`, {
-      method: "PUT",
-      body: JSON.stringify({ recipient, subject, content, date }),
+
+    const res = await fetch("/api/profile", {});
+    const json = await res.json();
+    sender = json.username;
+
+    console.log("Submitting", { sender, recipient, subject, content, date });
+    await fetch(`/api/messages/`, {
+      method: "POST",
+      body: JSON.stringify({ sender, recipient, subject, content, date }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -25,12 +32,13 @@ function EditMessageForm({ message }) {
 
   return (
     <form onSubmit={submit}>
-      <h1>Edit an existing message ({subject})</h1>
-        <InputField
-            label={"Recipient"}
-            value={recipient}
-            onChangeValue={setRecipient}
-        />
+      <h1>{subject}</h1>
+      <p>"{message.content}"</p>
+      <InputField
+        label={"Recipient"}
+        value={recipient}
+        onChangeValue={setRecipient}
+      />
       <InputField
         label={"Subject"}
         value={subject}
@@ -52,7 +60,7 @@ function EditMessageForm({ message }) {
   );
 }
 
-export function EditMessage({ messageApi }) {
+export function EditResponse({ messageApi }) {
   const { id } = useParams();
 
   const { data: message, loading, error, reload } = useLoading(
