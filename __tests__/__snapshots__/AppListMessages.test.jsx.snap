@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`message list page show message content on dom 1`] = `"<h1>List messages</h1><li><a href=\\"/messages/1/edit\\"><b>Ola</b> [Subject:Hello world]</a></li>"`;
+
+exports[`message list page show message sender on dom 1`] = `"<h1>List messages</h1><li><a href=\\"/messages/1/edit\\"><b>Ola</b> [Subject:Hello world]</a></li>"`;

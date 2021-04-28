@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inputfield show input field label on dom 1`] = `"<div><label>test: <input value=\\"\\"></label></div>"`;
+
+exports[`inputfield show input field onChangeValue on dom 1`] = `"<div><label>: <input value=\\"inputvalue\\"></label></div>"`;
+
+exports[`inputfield show input field type on dom 1`] = `"<div><label>: <input type=\\"date\\" value=\\"\\"></label></div>"`;

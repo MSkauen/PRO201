@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create message page create message on dom 1`] = `"<form><h1>Create a new message</h1><div><label>Subject: <input value=\\"\\"></label></div><div><label>Recipient: <input value=\\"\\"></label></div><div><label>Content: <input value=\\"\\"></label></div><div><label>Date: <input type=\\"date\\" value=\\"\\"></label></div><button>Submit</button></form>"`;
+
+exports[`create message page show message content on dom 1`] = `"<form><h1>Create a new message</h1><div><label>Subject: <input value=\\"\\"></label></div><div><label>Recipient: <input value=\\"\\"></label></div><div><label>Content: <input value=\\"\\"></label></div><div><label>Date: <input type=\\"date\\" value=\\"\\"></label></div><button>Submit</button></form>"`;
+
+exports[`message list page show message content on dom 1`] = `"<form><h1>Create a new message</h1><div><label>Subject: <input value=\\"\\"></label></div><div><label>Recipient: <input value=\\"\\"></label></div><div><label>Content: <input value=\\"\\"></label></div><div><label>Date: <input type=\\"date\\" value=\\"\\"></label></div><button>Submit</button></form>"`;
+
+exports[`message list page show message sender on dom 1`] = `"<form><h1>Create a new message</h1><div><label>Subject: <input value=\\"\\"></label></div><div><label>Recipient: <input value=\\"\\"></label></div><div><label>Content: <input value=\\"\\"></label></div><div><label>Date: <input type=\\"date\\" value=\\"\\"></label></div><button>Submit</button></form>"`;
