@@ -1,24 +1,40 @@
-import { EditMessageForm } from "../../src/client/hooks/EditResponse";
+import {
+  EditMessageForm,
+  EditResponse,
+} from "../../src/client/hooks/EditResponse";
 
 import * as ReactDOM from "react-dom";
 import * as React from "react";
+import { MemoryRouter } from "react-router";
+import { act } from "react-dom/test-utils";
+import { AppListMessages } from "../../src/client/hooks/AppListMessages";
 
-const messageApi = {
+const message = {
   listMessages: async () => [
     {
       id: 1,
-      subject: "Hello world",
+      subject: "Stuff",
       recipient: "admin",
       content: "Hello test",
+      date: "",
     },
   ],
 };
 
-describe("Loading view", () => {
-  it("can respond to message"),
-    async () => {
-      const container = document.createElement("div");
-      ReactDOM.render(<EditMessageForm message={messageApi} />, container);
-      expect(container.innerHTML).toMatchSnapshot();
-    };
+describe("Response view", () => {
+  it("show response subject on dom", async () => {
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    await act(async () => {
+      ReactDOM.render(
+        <MemoryRouter>
+          <EditMessageForm message={message} />
+        </MemoryRouter>,
+        container
+      );
+    });
+
+    expect(container.innerHTML).toMatchSnapshot();
+    expect(container.querySelector("input").textContent).toEqual("");
+  });
 });

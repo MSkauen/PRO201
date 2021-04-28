@@ -32,22 +32,6 @@ describe("create message page", () => {
     });
 
     expect(container.innerHTML).toMatchSnapshot();
-    expect(container.querySelector("li").textContent).toContain("Ola");
-  });
-
-  it("show message content on dom", async () => {
-    const container = document.createElement("div");
-    document.body.appendChild(container);
-    await act(async () => {
-      ReactDOM.render(
-        <MemoryRouter>
-          <CreateNewMessage messageApi={messageApi} />
-        </MemoryRouter>,
-        container
-      );
-    });
-
-    expect(container.innerHTML).toMatchSnapshot();
-    expect(container.querySelector("li").textContent).toContain("Hello world");
+    expect(container.querySelector("input").textContent).toEqual("");
   });
 });
