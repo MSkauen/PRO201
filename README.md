@@ -2,6 +2,11 @@
 I had tons of ideas for how I could provide a good solution which reminded more of messenger than an email service.
 Yet I was overambitious and ended up struggling on time.
 
+I'm not quite sure I got the naming conventions and folder structure for the different
+components for components quite right, but its neat at least.
+
+All in all this was quite the fun exam and I'll definitely be using more react for future projects.
+
 
 Setting up the react application:
 
@@ -9,7 +14,7 @@ Setting up the react application:
 2. Server should now be running at ``http://localhost:3000``
 3. To get started click on `Login` / `Profile` or `Create user`
     1. Login straight away using `admin` `123456`
-    2. All new users have `123456` hardcoded as password
+    2. All new users have `123456`  as password
 4. Click `List users` to get an overview or to edit users.
 5. Click `List messages` to see all messages this user has recieved
     1. Or click the message to make a response
