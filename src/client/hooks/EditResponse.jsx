@@ -4,7 +4,7 @@ import { LoadingView } from "../components/LoadingView";
 import { InputField } from "../components/InputField";
 import { ErrorView } from "../components/ErrorView";
 import { useLoading } from "../lib/useLoading";
-import "../css/stylesheet.css";
+import "../../shared/css/stylesheet.css";
 
 export function EditMessageForm({ message }) {
   const [subject, setSubject] = useState(message.subject);

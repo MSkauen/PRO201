@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
-import { ProfilePage } from "./hooks/ProfilePage";
+import { HomePage } from "./hooks/HomePage";
 import { LoginPage } from "./hooks/LoginPage";
 import { AppListMessages } from "./hooks/AppListMessages";
 import { CreateNewMessage } from "./hooks/CreateNewMessage";
@@ -9,6 +9,8 @@ import { EditUser } from "./hooks/EditUser";
 import { FrontPage } from "./FrontPage";
 import React from "react";
 import { AppListUsers } from "./hooks/AppListUsers";
+import helpImage from "url:../shared/img/help.png";
+import logo from "url:../shared/img/logo.png";
 
 async function fetchJSON(url = "/api/messages") {
   const res = await fetch(url);
@@ -32,12 +34,24 @@ export function Application() {
   return (
     <BrowserRouter>
       <nav>
-        <Link to={"/"}>Home page</Link>
+        <div className="navbar">
+          <Link to={"/"}>
+            <div className="navItem">
+              <img src={logo} alt=""></img>
+            </div>
+          </Link>
+          <a id="help">
+            <div className="navItem">
+              <img src={helpImage} alt="Help"></img>
+              <p className="help-image-description">Help</p>
+            </div>
+          </a>
+        </div>
       </nav>
       <main>
         <Switch>
-          <Route path={"/profile"}>
-            <ProfilePage />
+          <Route path={"/home"}>
+            <HomePage />
           </Route>
           <Route path={"/login"}>
             <LoginPage />

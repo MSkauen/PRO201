@@ -7,7 +7,7 @@ export function FrontPage() {
       <h1>Front page</h1>
       <ul>
         <li>
-          <Link to={"/profile"}>Profile page</Link>
+          <Link to={"/home"}>Profile page</Link>
         </li>
         <li>
           <Link to={"/login"}>Login</Link>

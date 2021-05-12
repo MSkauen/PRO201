@@ -1,16 +1,13 @@
 import React from "react";
 
-export function InputField({ label, onChangeValue, value, type }) {
+export function InputField({ id, onChangeValue, value, type, placeholder }) {
   return (
-    <div>
-      <label>
-        {label}:{" "}
-        <input
-          type={type}
-          value={value}
-          onChange={(e) => onChangeValue(e.target.value)}
-        />
-      </label>
-    </div>
+    <input
+      id={id}
+      type={type}
+      value={value}
+      placeholder={placeholder}
+      onChange={(e) => onChangeValue(e.target.value)}
+    />
   );
 }

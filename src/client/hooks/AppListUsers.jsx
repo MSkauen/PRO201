@@ -3,7 +3,7 @@ import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
 import { Link } from "react-router-dom";
-import "../css/stylesheet.css";
+import "../../shared/css/stylesheet.css";
 
 export function AppListUsers({ userApi }) {
   const { data: users, error, loading, reload } = useLoading(

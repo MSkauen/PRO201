@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { postJson } from "../lib/http";
 import { useHistory } from "react-router";
 import { useSubmit } from "../lib/useSubmit";
-import "../css/stylesheet.css";
+import backgroundImage from "url:../../shared/img/Portal.png";
+import userImage from "url:../../shared/img/user.png";
+import "../../shared/css/stylesheet.css";
 
 export function LoginPage() {
   const [username, setUsername] = useState();
@@ -14,27 +16,38 @@ export function LoginPage() {
     async () => {
       await postJson("/api/login", { username, password });
     },
-    () => history.push("/")
+    () => history.push("/home"),
+    console.log("test")
   );
 
   return (
-    <div>
-      <h1>Please log in</h1>
-      <form onSubmit={handleLogin}>
-        {submitting && <div>Please wait</div>}
-        {error && <div>Error: {error.toString()}</div>}
+    <div
+      id="inputContainer"
+      //style={{ backgroundImage: "url(" + backgroundImage + ")" }}
+      align="center"
+    >
+      {submitting && <div>Please wait</div>}
+      {error && <div>Error: {error.toString()}</div>}
+      <img className="user" src={userImage}></img>
+      <h1>Login</h1>
+      <form type="post" className="inputForm" action={handleLogin}>
         <InputField
-          label={"Username"}
-          value={username}
+          id="username"
+          type="text"
+          placeholder="Username"
           onChangeValue={setUsername}
-        />
+          value={username}
+          maxLength="12"
+          required
+        ></InputField>
         <InputField
-          label={"Password"}
+          id="password"
           type="password"
-          value={password}
+          placeholder="Password"
           onChangeValue={setPassword}
-        />
-        <button disabled={submitting}>Log in</button>
+          value={password}
+        ></InputField>
+        <button id="loginButton" disabled={submitting}></button>
       </form>
     </div>
   );

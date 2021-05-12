@@ -1,5 +1,12 @@
 ## Welcome
+OKEI DA KJØRERN
 
+## TODO
+* Fjern all unødvendig drit fra eksamen
+* Gjør om resten av sidene og route de
+    * EditUser.jsx, EditResponse.jsx, CreateNewUser.jsx, CreateNewMessage.jsx, AppListUsers.jsx, AppListMessages.jsx
+* Håndtere database logikk i `app.js:27`
+    * I ``app.js:79`` ligger det hardkodet brukere som ble brukt istedenfor
 ## Troubleshooting
 
 * Check parcel version
@@ -8,3 +15,15 @@
 * Run `npm install` - perhaps also delete `node_modules` directory
 
 ## Known Issues
+Diverse warnings rundt om kring ja atm men de er ufarlige
+    * Routing fra `LoginPage.jsx` fungerer ikke og sender deg tilbake til `localhost:8080/login?`
+    * Det blir logget "test" i chrome så det er nok pga at vi ikke har noe database.
+ ```
+const { handleSubmit: handleLogin, submitting, error } = useSubmit(
+                    async () => {
+                      await postJson("/api/login", { username, password });
+                    },
+                    () => history.push("/home"),
+                    console.log("test")
+                  );```
+                      
