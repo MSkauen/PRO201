@@ -27,7 +27,7 @@ export function HomePage() {
   }
 
   const { username } = data;
-
+  console.log(username)
   return (
     <BrowserRouter>
       <div className="optionContainer">
@@ -39,9 +39,9 @@ export function HomePage() {
             </div>
           </Link>
 
-          <Link href="https://mskauen.github.io/pro201eksamen/chooseCourse.html">
+          <Link to="/course">
             <div id="course" className="bigButton">
-              <img src={courseImage} lassName="logImage"></img>
+              <img src={courseImage} className="logImage"></img>
               <h5 className="main-h5">LEARN</h5>
             </div>
           </Link>
