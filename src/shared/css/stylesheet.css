@@ -1,0 +1,431 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    font-family: 'Roboto';
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+}
+body {
+    background-color: rgb(251, 246, 237);
+}
+form {
+    padding-bottom: 25px;
+}
+h1, h2, h3, h4 {
+    color: #56425c;
+}
+h1 {
+    padding: 25px;
+}
+h2 {
+    padding: 10px;
+}
+iframe {
+    height: 100%;
+    width: 80%;
+    box-shadow: 0px 0px 23px 0px rgb(158 158 158);
+
+}
+button {
+    letter-spacing: 0.1em;
+    outline: inherit;
+    background: none;
+    border: none;
+    color: #F3F6F4;
+    background-color: #405c6a;
+    font-family: inherit;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 23px 0px rgb(158 158 158);
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+button:hover {
+    transition:.1s ease-in-out;
+    background-color: #324954;
+}
+button:active {
+    transition:.1s ease-in-out;
+    background-color: #9fd18b;
+}
+input, #loginButton{
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 23px 0px rgb(158 158 158);
+    padding:10px;
+    width: 60%;
+    height: 3em;
+    height: 3em;
+    font-size: 16pt;
+}
+img {
+    padding: 25px;
+    width: 7em;
+    height: 7em;
+}
+#username, #password {
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+#username {
+    background-image: url(../img/user.png);
+}
+#password {
+    background-image: url(../img/key.png);
+}
+#loginButton {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../img/login.png);
+}
+#inputContainer {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+#inputContainer> h1 {
+    padding: 0;
+}
+#inputContainer> .user {
+    padding: 0;
+    min-width: 12em;
+    min-height: 12em;
+}
+#logContainer {
+    height: 80vh;
+}
+#logContainer> img {
+    padding-bottom: 1em;
+    width: 10em;
+    height: 10em;
+}
+
+#logContainer, h2 {
+    color: #324954;
+}
+#buttonContainer {
+    padding:25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 3em;
+    width: 80%;
+    align-items: center;
+}
+#course {
+    mix-blend-mode: multiply;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+    background-color: #405c6a;
+    min-height: 3.25rem;
+}
+.subNavbar {
+    background: #9fd18b;
+    font-size: 1rem;
+    overflow: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    box-shadow: inset 0 7px 9px -7px #405c6a;
+    box-shadow:0 7px 9px -7px #405c6a;
+}
+
+ul.breadcrumb {
+    width: 100%;
+    height: 3.5em;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+ul.breadcrumb img {
+    height: 2em;
+    width: 2em;
+}
+ul.breadcrumb li {
+    width: 100%;
+    text-align: center;
+    border-radius: 3px;
+    height: 100%;
+    box-shadow: 5px 0px 6px 0px #779d68;
+    display: inline;
+    font-size: 18px;
+}
+
+ul.breadcrumb li a,Link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    text-decoration: none;
+
+}
+ul.breadcrumb li a, Link:hover {
+    box-shadow: 3px 0px 6px 0px #405c6a;
+    text-decoration: underline;
+}
+
+ul.breadcrumb li a p {
+    visibility: hidden;
+}
+
+ul.breadcrumb:hover li a p {
+    visibility: visible;
+    color: #324954;
+    font-size: 25px;
+}
+
+.footer {
+    padding: 1em;
+    background-color: #405c6a;
+    min-height: 3.25rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+main {
+    grid-column: 1 / 1;
+    height: calc(100vh - 174px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.optionContainer {
+    grid-column: 1 / 1;
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.partsContainer {
+    padding: 25px 25px 25px 25px;
+    grid-column: 1 / 1;
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    row-gap: 2em;
+    column-gap: 0.1em;
+    align-items: center;
+}
+
+.partsContainer, #loginButton {
+    width: 60%;
+}
+
+#serial {
+    color: #324954;
+    text-decoration: underline;
+}
+
+.partsContainer, #input-desc {
+    color: #324954;
+    text-decoration: none;
+}
+
+.courseContainer {
+    height: calc(100vh - 174px);
+    column-gap: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: hidden;
+}
+.course {
+    height: 100%;
+    width: 100%;
+}
+.courseDetails {
+    padding: 25px 15px 25px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.courseDetails > h2 {
+    padding: 15px;
+}
+.videoContainer {
+    margin-left: 4em;
+    height: 80%;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+.allVideosContainer {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: baseline;
+    box-shadow: inset 0 7px 9px -7px rgba(158 158 158);
+    row-gap: 0.5em;
+}
+.sideBar {
+    overflow-y: hidden;
+    flex: 1 2 auto;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    row-gap: 1em;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0px 0px 23px 0px rgb(158 158 158);
+}
+.sideBarItem {
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border: none;
+    width: 100%;
+    height: 3em;
+    font-size: 16pt;
+}
+.playButton {
+    margin-right: 15px;
+}
+.inputForm {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.navItem {
+    width: 100%;
+    height: 3em;
+}
+.navItem img {
+    padding: 0;
+    width: auto;
+    height: 3.25em;
+}
+.dot {
+    position: relative;
+    min-height: 8em;
+    min-width: 8em;
+    background-color: #405c6a;
+    border-radius: 50%;
+    outline: none;
+    transition:.1s ease-in-out;
+
+}
+.dot:hover {
+    background-color: #324954;
+    transition:.1s ease-in-out;
+}
+.dotActive {
+    position: relative;
+    min-height: 8em;
+    min-width: 8em;
+    background-color: #9fd18b;
+    border-radius: 50%;
+    outline: none;
+    transition:.1s ease-in-out;
+}
+.dot > img {
+    padding: 15px;
+    max-height: 100%;
+    max-width: 100%;
+}
+.miniDot {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 3.5em;
+    width: 3.5em;
+    background-color: #9fd18b;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../img/login.png);
+}
+.count {
+    font-size: 2.5em;
+    line-height: 5vh;
+    vertical-align: middle;
+    font-weight: bold;
+    color: rgb(251, 246, 237);
+}
+.logHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.logDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.playIcon {
+    padding: 0;
+    width: 2em;
+    height: 2em;
+}
+.playIcon:hover {
+    mix-blend-mode: difference;
+    cursor: pointer;
+}
+.serial {
+    text-align: center;
+}
+#barcode {
+    width: 15em;
+    height: 10em;
+}
+
+
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/Roboto-Light.ttf);
+}
+
+a {
+    text-decoration: none;
+}
+
+.help-image-description {
+    visibility: hidden;
+}
+
+.navItem:hover .help-image-description {
+    visibility: visible;
+    color: #F3F6F4;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: underline black;
+}
+
+#input-desc {
+    color: #324954;
+}
