@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { postJson } from "../lib/http";
 import { useHistory } from "react-router";
 import { useSubmit } from "../lib/useSubmit";
-import backgroundImage from "url:../../shared/img/Portal.png";
 import userImage from "url:../../shared/img/user.png";
 import "../../shared/css/stylesheet.css";
 
@@ -17,7 +16,6 @@ export function LoginPage() {
       await postJson("/api/login", { username, password });
     },
     () => history.push("/home"),
-    console.log("test")
   );
 
   return (
@@ -30,7 +28,7 @@ export function LoginPage() {
       {error && <div>Error: {error.toString()}</div>}
       <img className="user" src={userImage}></img>
       <h1>Login</h1>
-      <form type="post" className="inputForm" action={handleLogin}>
+      <form className="inputForm" onSubmit={handleLogin}>
         <InputField
           id="username"
           type="text"
@@ -38,7 +36,6 @@ export function LoginPage() {
           onChangeValue={setUsername}
           value={username}
           maxLength="12"
-          required
         ></InputField>
         <InputField
           id="password"

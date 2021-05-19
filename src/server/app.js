@@ -30,7 +30,6 @@ passport.use(
     if (username === user.firstName && password === "123456") {
       done(null, { username, is_admin: true });
       req.session.username = username;
-      alert("HELP");
     } else {
       done(null, false, { message: "Invalid username/password" });
     }
