@@ -1,0 +1,11 @@
+.partsReplacedContainer {
+  padding: 15px 25px 25px 25px;
+  grid-column: 1 / 1;
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  row-gap: 1em;
+  align-items: center;
+}

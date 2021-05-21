@@ -3,7 +3,7 @@ import TestRenderer from "react-test-renderer";
 import React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
-import { CreateNewMessage } from "../src/client/hooks/CreateNewMessage";
+import { LogPage } from "../src/client/hooks/LogPage";
 import { MemoryRouter } from "react-router";
 
 const messageApi = {
@@ -25,7 +25,7 @@ describe("create message page", () => {
     await act(async () => {
       ReactDOM.render(
         <MemoryRouter>
-          <CreateNewMessage messageApi={messageApi} />
+          <LogPage messageApi={messageApi} />
         </MemoryRouter>,
         container
       );

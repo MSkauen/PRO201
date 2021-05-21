@@ -1,13 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const https = require("https");
-const fs = require("fs");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
-const req = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
@@ -29,7 +26,7 @@ passport.use(
 
     if (username === user.firstName && password === "123456") {
       done(null, { username, is_admin: true });
-      req.session.username = username;
+      passport.session.username = username;
     } else {
       done(null, false, { message: "Invalid username/password" });
     }
@@ -53,22 +50,16 @@ passport.deserializeUser((id, done) => done(null, id));
 app.use(passport.initialize());
 app.use(passport.session());
 
-const messages = [
+const items = [
   {
     id: 1,
-    sender: "admin",
-    recipient: "second",
-    subject: "Exam",
-    content: "Hello World",
-    date: "2021-12-03",
+    user: "admin",
+    serial: 123,
   },
   {
     id: 2,
-    sender: "second",
-    recipient: "admin",
-    subject: "Exam",
-    content: "Hello Dreamer",
-    date: "2021-12-05",
+    user: "second",
+    serial: "23999999284",
   },
 ];
 
@@ -124,42 +115,41 @@ app.post("/api/login", passport.authenticate("local"), (req, res) => {
   res.end();
 });
 
-app.get("/api/messages", (req, res) => {
+app.get("/api/item", (req, res) => {
   if (!req.user) {
     return res.status(401).send();
   }
   const { username } = req.user;
-  console.log(username);
-  const myMessages = messages.filter((m) => m.recipient.includes(username));
-  console.log(myMessages);
+
+  const myMessages = items.filter((m) => m.user.includes(username));
+
   res.json(myMessages);
 });
 
-app.get("/api/messages/:id", (req, res) => {
+app.get("/api/item/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const message = messages.find((m) => m.id === id);
-  console.log(message);
+  const message = items.find((m) => m.serial === id);
+  console.log("ID"+id);
 
   res.json(message);
 });
 
-app.put("/api/messages/:id", (req, res) => {
+app.put("/api/item/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const messageIndex = messages.findIndex((m) => m.id === id);
-  const { sender, recipient, subject, content, date } = req.body;
-  messages[messageIndex] = { sender, recipient, subject, content, date, id };
+  const itemIndex = items.findIndex((m) => m.id === id);
+  const { user, itemSerial } = req.body;
+  items[itemIndex] = { user, itemSerial, id };
   res.status(200).end();
 });
 
-app.post("/api/messages", (req, res) => {
-  const { sender, recipient, subject, content, date } = req.body;
-  messages.push({
-    sender,
-    recipient,
-    subject,
-    content,
-    date,
-    id: messages.length + 1,
+app.post("/api/item", (req, res) => {
+  const user = req.body.user;
+  const serial = req.body.serial;
+  console.log(req.body.user, req.body.serial, req.body)
+  items.push({
+    user,
+    serial,
+    id: items.length + 1,
   });
   res.status(201).end();
 });

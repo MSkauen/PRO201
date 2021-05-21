@@ -21,7 +21,7 @@ export function FrontPage() {
         </li>
 
         <li>
-          <Link to={"/messages"}>Messages</Link>
+          <Link to={"/item"}>Messages</Link>
         </li>
         <li>
           <Link to={"/create"}>Send message</Link>

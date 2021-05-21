@@ -1,0 +1,31 @@
+.bigButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.1em;
+    color: #F3F6F4;
+    background-color: #405c6a;
+    font-family: inherit;
+    border-radius: 5px;
+    box-shadow: 0 0 23px 0 rgb(158, 158, 158);
+    padding: 10px;
+    font-size: 3em;
+    min-width: 10em;
+    min-height: 3em;
+    cursor: pointer;
+  }
+
+  .bigButton:hover {
+    background-color: #324954;
+    transition:.1s ease-in-out;
+  }
+  .bigButton:active {
+    background-color: #9fd18b;
+    transition:.1s ease-in-out;
+  }
+
+ .optionContainer > a:visited {
+     text-decoration: none;
+     color: #ffffff;
+ }
