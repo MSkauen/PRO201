@@ -51,16 +51,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const items = [
+    /*
   {
     id: 1,
     user: "admin",
     serial: 123,
+    partsChanged: []
   },
   {
     id: 2,
-    user: "second",
-    serial: "23999999284",
-  },
+    user: "adminn",
+    serial: 1234,
+    partsChanged: []
+  }*/
 ];
 
 const users = [
@@ -72,7 +75,7 @@ const users = [
   },
   {
     id: 2,
-    firstName: "user",
+    firstName: "adminn",
     lastName: "First contact",
     email: "user@mail.no",
   },
@@ -127,30 +130,36 @@ app.get("/api/item", (req, res) => {
 });
 
 app.get("/api/item/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const message = items.find((m) => m.serial === id);
-  console.log("ID"+id);
+  const id = req.params.id;
+  const item = items.find((m) => m.serial === id);
 
-  res.json(message);
+  console.log("ITEMS"+JSON.stringify(items))
+  res.json(item);
 });
 
 app.put("/api/item/:id", (req, res) => {
+
   const id = parseInt(req.params.id);
   const itemIndex = items.findIndex((m) => m.id === id);
-  const { user, itemSerial } = req.body;
-  items[itemIndex] = { user, itemSerial, id };
+  const { user, itemSerial, selections } = req.body;
+
+  items[itemIndex] = { user, itemSerial, selections, id };
+
   res.status(200).end();
 });
 
 app.post("/api/item", (req, res) => {
   const user = req.body.user;
   const serial = req.body.serial;
-  console.log(req.body.user, req.body.serial, req.body)
+
+  //console.log(req.body.user, req.body.serial, req.body)
   items.push({
-    user,
-    serial,
+    user: user,
+    serial: serial,
     id: items.length + 1,
+    partsChanged: []
   });
+  console.log("POSTED ITEMS" +JSON.stringify(items))
   res.status(201).end();
 });
 

@@ -7,8 +7,8 @@ import userImage from "url:../../shared/img/user.png";
 import "../../shared/css/stylesheet.css";
 
 export function LoginPage() {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
 
   const { handleSubmit: handleLogin, submitting, error } = useSubmit(
@@ -18,20 +18,28 @@ export function LoginPage() {
     () => history.push("/home"),
   );
 
+
   return (
+
     <div
       id="inputContainer"
-      //style={{ backgroundImage: "url(" + backgroundImage + ")" }}
       align="center"
     >
-      {submitting && <div>Please wait</div>}
-      {error && <div>Error: {error.toString()}</div>}
+      {
+        submitting &&
+        <div className="loading">Please wait</div>
+      }
+      {
+        error &&
+        <div className="error">{error.toString()}</div>
+      }
       <img className="user" src={userImage}></img>
       <h1>Login</h1>
       <form className="inputForm" onSubmit={handleLogin}>
         <InputField
           id="username"
           type="text"
+          className=""
           placeholder="Username"
           onChangeValue={setUsername}
           value={username}
@@ -39,6 +47,7 @@ export function LoginPage() {
         ></InputField>
         <InputField
           id="password"
+          className=""
           type="password"
           placeholder="Password"
           onChangeValue={setPassword}

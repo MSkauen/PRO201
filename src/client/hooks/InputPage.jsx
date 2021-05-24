@@ -18,13 +18,14 @@ export function InputPage() {
 
 
     console.log("Submitting", { user, serial });
-    await postJson("/api/item", {
+    await fetch("/api/item", {
       method: "POST",
       body: JSON.stringify({ user, serial }),
       headers: {
         "Content-Type": "application/json",
       },
     });
+
     history.push(`/item/${serial}/edit`)
   }
 

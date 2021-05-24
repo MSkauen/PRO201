@@ -3,8 +3,7 @@ import React from "react";
 export function ErrorView({ error, reload }) {
   if (error.status === 401) {
     return (
-      <div>
-        You are not logged in.
+      <div id="errorView">
         <a href={"/login"} target={"_self"}>
           <button>Log in</button>
         </a>
