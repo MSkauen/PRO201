@@ -22,7 +22,7 @@ async function fetchJSON(url = "/api/messages") {
 
 export function Application() {
   const itemApi = {
-    //listItem: async () => await fetchJSON("/api/item"),
+    //listItems: async () => await fetchJSON("/api/item"),
     getItem: async (id) => await fetchJSON(`/api/item/${id}`),
   };
   const userApi = {

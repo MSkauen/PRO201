@@ -7,7 +7,7 @@ import * as ReactDOM from "react-dom";
 import * as React from "react";
 import { MemoryRouter } from "react-router";
 import { act } from "react-dom/test-utils";
-import { AppListMessages } from "../../src/client/hooks/AppListMessages";
+import { AppListItems } from "../../src/client/hooks/AppListItems";
 
 const message = {
   listMessages: async () => [

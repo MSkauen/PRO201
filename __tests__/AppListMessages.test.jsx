@@ -3,7 +3,7 @@ import TestRenderer from "react-test-renderer";
 import React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
-import { AppListMessages } from "../src/client/hooks/AppListMessages";
+import { AppListItems } from "../src/client/hooks/AppListItems";
 import { MemoryRouter } from "react-router";
 
 const messageApi = {
@@ -17,7 +17,7 @@ describe("message list page", () => {
     await act(async () => {
       ReactDOM.render(
         <MemoryRouter>
-          <AppListMessages messageApi={messageApi} />
+          <AppListItems messageApi={messageApi} />
         </MemoryRouter>,
         container
       );
@@ -33,7 +33,7 @@ describe("message list page", () => {
     await act(async () => {
       ReactDOM.render(
         <MemoryRouter>
-          <AppListMessages messageApi={messageApi} />
+          <AppListItems messageApi={messageApi} />
         </MemoryRouter>,
         container
       );
