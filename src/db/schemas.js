@@ -18,6 +18,10 @@ const sunbellRepairedSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    tag: {
+        type: String,
+        required: false
+    },
     partsChanged: { type: [Number] },
     date: {
         type: Date,

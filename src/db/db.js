@@ -13,8 +13,12 @@ const connectDB = async ( ) => {
 
         console.log('Connected successfully to mongoDB')
         // findUserWithName('egil1403')
-        addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles')
-        checkIfValidUser('egil1403')
+        // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 2343512324)
+        // addNewRepairSchema('egil1403', [4, 2], 'oslo', 2329023938)
+        // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 09876)
+        // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 148625)
+        // addNewRepairSchema('egil1403', [12, 5, 8], 'oslo')
+        // checkIfValidUser('egil1403')
     } catch (err) {
         console.error(err.message)
         process.exit(1)
@@ -27,11 +31,12 @@ const RepairedSunbell = mongoose.model('Repaired_Sunbell', schemas.sunbellRepair
 
 // FUNSKJON FOR Å SENDE INN SKJEMA OM REPARERT LAMPE
 
-const addNewRepairSchema = async (repairman, changed, location) => {
+const addNewRepairSchema = async (repairman, changed, location, tag = 'unidentable') => {
     const newSunbellRepairSchema = new RepairedSunbell({
         repairman: repairman, 
         partsChanged: [...changed], 
-        location: location
+        location: location,
+        tag: tag
     })
     await newSunbellRepairSchema.save().then( () => {
         console.log('item was saved successfully')
@@ -54,6 +59,7 @@ const checkIfValidUser = async (username) => {
     })
 }
 
+// Testing
 const findUserWithName = async (name) => {
     await User.findOne({username: name}, ( err, res ) => {
         if (err) {
