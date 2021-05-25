@@ -19,6 +19,7 @@ const connectDB = async ( ) => {
         // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 148625)
         // addNewRepairSchema('egil1403', [12, 5, 8], 'oslo')
         // checkIfValidUser('egil1403')
+        checkIfLampIsPreviouslyRepaired(2343512324)
     } catch (err) {
         console.error(err.message)
         process.exit(1)
@@ -33,7 +34,7 @@ const RepairedSunbell = mongoose.model('Repaired_Sunbell', schemas.sunbellRepair
 
 const addNewRepairSchema = async (repairman, changed, location, tag = 'unidentable') => {
     const newSunbellRepairSchema = new RepairedSunbell({
-        repairman: repairman, 
+        repairman: repairman,
         partsChanged: [...changed], 
         location: location,
         tag: tag
@@ -56,6 +57,15 @@ const checkIfValidUser = async (username) => {
         } 
         console.log(`${username} was found in the database`)
         console.log(`${res._id}`)
+    })
+}
+
+const checkIfLampIsPreviouslyRepaired = async (tag) => {
+    await RepairedSunbell.findOne({tag}, (err, res) => {
+        if (err) {
+            console.log('lamp is not previously repaired')
+        }
+        console.log(res)
     })
 }
 
