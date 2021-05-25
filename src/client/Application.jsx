@@ -1,10 +1,8 @@
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import {BrowserRouter, Link, Route, Switch, withRouter} from "react-router-dom";
 import { HomePage } from "./hooks/HomePage";
 import { LoginPage } from "./hooks/LoginPage";
-import { AppListMessages } from "./hooks/AppListMessages";
-import { CreateNewMessage } from "./hooks/CreateNewMessage";
-import { CreateNewUser } from "./hooks/CreateNewUser";
-import { EditResponse } from "./hooks/EditResponse";
+import { EditItem } from "./hooks/LogPage";
+import { InputPage } from "./hooks/InputPage";
 import { EditUser } from "./hooks/EditUser";
 import { FrontPage } from "./FrontPage";
 import React from "react";
@@ -23,12 +21,12 @@ async function fetchJSON(url = "/api/messages") {
 }
 
 export function Application() {
-  const messageApi = {
-    listMessages: async () => await fetchJSON("/api/messages"),
-    getMessage: async (id) => await fetchJSON(`/api/messages/${id}`),
+  const itemApi = {
+    //listItems: async () => await fetchJSON("/api/item"),
+    getItem: async (id) => await fetchJSON(`/api/item/${id}`),
   };
   const userApi = {
-    listUsers: async () => await fetchJSON("/api/users"),
+    //listUsers: async () => await fetchJSON("/api/users"),
     getUser: async (id) => await fetchJSON(`/api/users/${id}`),
   };
   return (
@@ -37,12 +35,12 @@ export function Application() {
         <div className="navbar">
           <Link to={"/"}>
             <div className="navItem">
-              <img src={logo} alt=""></img>
+              <img src={logo} alt=""/>
             </div>
           </Link>
           <a id="help">
             <div className="navItem">
-              <img src={helpImage} alt="Help"></img>
+              <img src={helpImage} alt="Help"/>
               <p className="help-image-description">Help</p>
             </div>
           </a>
@@ -60,21 +58,18 @@ export function Application() {
           <Route exact path={"/users"}>
             <AppListUsers userApi={userApi} />
           </Route>
-          <Route path={"/newuser"}>
-            <CreateNewUser />
+
+          <Route exact path={"/input"} component={withRouter(InputPage)}>
+            <InputPage />
           </Route>
+
           <Route path={"/users/:id/edit"}>
             <EditUser userApi={userApi} />
           </Route>
 
-          <Route exact path={"/messages"}>
-            <AppListMessages messageApi={messageApi} />
-          </Route>
-          <Route path={"/create"}>
-            <CreateNewMessage />
-          </Route>
-          <Route path={"/messages/:id/edit"}>
-            <EditResponse messageApi={messageApi} />
+
+          <Route path={"/item/:id/edit"}>
+            <EditItem itemApi={itemApi} />
           </Route>
           <Route exact path={"/"}>
             <FrontPage />
