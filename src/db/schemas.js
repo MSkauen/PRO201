@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
     sunbell_video_progress: {
         type: Array,
         required: false,
-
     }
 })
 
@@ -19,13 +18,11 @@ const sunbellRepairedSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    partsChanged: { type: [Number] },
     date: {
-        type: String,
-        required: true
-    },
-    partsChanged: {
-        type: Array,
-        required: true
+        type: Date,
+        required: false,
+        default: Date.now
     },
     location: {
         type: String,
@@ -33,4 +30,6 @@ const sunbellRepairedSchema = new mongoose.Schema({
     }
 })
 
-module.exports = {userSchema, sunbellRepairedSchema}
+module.exports = {
+    userSchema: userSchema, 
+    sunbellRepairedSchema: sunbellRepairedSchema}
