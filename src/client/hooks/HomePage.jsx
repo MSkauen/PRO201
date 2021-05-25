@@ -4,7 +4,8 @@ import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
 import { fetchJson } from "../lib/http";
 import "../../shared/css/stylesheet.css";
-import { BrowserRouter, Link } from "react-router-dom";
+import "../../shared/css/main.css";
+import { Link } from "react-router-dom";
 import logImage from "url:../../shared/img/logImg.png";
 import courseImage from "url:../../shared/img/courseImg.png";
 
@@ -29,24 +30,23 @@ export function HomePage() {
   const { username } = data;
   console.log(username)
   return (
-    <BrowserRouter>
+
       <div className="optionContainer">
         <div id="buttonContainer" align="center">
           <Link to={"/input"}>
             <div id="log" className="bigButton">
-              <img src={logImage} className="logImage"></img>
+              <img src={logImage} alt="" className="logImage"/>
               <h5 className="main-h5">REPORT</h5>
             </div>
           </Link>
 
           <Link to="/course">
             <div id="course" className="bigButton">
-              <img src={courseImage} className="logImage"></img>
+              <img src={courseImage} alt="" className="logImage"/>
               <h5 className="main-h5">LEARN</h5>
             </div>
           </Link>
         </div>
       </div>
-    </BrowserRouter>
   );
 }
