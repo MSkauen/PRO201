@@ -142,9 +142,9 @@ app.put("/api/item/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const itemIndex = items.findIndex((m) => m.id === id);
   const { user, itemSerial, selections } = req.body;
-
-  items[itemIndex] = { user, itemSerial, selections, id };
-
+  console.log(itemIndex)
+  items[itemIndex + 1] = { user, itemSerial, partsChanged: selections, id };
+  console.log(JSON.stringify(items))
   res.status(200).end();
 });
 
