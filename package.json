@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently npm:start:express npm:start:clean npm:start:parcel",
+    "start:martin": "concurrently npm:start:express npm:start:parcel",
     "start:express": "nodemon --watch src/server src/server/server.js",
     "start:parcel": "parcel src/shared/html/index.html",
     "start:clean": "node ./node_modules/parcel-dist-cleaner/distCleaner",
@@ -15,6 +16,7 @@
     "@babel/core": "^7.13.16",
     "@babel/preset-env": "^7.13.10",
     "@babel/preset-react": "^7.12.13",
+    "@parcel/transformer-image": "^2.0.0-nightly.2264",
     "babel-jest": "^26.6.3",
     "concurrently": "^6.0.0",
     "jest": "^26.6.3",
@@ -30,6 +32,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "mongoose": "^5.12.10",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",

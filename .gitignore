@@ -6,3 +6,4 @@ dist/
 /.env
 *.crt
 *.key
+/src/db/dbconfig.js
