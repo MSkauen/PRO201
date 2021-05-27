@@ -1,16 +1,14 @@
-import React, { useState } from "react";
 import "../../shared/css/stylesheet.css";
-import {useLoading} from "../lib/useLoading";
-import {useHistory, useParams} from "react-router";
-import {ErrorView} from "../components/ErrorView";
-import {LoadingView} from "../components/LoadingView";
-import {check} from "../lib/checkbox";
-import {fetchJson} from "../lib/http";
+import { useLoading } from "../lib/useLoading";
+import { useHistory, useParams } from "react-router";
+import { ErrorView } from "../components/ErrorView";
+import { LoadingView } from "../components/LoadingView";
+import { check } from "../lib/checkbox";
+import { fetchJson } from "../lib/http";
 import IMAGES from "../lib/images.jsx"
 
 export function LogPage({ item }) {
-  const [user, setUser] = useState("");
-  const itemSerial = item.serial;
+    const itemSerial = item.serial;
     const history = useHistory();
 
     const { data, error, loading, reload } = useLoading(() =>
@@ -22,18 +20,6 @@ export function LogPage({ item }) {
             },
         })
     );
-
-    if(data){
-        if(item.user !== data.username) {
-            let newError = Error()
-            newError.status = 401
-            console.log("FALSE")
-            return <ErrorView error={newError} reload={reload} />;
-        } else {
-            console.log("CORRECT")
-            console.log("LOGPAGE"+item.serial)
-        }
-    }
 
     if (error) {
         return <ErrorView error={error} reload={reload} />;
@@ -50,10 +36,6 @@ export function LogPage({ item }) {
     const json = await res.json();
     let user = json.username;
     let selections = storeSelections();
-      console.log(selections)
-    if(!selections){
-        console.log("BAD")
-    }
 
     await fetch(`/api/item/${itemSerial}`, {
       method: "PUT",
@@ -81,27 +63,27 @@ export function LogPage({ item }) {
                           </div>
                   </div>
                   <div id={IMAGES[2].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[2].image}alt=""/>
+                      <img src={IMAGES[2].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[3].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[3].image}alt=""/>
+                      <img src={IMAGES[3].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[4].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[4].image}alt=""/>
+                      <img src={IMAGES[4].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[5].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[5].image}alt=""/>
+                      <img src={IMAGES[5].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[6].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[6].image}alt=""/>
+                      <img src={IMAGES[6].image} alt=""/>
                           <div>
                           </div>
                   </div>

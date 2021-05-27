@@ -3,7 +3,7 @@
     padding: 0;
 }
 html, body {
-    font-family: 'Roboto';
+    font-family: 'Roboto', serif;
     padding: 0;
     margin: 0;
     min-height: 100vh;
@@ -15,7 +15,7 @@ form {
     padding-bottom: 25px;
 }
 h1, h2, h3, h4 {
-    color: #56425c;
+    color: #324954;
 }
 h1 {
     padding: 25px;
@@ -65,15 +65,20 @@ img {
     width: 7em;
     height: 7em;
 }
-#username, #password {
+#username {
+    font-size: 4em;
+    color: #56425c;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+#usernameInput, #passwordInput {
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain;
 }
-#username {
+#usernameInput {
     background-image: url(../img/user.png);
 }
-#password {
+#passwordInput {
     background-image: url(../img/key.png);
 }
 #loginButton {

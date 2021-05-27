@@ -4,7 +4,6 @@ import { postJson } from "../lib/http";
 import { useHistory } from "react-router";
 import { useSubmit } from "../lib/useSubmit";
 import userImage from "url:../../shared/img/user.png";
-import "../../shared/css/stylesheet.css";
 
 export function LoginPage() {
   const [username, setUsername] = useState("");
@@ -20,11 +19,8 @@ export function LoginPage() {
 
 
   return (
+    <div id="inputContainer" align="center">
 
-    <div
-      id="inputContainer"
-      align="center"
-    >
       {
         submitting &&
         <div className="loading">Please wait</div>
@@ -33,27 +29,27 @@ export function LoginPage() {
         error &&
         <div className="error">{error.toString()}</div>
       }
-      <img className="user" src={userImage}></img>
+
+      <img className="user" src={userImage} alt=""/>
       <h1>Login</h1>
+
       <form className="inputForm" onSubmit={handleLogin}>
-        <InputField
-          id="username"
-          type="text"
-          className=""
-          placeholder="Username"
-          onChangeValue={setUsername}
-          value={username}
-          maxLength="12"
-        ></InputField>
-        <InputField
-          id="password"
-          className=""
-          type="password"
-          placeholder="Password"
-          onChangeValue={setPassword}
-          value={password}
-        ></InputField>
-        <button id="loginButton" disabled={submitting}></button>
+          <InputField
+            id="usernameInput"
+            type="text"
+            placeholder="Username"
+            onChangeValue={setUsername}
+            value={username}
+            maxLength="12"
+          />
+          <InputField
+            id="passwordInput"
+            type="password"
+            placeholder="Password"
+            onChangeValue={setPassword}
+            value={password}
+          />
+        <button id="loginButton" disabled={submitting}/>
       </form>
     </div>
   );

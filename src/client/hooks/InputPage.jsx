@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { InputField } from "../components/InputField";
 import Barcode from "url:../../shared/img/barcode.png";
-import "../../shared/css/stylesheet.css";
-import {useHistory} from "react-router";
-import {postJson} from "../lib/http";
+import { useHistory } from "react-router";
 
 export function InputPage() {
   const [serial, setSerial] = useState("");
@@ -16,8 +14,6 @@ export function InputPage() {
     const json = await res.json();
     let user = json.username;
 
-
-    console.log("Submitting", { user, serial });
     await fetch("/api/item", {
       method: "POST",
       body: JSON.stringify({ user, serial }),
