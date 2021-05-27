@@ -1,7 +1,7 @@
 import {BrowserRouter, Link, Route, Switch, withRouter} from "react-router-dom";
 import { HomePage } from "./hooks/HomePage";
 import { LoginPage } from "./hooks/LoginPage";
-import { EditItem } from "./hooks/LogPage";
+import {EditItem, LogPage} from "./hooks/LogPage";
 import { InputPage } from "./hooks/InputPage";
 import { EditUser } from "./hooks/EditUser";
 import { FrontPage } from "./FrontPage";
@@ -76,7 +76,7 @@ export function Application() {
             <GetItem itemApi={itemApi}/>
           </Route>
           <Route exact path={"/"}>
-            <FrontPage />
+            <LoginPage />
           </Route>
           <Route>Page not found</Route>
         </Switch>

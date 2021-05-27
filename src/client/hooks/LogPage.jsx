@@ -6,6 +6,7 @@ import { LoadingView } from "../components/LoadingView";
 import { check } from "../lib/checkbox";
 import { fetchJson } from "../lib/http";
 import IMAGES from "../lib/images.jsx"
+import React from "react";
 
 export function LogPage({ item }) {
     const itemSerial = item.serial;
@@ -154,6 +155,5 @@ function storeSelections() {
             selections.push(id)
         }
     }
-    console.log(selections)
     return selections
 }
