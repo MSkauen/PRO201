@@ -72,8 +72,8 @@ export function Application() {
           <Route path={"/item/:id/edit"}>
             <EditItem itemApi={itemApi} />
           </Route>
-          <Route path={"/item/:id"} component={withRouter(AppListItems)}>
-            <AppListItems itemApi={itemApi} />
+          <Route path={"/item/:id/success"} component={withRouter(AppListItems)}>
+            <EditItem itemApi={itemApi} />
           </Route>
           <Route exact path={"/"}>
             <FrontPage />

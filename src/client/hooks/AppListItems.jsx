@@ -8,27 +8,11 @@ import {LogPage} from "./LogPage";
 
 
 export function AppListItems({ item }) {
-  const { data: items, error, loading, reload } = useLoading(
-    async () => await fetch(`/api/items/${item.id}`, {
-        method: "GET",
-        body: JSON.stringify({ firstName, lastName, email }),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-  );
-
-  if (error) {
-    return <ErrorView error={error} reload={reload} />;
-  }
-  if (loading || !items) {
-    return <LoadingView />;
-  }
 
   return (
     <>
 
-      <h1>PARTS REPLACED</h1>
+      <h1>PARTS REPLACED FOR ${item.id}</h1>
       <div className="partsReplacedContainer">
       </div>
 
@@ -61,7 +45,6 @@ export function EditItem({ itemApi }) {
         async () => await itemApi.getItem(id),
         [id]
     );
-
     if (error) {
         return <ErrorView error={error} reload={reload()} />;
     }

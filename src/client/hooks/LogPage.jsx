@@ -62,7 +62,7 @@ export function LogPage({ item }) {
         "Content-Type": "application/json",
       },
     });
-      history.push(`/item/${itemSerial}`)
+      history.push(`/item/${itemSerial}/success`)
   }
 
   return (
