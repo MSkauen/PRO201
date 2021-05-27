@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-//import { Battery } from "../../shared/img/parts/new/";
 import "../../shared/css/stylesheet.css";
 import {useLoading} from "../lib/useLoading";
-import {useParams} from "react-router";
+import {useHistory, useParams} from "react-router";
 import {ErrorView} from "../components/ErrorView";
 import {LoadingView} from "../components/LoadingView";
 import {check} from "../lib/checkbox";
-import {fetchJson, postJson} from "../lib/http";
+import {fetchJson} from "../lib/http";
 import IMAGES from "../lib/images.jsx"
-import {useSubmit} from "../lib/useSubmit";
 
 export function LogPage({ item }) {
   const [user, setUser] = useState("");
   const itemSerial = item.serial;
+    const history = useHistory();
 
     const { data, error, loading, reload } = useLoading(() =>
         fetchJson("/api/profile", {
@@ -25,8 +24,6 @@ export function LogPage({ item }) {
     );
 
     if(data){
-        console.log(item.user + " " +data.username)
-
         if(item.user !== data.username) {
             let newError = Error()
             newError.status = 401
@@ -34,9 +31,9 @@ export function LogPage({ item }) {
             return <ErrorView error={newError} reload={reload} />;
         } else {
             console.log("CORRECT")
+            console.log("LOGPAGE"+item.serial)
         }
     }
-    //Check if item serial (item.serial) is "owned" by current user (data.username) here if not throw 401 error.
 
     if (error) {
         return <ErrorView error={error} reload={reload} />;
@@ -65,6 +62,7 @@ export function LogPage({ item }) {
         "Content-Type": "application/json",
       },
     });
+      history.push(`/item/${itemSerial}`)
   }
 
   return (

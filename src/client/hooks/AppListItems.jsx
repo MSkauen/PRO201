@@ -3,16 +3,25 @@ import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
 import { BrowserRouter, Link } from "react-router-dom";
+import {useParams} from "react-router";
+import {LogPage} from "./LogPage";
 
-export function AppListItems({ itemApi }) {
+
+export function AppListItems({ item }) {
   const { data: items, error, loading, reload } = useLoading(
-    async () => await itemApi.listItems()
+    async () => await fetch(`/api/items/${item.id}`, {
+        method: "GET",
+        body: JSON.stringify({ firstName, lastName, email }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
   );
 
   if (error) {
     return <ErrorView error={error} reload={reload} />;
   }
-  if (loading || !messages) {
+  if (loading || !items) {
     return <LoadingView />;
   }
 
@@ -45,4 +54,21 @@ export function AppListItems({ itemApi }) {
       ))}
     </>
   );
+}
+export function EditItem({ itemApi }) {
+    const { id } = useParams();
+    const { data: item, loading, error, reload } = useLoading(
+        async () => await itemApi.getItem(id),
+        [id]
+    );
+
+    if (error) {
+        return <ErrorView error={error} reload={reload()} />;
+    }
+
+    if (loading || !item) {
+        return <LoadingView />;
+    }
+
+    return <AppListItems item={item} />;
 }

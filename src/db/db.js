@@ -19,7 +19,7 @@ const connectDB = async ( ) => {
         // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 148625)
         // addNewRepairSchema('egil1403', [12, 5, 8], 'oslo')
         // checkIfValidUser('egil1403')
-        checkIfLampIsPreviouslyRepaired(2343512324)
+        //checkIfLampIsPreviouslyRepaired(2343512324)
     } catch (err) {
         console.error(err.message)
         process.exit(1)
@@ -32,41 +32,63 @@ const RepairedSunbell = mongoose.model('Repaired_Sunbell', schemas.sunbellRepair
 
 // FUNSKJON FOR Å SENDE INN SKJEMA OM REPARERT LAMPE
 
-const addNewRepairSchema = async (repairman, changed, location, tag = 'unidentable') => {
+const addNewRepairSchema = async (username, serial, location, partsChanged) => {
+
     const newSunbellRepairSchema = new RepairedSunbell({
-        repairman: repairman,
-        partsChanged: [...changed], 
+        user: username,
+        partsChanged: partsChanged,
         location: location,
-        tag: tag
+        serial: serial
     })
-    await newSunbellRepairSchema.save().then( () => {
+    console.log(newSunbellRepairSchema)
+
+    //console.log(newSunbellRepairSchema)
+     await newSunbellRepairSchema.save().then(() => {
         console.log('item was saved successfully')
-        console.log(newSunbellRepairSchema.repairman)
-    
-    }).catch( ( error ) => {
-        console.log('there was an error saving')
+    })
+    return newSunbellRepairSchema
+
+}
+
+const updateRepairSchema = async (username, serial, partsChanged) => {
+
+    return await RepairedSunbell.findOneAndUpdate(
+        {
+            serial: serial
+        },
+        {
+            user: username,
+            partsChanged: partsChanged,
+            serial: serial
+        },
+    ).then((i) => {
+        return i
+        console.log('item was updated successfully')
+    }).catch( (err) => {
+        console.log(err.message)
     })
 }
 
 // FUNKSJON FOR Å SJEKKE OM BRUKEREN FINS I DATABASEN
 
 const checkIfValidUser = async (username) => {
-    await User.findOne({username}, ( err, res ) => {
-        if (err) {
-            console.log('something is wrong or could not find user with name' + username)
-        } 
-        console.log(`${username} was found in the database`)
-        console.log(`${res._id}`)
+    return await User.findOne({username}).then( (u) => {
+        console.log("U: "+u)
+        return u
+    }).catch( (err) => {
+        console.log(err.message)
     })
 }
 
-const checkIfLampIsPreviouslyRepaired = async (tag) => {
-    await RepairedSunbell.findOne({tag}, (err, res) => {
-        if (err) {
-            console.log('lamp is not previously repaired')
-        }
-        console.log(res)
+const checkIfLampIsPreviouslyRepaired = async (serial) => {
+    console.log("SERIAL: "+serial)
+    let item = await RepairedSunbell.findOne({serial}).then( (t) => {
+        console.log("t: " + t)
+        return t
+    }).catch( (err) => {
+        console.log(err.message)
     })
+    return item
 }
 
 // Testing
@@ -80,4 +102,10 @@ const findUserWithName = async (name) => {
 }
 
 
-module.exports = connectDB;
+module.exports = {
+    connectDB: connectDB,
+    checkIfValidUser: checkIfValidUser,
+    checkIfLampIsPreviouslyRepaired: checkIfLampIsPreviouslyRepaired,
+    addNewRepairSchema: addNewRepairSchema,
+    updateRepairSchema: updateRepairSchema
+    };

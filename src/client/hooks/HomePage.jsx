@@ -28,7 +28,6 @@ export function HomePage() {
   }
 
   const { username } = data;
-  console.log(username)
   return (
 
       <div className="optionContainer">

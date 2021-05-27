@@ -14,11 +14,11 @@ const userSchema = new mongoose.Schema({
 })
 
 const sunbellRepairedSchema = new mongoose.Schema({
-    repairman: {
+    user: {
         type: String,
         required: true
     },
-    tag: {
+    serial: {
         type: String,
         required: false
     },

@@ -9,6 +9,7 @@ import React from "react";
 import { AppListUsers } from "./hooks/AppListUsers";
 import helpImage from "url:../shared/img/help.png";
 import logo from "url:../shared/img/logo.png";
+import {AppListItems} from "./hooks/AppListItems";
 
 async function fetchJSON(url = "/api/messages") {
   const res = await fetch(url);
@@ -70,6 +71,9 @@ export function Application() {
 
           <Route path={"/item/:id/edit"}>
             <EditItem itemApi={itemApi} />
+          </Route>
+          <Route path={"/item/:id"} component={withRouter(AppListItems)}>
+            <AppListItems itemApi={itemApi} />
           </Route>
           <Route exact path={"/"}>
             <FrontPage />
