@@ -138,7 +138,7 @@ app.put("/api/item/:id", async (req, res) => {
   if(exists) {
     const updatedItem = await db.updateRepairSchema(user, itemSerial, selections, id);
     console.log("UPDATED ITEM: "+updatedItem)
-    res.json(updatedItem)
+    //res.json(updatedItem)
     res.status(200).end();
   }
 });

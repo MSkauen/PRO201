@@ -7,6 +7,7 @@ OKEI DA KJØRERN
     * EditUser.jsx, EditResponse.jsx, CreateNewUser.jsx, LogPage.jsx, AppListUsers.jsx, AppListMessages.jsx
 * Håndtere database logikk i `app.js:27`
     * I ``app.js:57`` ligger det hardkodet brukere som ble brukt istedenfor
+* Disable alle buttons etter klikk
 ## Troubleshooting
 
 * Check parcel version

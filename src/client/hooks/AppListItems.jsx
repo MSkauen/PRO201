@@ -7,12 +7,12 @@ import {useParams} from "react-router";
 import {LogPage} from "./LogPage";
 
 
-export function AppListItems({ item }) {
+export function AppListItems({item}) {
 
   return (
     <>
 
-      <h1>PARTS REPLACED FOR ${item.id}</h1>
+      <h1>PARTS ${item.partsChanged } REPLACED FOR ${item.id}</h1>
       <div className="partsReplacedContainer">
       </div>
 
@@ -29,18 +29,12 @@ export function AppListItems({ item }) {
       <h2 className="timerTag"></h2>
 
       <h1>List messages</h1>
-      {messages.map(({ id, sender, subject }) => (
-        <li key={id}>
-          <Link to={`/messages/${id}/edit`}>
-            <b>{sender}</b> [Subject:{subject}]
-          </Link>
-        </li>
-      ))}
+
     </>
   );
 }
-export function EditItem({ itemApi }) {
-    const { id } = useParams();
+export function GetItem({ itemApi }) {
+    const { id } = useParams()
     const { data: item, loading, error, reload } = useLoading(
         async () => await itemApi.getItem(id),
         [id]
@@ -55,3 +49,11 @@ export function EditItem({ itemApi }) {
 
     return <AppListItems item={item} />;
 }
+
+//      {messages.map(({ id, sender, subject }) => (
+//         <li key={id}>
+//           <Link to={`/messages/${id}/edit`}>
+//             <b>{sender}</b> [Subject:{subject}]
+//           </Link>
+//         </li>
+//       ))}
