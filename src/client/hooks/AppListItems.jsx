@@ -2,34 +2,36 @@ import React from "react";
 import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
-import { BrowserRouter, Link } from "react-router-dom";
 import {useParams} from "react-router";
-import {LogPage} from "./LogPage";
-
+import IMAGES from "../lib/images.jsx"
 
 export function AppListItems({item}) {
+    const partsChanged = item.partsChanged
 
   return (
     <>
-
-      <h1>PARTS ${item.partsChanged } REPLACED FOR ${item.id}</h1>
+      <h1>PARTS REPLACED FOR {item.serial.toString()}</h1>
       <div className="partsReplacedContainer">
+          {
+              partsChanged.map((id) => (
+                  <div id={id} className="dot" data-value="0">
+                      <img src={IMAGES[id].image} alt=""/>
+                      <div></div>
+                  </div>
+              ))}
       </div>
 
       <div className="success-checkmark">
         <div className="check-icon">
-          <span className="icon-line line-tip"></span>
-          <span className="icon-line line-long"></span>
-          <div className="icon-circle"></div>
-          <div className="icon-fix"></div>
+          <span className="icon-line line-tip"/>
+          <span className="icon-line line-long"/>
+          <div className="icon-circle"/>
+          <div className="icon-fix"/>
         </div>
       </div>
 
       <h1>SUCCESS!</h1>
-      <h2 className="timerTag"></h2>
-
-      <h1>List messages</h1>
-
+      <h2 className="timerTag"/>
     </>
   );
 }
@@ -49,11 +51,3 @@ export function GetItem({ itemApi }) {
 
     return <AppListItems item={item} />;
 }
-
-//      {messages.map(({ id, sender, subject }) => (
-//         <li key={id}>
-//           <Link to={`/messages/${id}/edit`}>
-//             <b>{sender}</b> [Subject:{subject}]
-//           </Link>
-//         </li>
-//       ))}

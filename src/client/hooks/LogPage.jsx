@@ -76,62 +76,62 @@ export function LogPage({ item }) {
               </div>
               <div className="partsContainer">
                   <div id={IMAGES[1].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[1].Battery} alt=""/>
+                      <img src={IMAGES[1].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[2].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[2].SolarPanel}alt=""/>
+                      <img src={IMAGES[2].image}alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[3].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[3].SunBellPCBAScrews}alt=""/>
+                      <img src={IMAGES[3].image}alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[4].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[4].SunBellCable}alt=""/>
+                      <img src={IMAGES[4].image}alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[5].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[5].SunBellDongle}alt=""/>
+                      <img src={IMAGES[5].image}alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[6].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[6].SunBellDongleWBattery}alt=""/>
+                      <img src={IMAGES[6].image}alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[7].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[7].SunBellPcb} alt=""/>
+                      <img src={IMAGES[7].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[8].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[8].SunBellPowerSwitchCover} alt=""/>
+                      <img src={IMAGES[8].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[9].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[9].SunBellPowerSwitchCoverSmart} alt=""/>
+                      <img src={IMAGES[9].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[10].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[10].SunBellPowerSwitchCoverRevED} alt=""/>
+                      <img src={IMAGES[10].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[11].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[11].SunBellUSBCover} alt=""/>
+                      <img src={IMAGES[11].image} alt=""/>
                           <div>
                           </div>
                   </div>
                   <div id={IMAGES[12].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[12].SunBellUSBCoverRevD} alt=""/>
+                      <img src={IMAGES[12].image} alt=""/>
                           <div>
                           </div>
                   </div>
