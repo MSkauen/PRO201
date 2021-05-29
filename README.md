@@ -4,7 +4,7 @@ OKEI DA KJØRERN
 ## TODO
 * Fjern all unødvendig drit
 * Gjør om resten av sidene og route de
-    * EditUser.jsx, EditResponse.jsx, CreateNewUser.jsx, LogPage.jsx, AppListUsers.jsx, AppListMessages.jsx
+    * EditUser.jsx, EditResponse.jsx, CreateNewUser.jsx, LogPage.jsx, AppListProducts.jsx, AppListMessages.jsx
 * Håndtere database logikk i `app.js:27`
     * I ``app.js:57`` ligger det hardkodet brukere som ble brukt istedenfor
 * Disable alle buttons etter klikk

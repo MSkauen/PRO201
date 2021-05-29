@@ -1,17 +1,17 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
 import { useHistory, useParams } from "react-router";
 import "../../shared/css/tmi.css";
 import "../../shared/css/confirmation.css";
-import IMAGES from "../lib/images.jsx"
-import {fetchJson} from "../lib/http";
+import { PARTS } from "../lib/images.jsx"
+import { fetchJson } from "../lib/http";
 
 export function AppListItems({item}) {
-    const history = useHistory();
     const partsChanged = item.partsChanged
-    let timerCount = 9;
+    const history = useHistory();
+    const [timeLeft, setTimeLeft] = useState(9);
 
     const { data, error, loading, reload } = useLoading(() =>
         fetchJson("/api/profile", {
@@ -23,6 +23,19 @@ export function AppListItems({item}) {
         })
     );
 
+    useEffect(() => {
+        if (!timeLeft) history.push("/home");
+
+        const intervalId = setInterval(() => {
+            setTimeLeft(timeLeft - 1);
+        }, 1000);
+
+        return () => {
+            clearInterval(intervalId);
+        }
+    }, [timeLeft]);
+
+
     if (error) {
         return <ErrorView error={error} reload={reload} />;
     }
@@ -30,25 +43,14 @@ export function AppListItems({item}) {
         return <LoadingView />;
     }
 
-    let x = setInterval(() => {
-        timerCount -= 1;
-
-        document.querySelector('.timerTag').innerHTML = 'You are being redirected in ' + timerCount + 's';
-
-        if(timerCount === 0) {
-            clearInterval(x);
-            history.push("/home")
-        }
-    }, 1000);
-
-  return (
+    return (
     <>
       <h1>PARTS REPLACED FOR {item.serial}</h1>
       <div className="partsReplacedContainer">
           {
               partsChanged.map((id) => (
                   <div key={id} className="dot">
-                      <img src={IMAGES[id].image} alt=""/>
+                      <img src={PARTS[id].image} alt=""/>
                       <div/>
                   </div>
               ))}
@@ -64,7 +66,7 @@ export function AppListItems({item}) {
       </div>
 
       <h1>SUCCESS!</h1>
-      <h2 className="timerTag"/>
+        <h2 className="timerTag">You are being redirected in {timeLeft}'s</h2>
     </>
   );
 }

@@ -6,7 +6,7 @@ import { InputPage } from "./hooks/InputPage";
 import { EditUser } from "./hooks/EditUser";
 import { FrontPage } from "./FrontPage";
 import React from "react";
-import { AppListUsers } from "./hooks/AppListUsers";
+import { AppListProducts } from "./hooks/AppListProducts";
 import helpImage from "url:../shared/img/help.png";
 import logo from "url:../shared/img/logo.png";
 import {AppListItems, GetItem} from "./hooks/AppListItems";
@@ -57,7 +57,7 @@ export function Application() {
           </Route>
 
           <Route exact path={"/users"}>
-            <AppListUsers userApi={userApi} />
+            <AppListProducts userApi={userApi} />
           </Route>
 
           <Route exact path={"/input"} component={withRouter(InputPage)}>

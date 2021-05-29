@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { InputField } from "../components/InputField";
 import Barcode from "url:../../shared/img/barcode.png";
 import { useHistory } from "react-router";
+import {ErrorView} from "../components/ErrorView";
+import {LoadingView} from "../components/LoadingView";
 
 export function InputPage() {
   const [serial, setSerial] = useState("");
@@ -24,6 +26,13 @@ export function InputPage() {
 
     history.push(`/item/${serial}/edit`)
   }
+  /*
+  if (error) {
+    return <ErrorView error={error} reload={reload} />;
+  }
+  if (loading || !data) {
+    return <LoadingView />;
+  }*/
 
   return (
         <div id="inputContainer" align="center">
