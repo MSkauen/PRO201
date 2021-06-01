@@ -6,4 +6,4 @@ dist/
 /src/db/dbconfig.js
 *.crt
 *.key
-/src/db/dbconfig.js
+# /src/db/dbconfig.js
