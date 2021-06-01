@@ -38,7 +38,7 @@ export function HomePage() {
                 </div>
               </Link>
 
-              <Link to="/course">
+              <Link to='/course'>
                 <div id="course" className="bigButton">
                   <img src={courseImage} alt="" className="logImage"/>
                   <h5 className="main-h5">LEARN</h5>

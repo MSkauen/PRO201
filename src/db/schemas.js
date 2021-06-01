@@ -29,7 +29,10 @@ const sunbellRepairedSchema = new mongoose.Schema({
         default: Date.now
     },
     location: {
-        type: String,
+        type: {
+            latitude: Number,
+            longitude: Number
+        },
         required: false
     }
 })

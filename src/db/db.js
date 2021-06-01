@@ -10,16 +10,7 @@ const connectDB = async ( ) => {
             useFindAndModify: false,
             useCreateIndex: true
         });
-
         console.log('Connected successfully to mongoDB')
-        // findUserWithName('egil1403')
-        // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 2343512324)
-        // addNewRepairSchema('egil1403', [4, 2], 'oslo', 2329023938)
-        // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 09876)
-        // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 148625)
-        // addNewRepairSchema('egil1403', [12, 5, 8], 'oslo')
-        // checkIfValidUser('egil1403')
-        //checkIfLampIsPreviouslyRepaired(2343512324)
     } catch (err) {
         console.error(err.message)
         process.exit(1)
@@ -42,7 +33,6 @@ const addNewRepairSchema = async (username, serial, location, partsChanged) => {
     })
     console.log(newSunbellRepairSchema)
 
-    //console.log(newSunbellRepairSchema)
      await newSunbellRepairSchema.save().then(() => {
         console.log('item was saved successfully')
     })
@@ -50,7 +40,7 @@ const addNewRepairSchema = async (username, serial, location, partsChanged) => {
 
 }
 
-const updateRepairSchema = async (username, serial, partsChanged) => {
+const updateRepairSchema = async (username, serial, partsChanged, location) => {
 
     return await RepairedSunbell.findOneAndUpdate(
         {
@@ -58,12 +48,16 @@ const updateRepairSchema = async (username, serial, partsChanged) => {
         },
         {
             user: username,
+            location: {
+                longitude: location.longitude,
+                latitude: location.latitude
+            },
             partsChanged: partsChanged,
             serial: serial
         },
     ).then((i) => {
-        return i
         console.log('item was updated successfully')
+        return i
     }).catch( (err) => {
         console.log(err.message)
     })
@@ -81,9 +75,8 @@ const checkIfValidUser = async (username) => {
 }
 
 const checkIfLampIsPreviouslyRepaired = async (serial) => {
-    console.log("SERIAL: "+serial)
+
     let item = await RepairedSunbell.findOne({serial}).then( (t) => {
-        console.log("t: " + t)
         return t
     }).catch( (err) => {
         console.log(err.message)

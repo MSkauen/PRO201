@@ -19,6 +19,7 @@ export function LoginPage() {
 
 
   return (
+      <>
     <div id="inputContainer" align="center">
 
       {
@@ -52,5 +53,6 @@ export function LoginPage() {
         <button id="loginButton" disabled={submitting}/>
       </form>
     </div>
+          </>
   );
 }

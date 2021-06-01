@@ -2,13 +2,14 @@ import React from "react";
 import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
-import { Link } from "react-router-dom";
 import "../../shared/css/stylesheet.css";
+import "../../shared/css/chooseCourse.css";
 import { PRODUCTS } from "../lib/images.jsx"
 import {fetchJson} from "../lib/http";
+import {Link} from "react-router-dom";
 
 export function AppListProducts() {
-
+  const id  = null;
   const { data, error, loading, reload } = useLoading(() =>
       fetchJson("/api/profile", {
         method: "POST",
@@ -30,33 +31,25 @@ export function AppListProducts() {
     <>
       <div className="chooseCourseContainer">
         <div className="productsContainer">
-          <a href="https://mskauen.github.io/pro201eksamen/sunbellCourse.html">
+          <Link to="/course/${id}">
             <div tabIndex="0" className="bigDot">
               <img src={PRODUCTS[0].image} alt=""/>
             </div>
-          </a>
+          </Link>
           <a href="https://mskauen.github.io/pro201eksamen/moveSmartCourse.html">
             <div tabIndex="0" className="bigDot">
-              <img src="img/products/Bright_Move_Red.png" alt=""/>
+              <img src={PRODUCTS[1].image} alt=""/>
                 <div/>
             </div>
           </a>
           <a href="https://mskauen.github.io/pro201eksamen/sunbellCourse.html">
             <div tabIndex="0" className="bigDot">
-              <img src="img/products/sunturtle-red.png" alt=""/>
+              <img src={PRODUCTS[2].image} alt=""/>
                 <div/>
             </div>
           </a>
         </div>
       </div>
-      <h1>List users</h1>
-      {users.map(({ id, firstName, lastName }) => (
-        <li key={id}>
-          <Link to={`/users/${id}/edit`}>
-            {firstName} {lastName}
-          </Link>
-        </li>
-      ))}
     </>
   );
 }

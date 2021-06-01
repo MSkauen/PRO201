@@ -91,7 +91,8 @@ img {
     justify-content: center;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    max-width: 100%;
+    min-width: 50%;
     align-items: center;
 }
 #inputContainer> h1 {

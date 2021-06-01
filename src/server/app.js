@@ -40,37 +40,6 @@ passport.deserializeUser((id, done) => done(null, id));
 app.use(passport.initialize());
 app.use(passport.session());
 
-const items = [
-    /*
-  {
-    id: 1,
-    user: "admin",
-    serial: 123,
-    partsChanged: []
-  },
-  {
-    id: 2,
-    user: "adminn",
-    serial: 1234,
-    partsChanged: []
-  }*/
-];
-
-const users = [
-  {
-    id: 1,
-    firstName: "admin",
-    lastName: "Hello world",
-    email: "admin@mail.no",
-  },
-  {
-    id: 2,
-    firstName: "adminn",
-    lastName: "First contact",
-    email: "user@mail.no",
-  },
-];
-
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
 
 app.post("/api/profile", (req, res) => {
@@ -94,14 +63,6 @@ app.options("/api/profile", (req, res) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:1234");
   res.header("Access-Control-Allow-Headers", "*");
   res.end();
-});
-
-app.get(
-  "/api/login",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-app.get("/api/oauth2callback", passport.authenticate("google"), (req, res) => {
-  res.redirect("/");
 });
 
 app.post("/api/login", passport.authenticate("local"), (req, res) => {
@@ -134,7 +95,8 @@ app.put("/api/item/:id", async (req, res) => {
 
   const id = parseInt(req.params.id);
   const exists = await db.checkIfLampIsPreviouslyRepaired(id)
-  const { user, itemSerial, selections } = req.body;
+  const { user, itemSerial, selections, location } = req.body;
+
   if(exists) {
     const updatedItem = await db.updateRepairSchema(user, itemSerial, selections, id);
     console.log("UPDATED ITEM: "+updatedItem)
@@ -146,11 +108,10 @@ app.put("/api/item/:id", async (req, res) => {
 app.post("/api/item", async (req, res) => {
   const user = req.body.user;
   const serial = req.body.serial;
-  console.log(user + " " + serial)
 
   const existingItem = await db.checkIfLampIsPreviouslyRepaired(parseInt(serial))
   if(!existingItem) {
-    const item = await db.addNewRepairSchema(user, serial, "test", [])
+    const item = await db.addNewRepairSchema(user, serial, location = req.body.location, [])
 
     console.log("POSTED ITEM" + JSON.stringify(item))
   }

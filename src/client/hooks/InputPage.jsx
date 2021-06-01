@@ -4,35 +4,68 @@ import Barcode from "url:../../shared/img/barcode.png";
 import { useHistory } from "react-router";
 import {ErrorView} from "../components/ErrorView";
 import {LoadingView} from "../components/LoadingView";
+import {useLoading} from "../lib/useLoading";
+import {fetchJson} from "../lib/http";
 
 export function InputPage() {
-  const [serial, setSerial] = useState("");
-  const history = useHistory();
+    const [serial, setSerial] = useState("");
+    const history = useHistory();
 
-  async function submit(e) {
-    e.preventDefault();
+    const [status, setStatus] = useState(null);
 
-    const res = await fetch("/api/profile", {});
-    const json = await res.json();
-    let user = json.username;
+       const getLocation = async() => {
+          let location = {}
+        if (!navigator.geolocation) {
+            console.log('Geolocation is not supported by your browser');
+        } else {
+            console.log('Locating...');
+            navigator.geolocation.getCurrentPosition((position) => {
+                location = {location: {lat: position.coords.latitude, lng: position.coords.longitude}}
+            }, () => {
+                console.log('Unable to retrieve your location');
+            });
+        }
+        return location
+    };
 
-    await fetch("/api/item", {
-      method: "POST",
-      body: JSON.stringify({ user, serial }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const {data, error, loading, reload} = useLoading(() =>
+        fetchJson("/api/profile", {
+            method: "POST",
+            body: JSON.stringify({}),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }));
 
-    history.push(`/item/${serial}/edit`)
-  }
-  /*
-  if (error) {
-    return <ErrorView error={error} reload={reload} />;
-  }
-  if (loading || !data) {
-    return <LoadingView />;
-  }*/
+
+    if (error) {
+        return <ErrorView error={error} reload={reload}/>;
+    }
+    if (loading || !data) {
+        return <LoadingView/>;
+    }
+
+    async function submit(e) {
+        e.preventDefault();
+
+        const location = getLocation();
+
+        console.log("DATA: " + data.toString() + status)
+            await fetch("/api/item", {
+                method: "POST",
+                body: JSON.stringify({
+                    user: data.username,
+                    location: location,
+                    partsChanged: [],
+                    serial: serial
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+        history.push(`/item/${serial}/edit`)
+    }
+
 
   return (
         <div id="inputContainer" align="center">

@@ -1,17 +1,16 @@
 import {BrowserRouter, Link, Route, Switch, withRouter} from "react-router-dom";
 import { HomePage } from "./hooks/HomePage";
 import { LoginPage } from "./hooks/LoginPage";
-import {EditItem, LogPage} from "./hooks/LogPage";
+import { EditItem } from "./hooks/LogPage";
 import { InputPage } from "./hooks/InputPage";
 import { EditUser } from "./hooks/EditUser";
-import { FrontPage } from "./FrontPage";
 import React from "react";
 import { AppListProducts } from "./hooks/AppListProducts";
 import helpImage from "url:../shared/img/help.png";
 import logo from "url:../shared/img/logo.png";
-import {AppListItems, GetItem} from "./hooks/AppListItems";
+import { GetItem } from "./hooks/AppListItems";
 
-async function fetchJSON(url = "/api/messages") {
+async function fetchJSON(url = "") {
   const res = await fetch(url);
   if (!res.ok) {
     throw new Error(
@@ -25,6 +24,10 @@ export function Application() {
   const itemApi = {
     //listItems: async () => await fetchJSON("/api/item"),
     getItem: async (id) => await fetchJSON(`/api/item/${id}`),
+  };
+  const productApi = {
+    listProducts: async () => await fetchJSON("/api/products"),
+    getCourse: async (id) => await fetchJSON(`/api/course/${id}`),
   };
   const userApi = {
     //listUsers: async () => await fetchJSON("/api/users"),
@@ -52,32 +55,31 @@ export function Application() {
           <Route path={"/home"}>
             <HomePage />
           </Route>
+
           <Route path={"/login"}>
             <LoginPage />
           </Route>
 
-          <Route exact path={"/users"}>
-            <AppListProducts userApi={userApi} />
+          <Route exact path={"/course"}>
+            <AppListProducts productApi={productApi} />
           </Route>
 
           <Route exact path={"/input"} component={withRouter(InputPage)}>
             <InputPage />
           </Route>
 
-          <Route path={"/users/:id/edit"}>
-            <EditUser userApi={userApi} />
-          </Route>
-
-
           <Route path={"/item/:id/edit"}>
             <EditItem itemApi={itemApi} />
           </Route>
+
           <Route path={"/item/:id/success"}>
             <GetItem itemApi={itemApi}/>
           </Route>
+
           <Route exact path={"/"}>
             <LoginPage />
           </Route>
+
           <Route>Page not found</Route>
         </Switch>
       </main>
