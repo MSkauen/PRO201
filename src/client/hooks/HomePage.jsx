@@ -13,9 +13,7 @@ import {useParams} from "react-router";
 import {AppWatchCourse} from "./AppWatchCourse";
 
 export function HomePage({ user }) {
-    const {isLocked, setIsLocked} = useState(user.certification)
 
-    console.log(user.username + " " + user.certification)
   const { data, error, loading, reload } = useLoading(() =>
     fetchJson("/api/profile", {
       method: "POST",
@@ -71,7 +69,7 @@ export function HomePage({ user }) {
                             :
                         <div id="course" className="bigButton">
                             <img id="lock" src={lock} alt=""/>
-                            <h5 className="main-h5">LEARN {isLocked}</h5>
+                            <h5 className="main-h5">LEARN</h5>
                         </div>
                     }
 

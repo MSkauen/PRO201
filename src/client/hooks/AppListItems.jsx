@@ -14,8 +14,6 @@ export function AppListItems({item}) {
     const history = useHistory();
     const [timeLeft, setTimeLeft] = useState(9);
     const [isCounting, setIsCounting] = useState(true);
-    const [goBack, setGoBack] = useState(false);
-
 
     const {data, error, loading, reload} = useLoading(() =>
         fetchJson("/api/profile", {

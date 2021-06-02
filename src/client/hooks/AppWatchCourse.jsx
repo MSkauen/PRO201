@@ -4,11 +4,11 @@ import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
 import { fetchJson } from "../lib/http";
 import "../../shared/css/main.css";
-import {useParams} from "react-router";
-import {MISC, PARTS} from "../lib/images.jsx"
+import { useParams } from "react-router";
+import { MISC, PARTS } from "../lib/images.jsx"
 
 export function AppWatchCourse({user, courseId}) {
-    console.log(user)
+
     const { data, error, loading, reload } = useLoading(() =>
         fetchJson("/api/profile", {
             method: "POST",
@@ -25,8 +25,6 @@ export function AppWatchCourse({user, courseId}) {
     if (loading || !data) {
         return <LoadingView />;
     }
-
-    const { username } = data;
 
     return (
     <>
@@ -142,6 +140,6 @@ export function GetUser({ userApi }) {
     if (loading || !user) {
         return <LoadingView />;
     }
-    console.log(user)
+
     return <AppWatchCourse user={user} courseId={courseId} />;
 }

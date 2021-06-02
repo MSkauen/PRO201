@@ -8,7 +8,6 @@ import userImage from "url:../../shared/img/user.png";
 
 export function LoginPage() {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const history = useHistory();
 
   const { handleSubmit: handleLogin, submitting, error } = useSubmit(
@@ -28,43 +27,43 @@ export function LoginPage() {
                   modal.style.display = "none";
               }
           }}
-      <div id="myModal" className="modal">
-          <div className="modal-content">
-              <span onClick={closeModal} className="close">x</span>
-              <p>
-                  Please enter your username in the field below.
-              </p>
+          <div id="myModal" className="modal">
+              <div className="modal-content">
+                  <span onClick={closeModal} className="close">x</span>
+                  <p>
+                      Please enter your username in the field below.
+                  </p>
+              </div>
           </div>
-      </div>
 
-    <div id="inputContainer" align="center">
+        <div id="inputContainer" align="center">
 
-      {
-        submitting &&
-        <div className="loading">Please wait</div>
-      }
-      {
-        error &&
-        <div className="error">{error.toString()}</div>
-      }
+          {
+            submitting &&
+            <div className="loading">Please wait</div>
+          }
+          {
+            error &&
+            <div className="error">{error.toString()}</div>
+          }
 
-      <img className="user" src={userImage} alt=""/>
-      <h1>Login</h1>
+          <img className="user" src={userImage} alt=""/>
+          <h1>Login</h1>
 
-      <form className="inputForm" onSubmit={handleLogin}>
+          <form className="inputForm" onSubmit={handleLogin}>
 
-          <InputField
-            id="usernameInput"
-            type="text"
-            placeholder="Username"
-            onChangeValue={setUsername}
-            value={username}
-            maxLength="12"
-          />
+              <InputField
+                id="usernameInput"
+                type="text"
+                placeholder="Username"
+                onChangeValue={setUsername}
+                value={username}
+                maxLength="12"
+              />
 
-        <button id="loginButton" disabled={submitting}/>
-      </form>
-    </div>
-          </>
+            <button id="loginButton" disabled={submitting}/>
+          </form>
+        </div>
+      </>
   );
 }

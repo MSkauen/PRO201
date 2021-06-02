@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { InputField } from "../components/InputField";
 import Barcode from "url:../../shared/img/barcode.png";
 import { useHistory } from "react-router";
-import {ErrorView} from "../components/ErrorView";
-import {LoadingView} from "../components/LoadingView";
-import {useLoading} from "../lib/useLoading";
-import {fetchJson} from "../lib/http";
+import { ErrorView } from "../components/ErrorView";
+import { LoadingView } from "../components/LoadingView";
+import { useLoading } from "../lib/useLoading";
+import { fetchJson } from "../lib/http";
 
 export function InputPage() {
     const [serial, setSerial] = useState("");
     const history = useHistory();
 
        const getLocation = async() => {
-          let location = {}
+        let location = {}
         if (!navigator.geolocation) {
             console.log('Geolocation is not supported by your browser');
         } else {

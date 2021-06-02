@@ -72,6 +72,6 @@ export function GetCourses({ userApi }) {
   if (loading || !user) {
     return <LoadingView />;
   }
-  console.log(user)
+
   return <AppListCourses user={user} />;
 }
