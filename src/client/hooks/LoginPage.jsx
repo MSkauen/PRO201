@@ -1,4 +1,5 @@
 import { InputField } from "../components/InputField";
+import { closeModal } from "../components/ModalView";
 import React, { useState } from "react";
 import { postJson } from "../lib/http";
 import { useHistory } from "react-router";
@@ -12,14 +13,30 @@ export function LoginPage() {
 
   const { handleSubmit: handleLogin, submitting, error } = useSubmit(
     async () => {
-      await postJson("/api/login", { username, password });
+      await postJson("/api/login",  {username, password: "123456"} );
     },
-    () => history.push("/home"),
+    () => history.push(`/home/${username}`),
   );
 
 
   return (
       <>
+          {window.onclick = function(event) {
+              const modal = document.getElementById("myModal")
+
+              if (event.target === modal) {
+                  modal.style.display = "none";
+              }
+          }}
+      <div id="myModal" className="modal">
+          <div className="modal-content">
+              <span onClick={closeModal} className="close">x</span>
+              <p>
+                  Please enter your username in the field below.
+              </p>
+          </div>
+      </div>
+
     <div id="inputContainer" align="center">
 
       {
@@ -35,6 +52,7 @@ export function LoginPage() {
       <h1>Login</h1>
 
       <form className="inputForm" onSubmit={handleLogin}>
+
           <InputField
             id="usernameInput"
             type="text"
@@ -43,13 +61,7 @@ export function LoginPage() {
             value={username}
             maxLength="12"
           />
-          <InputField
-            id="passwordInput"
-            type="password"
-            placeholder="Password"
-            onChangeValue={setPassword}
-            value={password}
-          />
+
         <button id="loginButton" disabled={submitting}/>
       </form>
     </div>

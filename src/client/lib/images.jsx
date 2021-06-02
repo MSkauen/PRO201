@@ -8,18 +8,18 @@ export const MISC = [
 export const PRODUCTS = [
     {
         id: 0,
+        name: "sunbell-smart-orange-alt",
+        image: require('url:../../shared/img/products/sunbell-smart-orange-alt.png')
+    },
+    {
+        id: 1,
         name: "Bright_Move_Red",
         image: require('url:../../shared/img/products/Bright_Move_Red.png')
     },
     {
-        id: 1,
+        id: 2,
         name: "Bright_StartPlus_Red",
         image: require('url:../../shared/img/products/Bright_StartPlus_Red.png')
-    },
-    {
-        id: 2,
-        name: "sunbell-smart-orange-alt",
-        image: require('url:../../shared/img/products/sunbell-smart-orange-alt.png')
     },
     {
         id: 3,

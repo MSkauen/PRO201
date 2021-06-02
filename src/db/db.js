@@ -19,7 +19,7 @@ const connectDB = async ( ) => {
 
 
 const User = mongoose.model('User', schemas.userSchema)
-const RepairedSunbell = mongoose.model('Repaired_Sunbell', schemas.sunbellRepairedSchema)
+const RepairedSunbell = mongoose.model('Repaired_Sunbell', schemas.repairedProductSchema)
 
 // FUNSKJON FOR Å SENDE INN SKJEMA OM REPARERT LAMPE
 
@@ -67,7 +67,7 @@ const updateRepairSchema = async (username, serial, partsChanged, location) => {
 
 const checkIfValidUser = async (username) => {
     return await User.findOne({username}).then( (u) => {
-        console.log("U: "+u)
+        console.log("U: "+JSON.stringify(u, null, 2))
         return u
     }).catch( (err) => {
         console.log(err.message)
@@ -82,6 +82,11 @@ const checkIfLampIsPreviouslyRepaired = async (serial) => {
         console.log(err.message)
     })
     return item
+}
+
+const getAllProducts = async () => {
+    let products = await User.find()
+    return products
 }
 
 // Testing
@@ -100,5 +105,6 @@ module.exports = {
     checkIfValidUser: checkIfValidUser,
     checkIfLampIsPreviouslyRepaired: checkIfLampIsPreviouslyRepaired,
     addNewRepairSchema: addNewRepairSchema,
-    updateRepairSchema: updateRepairSchema
+    updateRepairSchema: updateRepairSchema,
+    getAllProducts: getAllProducts
     };

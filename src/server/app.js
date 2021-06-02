@@ -21,16 +21,16 @@ app.use(cookieParser());
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     const user = await db.checkIfValidUser(username)
-
+    console.log(user)
     if(user) {
-      if (username === user.username && password === "123456") {
+      if (username === user.username) {
         done(null, {username, is_admin: true});
         passport.session.username = username;
       } else {
-        done(null, false, {message: "Invalid username/password"});
+        done(null, false, {message: "Invalid username"});
       }
     }else {
-      done(null, false, {message: "Bad request"});
+      done(null, false, {message: "Bad requesttt"});
     }
   })
 );
@@ -69,16 +69,6 @@ app.post("/api/login", passport.authenticate("local"), (req, res) => {
   res.end();
 });
 
-app.get("/api/item", (req, res) => {
-  console.log("called")
-  if (!req.user) {
-    return res.status(401).send();
-  }
-  const { username } = req.user;
-
-  const myMessages = items.filter((m) => m.user.includes(username));
-  res.json(myMessages);
-});
 
 app.get("/api/item/:id", async (req, res) => {
   const id = req.params.id;
@@ -116,6 +106,17 @@ app.post("/api/item", async (req, res) => {
     console.log("POSTED ITEM" + JSON.stringify(item))
   }
   res.status(201).end();
+});
+
+app.get("/api/user/:id", async (req, res) => {
+  const id = req.params.id;
+  const user = await db.checkIfValidUser(id)
+
+  if(user) {
+    console.log("ID" + id)
+    console.log("USER: " + JSON.stringify(user))
+    res.json(user);
+  }
 });
 
 app.use((req, res, next) => {

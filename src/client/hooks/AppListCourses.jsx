@@ -5,11 +5,12 @@ import { ErrorView } from "../components/ErrorView";
 import "../../shared/css/stylesheet.css";
 import "../../shared/css/chooseCourse.css";
 import { PRODUCTS } from "../lib/images.jsx"
-import {fetchJson} from "../lib/http";
-import {Link} from "react-router-dom";
+import { fetchJson } from "../lib/http";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 
-export function AppListProducts() {
-  const id  = null;
+export function AppListCourses({user}) {
+
   const { data, error, loading, reload } = useLoading(() =>
       fetchJson("/api/profile", {
         method: "POST",
@@ -31,25 +32,46 @@ export function AppListProducts() {
     <>
       <div className="chooseCourseContainer">
         <div className="productsContainer">
-          <Link to="/course/${id}">
+
+          <Link to={`/courses/${user.username}/watch/${user.courses[0].id}`}>
             <div tabIndex="0" className="bigDot">
               <img src={PRODUCTS[0].image} alt=""/>
             </div>
           </Link>
-          <a href="https://mskauen.github.io/pro201eksamen/moveSmartCourse.html">
-            <div tabIndex="0" className="bigDot">
+
+          <Link to={`/courses/${user.username}/watch/${user.courses[1].id}`}>
+          <div tabIndex="0" className="bigDot">
               <img src={PRODUCTS[1].image} alt=""/>
                 <div/>
             </div>
-          </a>
-          <a href="https://mskauen.github.io/pro201eksamen/sunbellCourse.html">
+          </Link>
+
+          <Link to={`/courses/${user.username}/watch/${user.courses[2].id}`}>
             <div tabIndex="0" className="bigDot">
               <img src={PRODUCTS[2].image} alt=""/>
                 <div/>
             </div>
-          </a>
+          </Link>
+
         </div>
       </div>
     </>
   );
+}
+
+export function GetCourses({ userApi }) {
+  const { id } = useParams()
+  const { data: user, loading, error, reload } = useLoading(
+      async () => await userApi.getUserData(id),
+      [id]
+  );
+  if (error) {
+    return <ErrorView error={error} reload={reload()} />;
+  }
+
+  if (loading || !user) {
+    return <LoadingView />;
+  }
+  console.log(user)
+  return <AppListCourses user={user} />;
 }

@@ -1,19 +1,68 @@
 const mongoose = require('mongoose')
 
 
-
-const userSchema = new mongoose.Schema({
-    username: {
+const CoursePart = new mongoose.Schema({
+    name: {
         type: String,
-        required: true
+        required: true,
     },
-    sunbell_video_progress: {
-        type: Array,
+    access: {
+        type: Boolean,
+        required: true,
+    },
+    completed: {
+        type: Boolean,
+        required: true,
+    },
+    contentUrl: {
+        type: String,
+        required: true,
+    },
+    courseProgress: {
+        type: Number,
         required: false,
     }
 })
 
-const sunbellRepairedSchema = new mongoose.Schema({
+const Course = new mongoose.Schema({
+    id: {
+        type: Number,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    access: {
+        type: Boolean,
+        required: true,
+    },
+    completed: {
+        type: Boolean,
+        required: true,
+    },
+    courseParts: {
+        type: [CoursePart],
+        required: true,
+    }
+})
+
+const UserSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+    },
+    certification: {
+        type: String,
+        required: false
+    },
+    courses: {
+        type: [Course],
+        required: false,
+    }
+})
+
+const RepairedProductSchema = new mongoose.Schema({
     user: {
         type: String,
         required: true
@@ -38,5 +87,6 @@ const sunbellRepairedSchema = new mongoose.Schema({
 })
 
 module.exports = {
-    userSchema: userSchema, 
-    sunbellRepairedSchema: sunbellRepairedSchema}
+    userSchema: UserSchema,
+    repairedProductSchema: RepairedProductSchema,
+}

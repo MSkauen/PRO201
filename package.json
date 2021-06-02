@@ -1,6 +1,6 @@
 {
   "name": "pg6301_eksamen",
-  "homepage": "src/client/index.html",
+  "homepage": "https://mskauen.github.io/PRO201/",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "start:express": "nodemon --watch src/server src/server/server.js",
     "start:parcel": "parcel src/shared/html/index.html",
     "start:clean": "node ./node_modules/parcel-dist-cleaner/distCleaner",
-    "build": "cd src/client && npm install && npm run build",
+    "build": "“react-scripts build && rm -rf docs && mv build docs”",
     "test": "jest",
     "format": "prettier --write src"
   },

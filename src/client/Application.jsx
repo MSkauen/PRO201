@@ -1,11 +1,12 @@
 import {BrowserRouter, Link, Route, Switch, withRouter} from "react-router-dom";
-import { HomePage } from "./hooks/HomePage";
+import { GetUserData } from "./hooks/HomePage";
+import { showModal } from "./components/ModalView";
 import { LoginPage } from "./hooks/LoginPage";
 import { EditItem } from "./hooks/LogPage";
 import { InputPage } from "./hooks/InputPage";
-import { EditUser } from "./hooks/EditUser";
+import { GetUser } from "./hooks/AppWatchCourse";
 import React from "react";
-import { AppListProducts } from "./hooks/AppListProducts";
+import { GetCourses } from "./hooks/AppListCourses";
 import helpImage from "url:../shared/img/help.png";
 import logo from "url:../shared/img/logo.png";
 import { GetItem } from "./hooks/AppListItems";
@@ -25,13 +26,15 @@ export function Application() {
     //listItems: async () => await fetchJSON("/api/item"),
     getItem: async (id) => await fetchJSON(`/api/item/${id}`),
   };
-  const productApi = {
+  const courseApi = {
     listProducts: async () => await fetchJSON("/api/products"),
-    getCourse: async (id) => await fetchJSON(`/api/course/${id}`),
+    //getProduct: async (id) => await fetchJSON(`/api/course/${id}`),
+    getProductCourse: async (id) => await fetchJSON(`/api/course/${id}`),
   };
   const userApi = {
     //listUsers: async () => await fetchJSON("/api/users"),
-    getUser: async (id) => await fetchJSON(`/api/users/${id}`),
+    getProfileName: async () => await fetchJSON(`/api/profile`),
+    getUserData: async (id) => await fetchJSON(`/api/user/${id}`),
   };
   return (
     <BrowserRouter>
@@ -42,7 +45,7 @@ export function Application() {
               <img src={logo} alt=""/>
             </div>
           </Link>
-          <a id="help">
+          <a onClick={showModal} id="help">
             <div className="navItem">
               <img src={helpImage} alt="Help"/>
               <p className="help-image-description">Help</p>
@@ -52,16 +55,13 @@ export function Application() {
       </nav>
       <main>
         <Switch>
-          <Route path={"/home"}>
-            <HomePage />
-          </Route>
 
-          <Route path={"/login"}>
+          <Route exact path={"/"}>
             <LoginPage />
           </Route>
 
-          <Route exact path={"/course"}>
-            <AppListProducts productApi={productApi} />
+          <Route path={"/home/:id"}>
+            <GetUserData userApi={userApi} />
           </Route>
 
           <Route exact path={"/input"} component={withRouter(InputPage)}>
@@ -76,8 +76,12 @@ export function Application() {
             <GetItem itemApi={itemApi}/>
           </Route>
 
-          <Route exact path={"/"}>
-            <LoginPage />
+          <Route exact path={"/courses/:id"}>
+            <GetCourses userApi={userApi} />
+          </Route>
+
+          <Route exact path={"/courses/:id/watch/:courseId"}>
+            <GetUser userApi={userApi} />
           </Route>
 
           <Route>Page not found</Route>

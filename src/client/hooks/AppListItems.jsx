@@ -14,6 +14,8 @@ export function AppListItems({item}) {
     const history = useHistory();
     const [timeLeft, setTimeLeft] = useState(9);
     const [isCounting, setIsCounting] = useState(true);
+    const [goBack, setGoBack] = useState(false);
+
 
     const {data, error, loading, reload} = useLoading(() =>
         fetchJson("/api/profile", {
@@ -25,15 +27,10 @@ export function AppListItems({item}) {
         })
     );
 
+
     useEffect(() => {
         if (!timeLeft && isCounting === true) history.push("/home");
-        console.log(isCounting)
-        if (isCounting === false) {
-            console.log("NOT COUNTING")
-            let closeBtn = document.getElementsByClassName("close")[0]
-            destroy(closeBtn)
-            setTimeLeft(null)
-        }
+
         if (isCounting === true) {
             const intervalId = setInterval(() => {
                 setTimeLeft(timeLeft - 1);
@@ -42,11 +39,12 @@ export function AppListItems({item}) {
             return () => {
                 clearInterval(intervalId);
             }
+        } else {
+            const element = document.getElementsByClassName("timerTag")[0]
+            element.innerHTML = ``
         }
 
     }, [timeLeft]);
-
-
 
     if (error) {
         return <ErrorView error={error} reload={reload} />;
@@ -78,12 +76,12 @@ export function AppListItems({item}) {
       </div>
 
       <h1>SUCCESS!</h1>
-        <h2 className="timerTag">You are being redirected in {timeLeft}'s <div className="close" onClick={setIsCounting}>x</div> </h2>
-
+            <h2 className="timerTag">You are being redirected in {timeLeft}'s <div className="close" onClick={setIsCounting}>x</div> </h2>
 
     </>
   );
 }
+
 export function GetItem({ itemApi }) {
     const { id } = useParams()
     const { data: item, loading, error, reload } = useLoading(
@@ -100,3 +98,4 @@ export function GetItem({ itemApi }) {
 
     return <AppListItems item={item} />;
 }
+

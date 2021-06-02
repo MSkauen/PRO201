@@ -11,8 +11,6 @@ export function InputPage() {
     const [serial, setSerial] = useState("");
     const history = useHistory();
 
-    const [status, setStatus] = useState(null);
-
        const getLocation = async() => {
           let location = {}
         if (!navigator.geolocation) {
@@ -50,7 +48,6 @@ export function InputPage() {
 
         const location = getLocation();
 
-        console.log("DATA: " + data.toString() + status)
             await fetch("/api/item", {
                 method: "POST",
                 body: JSON.stringify({

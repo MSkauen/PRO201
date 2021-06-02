@@ -4,7 +4,7 @@ export function ErrorView({ error, reload }) {
   if (error.status === 401) {
     return (
       <div id="errorView">
-        <a href={"/login"} target={"_self"}>
+        <a href={"/"} target={"_self"}>
           <button>Log in</button>
         </a>
       </div>
