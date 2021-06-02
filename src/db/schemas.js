@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 
 const CoursePart = new mongoose.Schema({
+    id: {
+        type: Number,
+        required: true,
+    },
     name: {
         type: String,
         required: true,

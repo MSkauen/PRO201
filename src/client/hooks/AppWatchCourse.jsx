@@ -5,6 +5,7 @@ import { ErrorView } from "../components/ErrorView";
 import { fetchJson } from "../lib/http";
 import "../../shared/css/main.css";
 import {useParams} from "react-router";
+import {MISC, PARTS} from "../lib/images.jsx"
 
 export function AppWatchCourse({user, courseId}) {
     console.log(user)
@@ -31,88 +32,96 @@ export function AppWatchCourse({user, courseId}) {
     <>
         <div className="courseContainer">
             <div className="videoContainer">
-                <h1>2/8 Disassembling the battery{courseId}</h1>
+                <h1>2/8 Disassembling the battery</h1>
                 <iframe src={user.courses[courseId].courseParts[0].contentUrl} frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen></iframe>
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen/>
             </div>
             <div className="sideBar">
 
                 <div className="course">
                     <div className="courseDetails">
-                        <h2>Sunbell smart</h2>
-                        <h2>2/8</h2>
+                        <h2>{user.courses[courseId].name}</h2>
+                        <h2>2/{user.courses[courseId].courseParts.length}</h2>
                     </div>
                     <div className="allVideosContainer">
+
+                        {
+                            user.courses[courseId].courseParts.map((id) => (
+                                <div key={id} className="dot">
+                                    <img src={PARTS[id].image} alt=""/>
+                                    <div/>
+                                </div>
+                            ))}
+
                         <div className="sideBarItem">
                             <h4>1/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>2/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>3/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>4/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>5/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>6/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>7/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>8/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>8/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>8/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                         <div className="sideBarItem">
                             <h4>8/8 Disassembling the battery</h4>
                             <div className="playButton">
-                                <img className="playIcon" src="img/play.png"/>
+                                <img className="playIcon" src={MISC[1].image}/>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </>

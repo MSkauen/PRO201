@@ -3,7 +3,12 @@ export const MISC = [
         id: 0,
         name: "parts",
         image: require('url:../../shared/img/parts.png')
-    }
+    },
+    {
+        id: 1,
+        name: "play",
+        image: require('url:../../shared/img/play.png')
+    },
 ]
 export const PRODUCTS = [
     {
