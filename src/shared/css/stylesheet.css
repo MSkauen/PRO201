@@ -23,6 +23,10 @@ h1 {
 h2 {
     padding: 10px;
 }
+h5 {
+    letter-spacing: 0.1em;
+    color: #F3F6F4;
+}
 iframe {
     max-width: 80%;
     box-shadow: 0 0 23px 0 rgb(158 158 158);
@@ -63,6 +67,9 @@ img {
     padding: 25px;
     width: 7em;
     height: 7em;
+}
+#partNumber {
+
 }
 #lock {
     opacity: 60%;

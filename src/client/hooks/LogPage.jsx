@@ -6,6 +6,7 @@ import { LoadingView } from "../components/LoadingView";
 import { check } from "../lib/checkbox";
 import { fetchJson } from "../lib/http";
 import { MISC, PARTS } from "../lib/images.jsx"
+import "../../shared/css/main.css";
 import React from "react";
 
 export function LogPage({ item }) {
@@ -59,6 +60,7 @@ export function LogPage({ item }) {
               </div>
               <div className="partsContainer">
                   <div id={PARTS[0].id} className="dot" data-value="0" onClick={check}>
+                      <h5 id="partNumber" className="main-h5">{PARTS[0].id+1}</h5>
                       <img src={PARTS[0].image} alt=""/>
                           <div>
                           </div>
