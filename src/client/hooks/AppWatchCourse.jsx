@@ -46,78 +46,14 @@ export function AppWatchCourse({user, courseId}) {
 
                         {
                             user.courses[courseId].courseParts.map((id) => (
-                                <div key={id} className="dot">
-                                    <img src={PARTS[id].image} alt=""/>
-                                    <div/>
+                                <div key={id} className="sideBarItem">
+                                    <h4>1/8 Disassembling the battery</h4>
+                                    <div className="playButton">
+                                        <img className="playIcon" src={MISC[1].image}/>
+                                    </div>
                                 </div>
                             ))}
 
-                        <div className="sideBarItem">
-                            <h4>1/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>2/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>3/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>4/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>5/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>6/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>7/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>8/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>8/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>8/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
-                        <div className="sideBarItem">
-                            <h4>8/8 Disassembling the battery</h4>
-                            <div className="playButton">
-                                <img className="playIcon" src={MISC[1].image}/>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

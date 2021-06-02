@@ -30,7 +30,7 @@ passport.use(
         done(null, false, {message: "Invalid username"});
       }
     }else {
-      done(null, false, {message: "Bad requesttt"});
+      done(null, false, {message: "Bad request"});
     }
   })
 );
