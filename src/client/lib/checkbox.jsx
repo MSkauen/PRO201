@@ -6,7 +6,7 @@ export function check(e) {
     if (checkBoxState === 0) {
         checkbox.setAttribute("data-value", 1);
         checkmark.className = "miniDot";
-    } else if (checkBoxState == 1) {
+    } else if (checkBoxState === 1) {
         checkbox.setAttribute("data-value", 0);
         checkmark.className = " ";
     }

@@ -26,10 +26,12 @@
 
 /* The Close Button */
 .close {
+  padding: 10px;
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  line-height: 8px;
 }
 
 .close:hover,

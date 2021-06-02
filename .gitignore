@@ -3,7 +3,6 @@
 node_modules/
 .cache/
 dist/
-/.env
+/src/db/dbconfig.js
 *.crt
 *.key
-/src/db/dbconfig.js

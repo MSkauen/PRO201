@@ -24,5 +24,6 @@ export async function postJson(url, json) {
       "Content-Type": "application/json",
     },
   });
+
   checkResults(res, url);
 }

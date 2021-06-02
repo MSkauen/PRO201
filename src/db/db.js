@@ -10,16 +10,7 @@ const connectDB = async ( ) => {
             useFindAndModify: false,
             useCreateIndex: true
         });
-
         console.log('Connected successfully to mongoDB')
-        // findUserWithName('egil1403')
-        // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 2343512324)
-        // addNewRepairSchema('egil1403', [4, 2], 'oslo', 2329023938)
-        // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 09876)
-        // addNewRepairSchema('egil1403', [1, 2, 4, 6], 'los angeles', 148625)
-        // addNewRepairSchema('egil1403', [12, 5, 8], 'oslo')
-        // checkIfValidUser('egil1403')
-        checkIfLampIsPreviouslyRepaired(2343512324)
     } catch (err) {
         console.error(err.message)
         process.exit(1)
@@ -28,45 +19,74 @@ const connectDB = async ( ) => {
 
 
 const User = mongoose.model('User', schemas.userSchema)
-const RepairedSunbell = mongoose.model('Repaired_Sunbell', schemas.sunbellRepairedSchema)
+const RepairedSunbell = mongoose.model('Repaired_Sunbell', schemas.repairedProductSchema)
 
 // FUNSKJON FOR Å SENDE INN SKJEMA OM REPARERT LAMPE
 
-const addNewRepairSchema = async (repairman, changed, location, tag = 'unidentable') => {
+const addNewRepairSchema = async (username, serial, location, partsChanged) => {
+
     const newSunbellRepairSchema = new RepairedSunbell({
-        repairman: repairman,
-        partsChanged: [...changed], 
+        user: username,
+        partsChanged: partsChanged,
         location: location,
-        tag: tag
+        serial: serial
     })
-    await newSunbellRepairSchema.save().then( () => {
+    console.log(newSunbellRepairSchema)
+
+     await newSunbellRepairSchema.save().then(() => {
         console.log('item was saved successfully')
-        console.log(newSunbellRepairSchema.repairman)
-    
-    }).catch( ( error ) => {
-        console.log('there was an error saving')
+    })
+    return newSunbellRepairSchema
+
+}
+
+const updateRepairSchema = async (username, serial, partsChanged, location) => {
+
+    return await RepairedSunbell.findOneAndUpdate(
+        {
+            serial: serial
+        },
+        {
+            user: username,
+            location: {
+                longitude: location.longitude,
+                latitude: location.latitude
+            },
+            partsChanged: partsChanged,
+            serial: serial
+        },
+    ).then((i) => {
+        console.log('item was updated successfully')
+        return i
+    }).catch( (err) => {
+        console.log(err.message)
     })
 }
 
 // FUNKSJON FOR Å SJEKKE OM BRUKEREN FINS I DATABASEN
 
 const checkIfValidUser = async (username) => {
-    await User.findOne({username}, ( err, res ) => {
-        if (err) {
-            console.log('something is wrong or could not find user with name' + username)
-        } 
-        console.log(`${username} was found in the database`)
-        console.log(`${res._id}`)
+    return await User.findOne({username}).then( (u) => {
+        console.log("U: "+JSON.stringify(u, null, 2))
+        return u
+    }).catch( (err) => {
+        console.log(err.message)
     })
 }
 
-const checkIfLampIsPreviouslyRepaired = async (tag) => {
-    await RepairedSunbell.findOne({tag}, (err, res) => {
-        if (err) {
-            console.log('lamp is not previously repaired')
-        }
-        console.log(res)
+const checkIfLampIsPreviouslyRepaired = async (serial) => {
+
+    let item = await RepairedSunbell.findOne({serial}).then( (t) => {
+        return t
+    }).catch( (err) => {
+        console.log(err.message)
     })
+    return item
+}
+
+const getAllProducts = async () => {
+    let products = await User.find()
+    return products
 }
 
 // Testing
@@ -80,4 +100,11 @@ const findUserWithName = async (name) => {
 }
 
 
-module.exports = connectDB;
+module.exports = {
+    connectDB: connectDB,
+    checkIfValidUser: checkIfValidUser,
+    checkIfLampIsPreviouslyRepaired: checkIfLampIsPreviouslyRepaired,
+    addNewRepairSchema: addNewRepairSchema,
+    updateRepairSchema: updateRepairSchema,
+    getAllProducts: getAllProducts
+    };

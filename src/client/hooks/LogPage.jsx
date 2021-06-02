@@ -1,18 +1,16 @@
-import React, { useState } from "react";
-//import { Battery } from "../../shared/img/parts/new/";
 import "../../shared/css/stylesheet.css";
-import {useLoading} from "../lib/useLoading";
-import {useParams} from "react-router";
-import {ErrorView} from "../components/ErrorView";
-import {LoadingView} from "../components/LoadingView";
-import {check} from "../lib/checkbox";
-import {fetchJson, postJson} from "../lib/http";
-import IMAGES from "../lib/images.jsx"
-import {useSubmit} from "../lib/useSubmit";
+import { useLoading } from "../lib/useLoading";
+import { useHistory, useParams } from "react-router";
+import { ErrorView } from "../components/ErrorView";
+import { LoadingView } from "../components/LoadingView";
+import { check } from "../lib/checkbox";
+import { fetchJson } from "../lib/http";
+import { MISC, PARTS } from "../lib/images.jsx"
+import React from "react";
 
 export function LogPage({ item }) {
-  const [user, setUser] = useState("");
-  const itemSerial = item.serial;
+    const itemSerial = item.serial;
+    const history = useHistory();
 
     const { data, error, loading, reload } = useLoading(() =>
         fetchJson("/api/profile", {
@@ -23,20 +21,6 @@ export function LogPage({ item }) {
             },
         })
     );
-
-    if(data){
-        console.log(item.user + " " +data.username)
-
-        if(item.user !== data.username) {
-            let newError = Error()
-            newError.status = 401
-            console.log("FALSE")
-            return <ErrorView error={newError} reload={reload} />;
-        } else {
-            console.log("CORRECT")
-        }
-    }
-    //Check if item serial (item.serial) is "owned" by current user (data.username) here if not throw 401 error.
 
     if (error) {
         return <ErrorView error={error} reload={reload} />;
@@ -53,10 +37,6 @@ export function LogPage({ item }) {
     const json = await res.json();
     let user = json.username;
     let selections = storeSelections();
-      console.log(selections)
-    if(!selections){
-        console.log("BAD")
-    }
 
     await fetch(`/api/item/${itemSerial}`, {
       method: "PUT",
@@ -65,75 +45,76 @@ export function LogPage({ item }) {
         "Content-Type": "application/json",
       },
     });
+      history.push(`/item/${itemSerial}/success`)
   }
 
   return (
           <div id="logContainer" align="center">
               <div className="logHeader">
-                  <img src={IMAGES[0].Parts} alt=""/>
+                  <img src={MISC[0].image} alt=""/>
                       <div className="logDetails">
                           <h2 id="serial">{itemSerial}</h2>
                           <h2>SELECT PART USED FOR REPAIR</h2>
                       </div>
               </div>
               <div className="partsContainer">
-                  <div id={IMAGES[1].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[1].Battery} alt=""/>
+                  <div id={PARTS[0].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[0].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[2].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[2].SolarPanel}alt=""/>
+                  <div id={PARTS[1].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[1].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[3].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[3].SunBellPCBAScrews}alt=""/>
+                  <div id={PARTS[2].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[2].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[4].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[4].SunBellCable}alt=""/>
+                  <div id={PARTS[3].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[3].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[5].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[5].SunBellDongle}alt=""/>
+                  <div id={PARTS[4].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[4].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[6].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[6].SunBellDongleWBattery}alt=""/>
+                  <div id={PARTS[5].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[5].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[7].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[7].SunBellPcb} alt=""/>
+                  <div id={PARTS[6].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[6].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[8].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[8].SunBellPowerSwitchCover} alt=""/>
+                  <div id={PARTS[7].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[7].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[9].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[9].SunBellPowerSwitchCoverSmart} alt=""/>
+                  <div id={PARTS[8].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[8].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[10].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[10].SunBellPowerSwitchCoverRevED} alt=""/>
+                  <div id={PARTS[9].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[9].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[11].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[11].SunBellUSBCover} alt=""/>
+                  <div id={PARTS[10].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[10].image} alt=""/>
                           <div>
                           </div>
                   </div>
-                  <div id={IMAGES[12].id} className="dot" data-value="0" onClick={check}>
-                      <img src={IMAGES[12].SunBellUSBCoverRevD} alt=""/>
+                  <div id={PARTS[11].id} className="dot" data-value="0" onClick={check}>
+                      <img src={PARTS[11].image} alt=""/>
                           <div>
                           </div>
                   </div>
@@ -174,6 +155,5 @@ function storeSelections() {
             selections.push(id)
         }
     }
-    console.log(selections)
     return selections
 }

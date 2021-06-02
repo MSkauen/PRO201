@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 import { AppListItems } from "../src/client/hooks/AppListItems";
 import { MemoryRouter } from "react-router";
-import { AppListUsers } from "../src/client/hooks/AppListUsers";
+import { AppListCourses } from "../src/client/hooks/AppListCourses";
 
 const userApi = {
   listUsers: async () => [
@@ -20,7 +20,7 @@ describe("user list page", () => {
     await act(async () => {
       ReactDOM.render(
         <MemoryRouter>
-          <AppListUsers userApi={userApi} />
+          <AppListCourses userApi={userApi} />
         </MemoryRouter>,
         container
       );

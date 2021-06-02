@@ -1,55 +1,102 @@
-const IMAGES = [
+export const MISC = [
     {
         id: 0,
-        Parts: require('url:../../shared/img/parts.png')
+        name: "parts",
+        image: require('url:../../shared/img/parts.png')
     },
     {
         id: 1,
-        Battery: require('url:../../shared/img/parts/new/battery.png')
+        name: "play",
+        image: require('url:../../shared/img/play.png')
+    },
+]
+export const PRODUCTS = [
+    {
+        id: 0,
+        name: "sunbell-smart-orange-alt",
+        image: require('url:../../shared/img/products/sunbell-smart-orange-alt.png')
+    },
+    {
+        id: 1,
+        name: "Bright_Move_Red",
+        image: require('url:../../shared/img/products/Bright_Move_Red.png')
     },
     {
         id: 2,
-        SolarPanel: require('url:../../shared/img/parts/new/solar_panel.png')
+        name: "Bright_StartPlus_Red",
+        image: require('url:../../shared/img/products/Bright_StartPlus_Red.png')
     },
     {
         id: 3,
-        SunBellPCBAScrews: require('url:../../shared/img/parts/new/sunBell_batteryBox-PCBA_screws.png')
+        name: "sunturte-red",
+        image: require('url:../../shared/img/products/sunturtle-red.png')
+    },
+]
+export const PARTS = [
+
+    {
+        id: 0,
+        name: "Battery",
+        image: require('url:../../shared/img/parts/new/battery.png')
+    },
+    {
+        id: 1,
+        name: "SolarPanel",
+        image: require('url:../../shared/img/parts/new/solar_panel.png')
+    },
+    {
+        id: 2,
+        name: "SunBellPCBAScrews",
+        image: require('url:../../shared/img/parts/new/sunBell_batteryBox-PCBA_screws.png')
+    },
+    {
+        id: 3,
+        name: "SunBellCable",
+        image: require('url:../../shared/img/parts/new/sunBell_cable.png')
     },
     {
         id: 4,
-        SunBellCable: require('url:../../shared/img/parts/new/sunBell_cable.png')
+        name: "SunBellDongle",
+        image: require('url:../../shared/img/parts/new/sunBell_dongle.png')
     },
     {
         id: 5,
-        SunBellDongle: require('url:../../shared/img/parts/new/sunBell_dongle.png')
+        name: "SunBellDongleWBattery",
+        image: require('url:../../shared/img/parts/new/sunBell_dongle_WBatterypack.png')
     },
     {
         id: 6,
-        SunBellDongleWBattery: require('url:../../shared/img/parts/new/sunBell_dongle_WBatterypack.png')
+        name: "SunBellPcb",
+        image: require('url:../../shared/img/parts/new/sunBell_pcb.png')
     },
     {
         id: 7,
-        SunBellPcb: require('url:../../shared/img/parts/new/sunBell_pcb.png')
+        name: "SunBellPowerSwitchCover",
+        image: require('url:../../shared/img/parts/new/sunBell_power_switch_cover.png')
     },
     {
         id: 8,
-        SunBellPowerSwitchCover: require('url:../../shared/img/parts/new/sunBell_power_switch_cover.png')
+        name: "SunBellPowerSwitchCoverSmart",
+        image: require('url:../../shared/img/parts/new/sunBell_power_switch_cover_2.0-smart.png')
     },
     {
         id: 9,
-        SunBellPowerSwitchCoverSmart: require('url:../../shared/img/parts/new/sunBell_power_switch_cover_2.0-smart.png')
+        name: "SunBellPowerSwitchCoverRevED",
+        image: require('url:../../shared/img/parts/new/sunBell_power_switch_cover_rev_E-D.png')
+    },
+    {   id: 10,
+        name: "SunBellUSBCover",
+        image: require('url:../../shared/img/parts/new/sunBell_solarPower-USB_plug_cover.png')
     },
     {
-        id: 10,
-        SunBellPowerSwitchCoverRevED: require('url:../../shared/img/parts/new/sunBell_power_switch_cover_rev_E-D.png')
-    },
-    {   id: 11,
-        SunBellUSBCover: require('url:../../shared/img/parts/new/sunBell_solarPower-USB_plug_cover.png')
-    },
-    {
-        id: 12,
-        SunBellUSBCoverRevD: require('url:../../shared/img/parts/new/sunBell_usb_rev_D_2.6.png')
+        id: 11,
+        name: "SunBellUSBCoverRevD",
+        image: require('url:../../shared/img/parts/new/sunBell_usb_rev_D_2.6.png')
     }
 
 ];
-export default IMAGES;
+export default {
+    MISC,
+    PRODUCTS,
+    PARTS,
+}
