@@ -2,12 +2,16 @@
 OKEI DA KJØRERN
 
 ## TODO
-* Fjern all unødvendig drit
-* Gjør om resten av sidene og route de
-    * AppWatchCourse.jsx, EditResponse.jsx, CreateNewUser.jsx, LogPage.jsx, AppListProducts.jsx, AppListMessages.jsx
-* Håndtere database logikk i `app.js:27`
-    * I ``app.js:57`` ligger det hardkodet brukere som ble brukt istedenfor
 * Disable alle buttons etter klikk
+* Add numbers to all parts respectively in LogPage
+* Check if course and its courseParts are unlocked or not
+    * Add lock image as in homepage
+* Add back button to all pages for easier navigation
+* Add tab indexes to all elements for easier navigation
+* Implement tracking of courseprogress
+* Refactor some css and variable names
+* Modal needs rework, use useState and components instead of a function call
+
 ## Troubleshooting
 
 * Check parcel version
@@ -16,15 +20,7 @@ OKEI DA KJØRERN
 * Run `npm install` - perhaps also delete `node_modules` directory
 
 ## Known Issues
-Diverse warnings rundt om kring ja atm men de er ufarlige
-* Routing fra `LoginPage.jsx` fungerer ikke og sender deg tilbake til `localhost:8080/login?`
-* Det blir logget "test" i chrome så det er nok pga at vi ikke har noe database.
- ```
-const { handleSubmit: handleLogin, submitting, error } = useSubmit(
-                    async () => {
-                      await postJson("/api/login", { username, password });
-                    },
-                    () => history.push("/home"),
-                    console.log("test")
-                  );```
-                      
+* react-dom.development.js:67 Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+      at LoginPage
+* react-dom.development.js:67 Warning: Functions are not valid as a React child. This may happen if you return a Component instead of <Component /> from render. Or maybe you meant to call this function rather than return it.
+      at LoginPage

@@ -268,13 +268,12 @@ main {
     padding: 15px;
 }
 .videoContainer {
-    margin-left: 4em;
+    text-align: center;
     height: 80%;
     width: 90vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 .allVideosContainer {
     overflow-y: scroll;
@@ -304,7 +303,7 @@ main {
     padding: 15px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     border: none;
     width: 100%;
@@ -312,7 +311,7 @@ main {
     font-size: 16pt;
 }
 .playButton {
-    margin-right: 15px;
+    padding-right: 1.5em;
 }
 .inputForm {
     padding: 25px;
@@ -401,13 +400,17 @@ main {
     justify-content: center;
     align-items: center;
 }
-.playIcon {
+.playIcon, .lockedIcon {
     padding: 0;
     width: 2em;
     height: 2em;
 }
 .playIcon:hover {
     mix-blend-mode: difference;
+    cursor: pointer;
+}
+#lock:hover {
+    opacity: 80%;
     cursor: pointer;
 }
 .serial {

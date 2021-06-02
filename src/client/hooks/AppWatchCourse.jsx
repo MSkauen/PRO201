@@ -1,13 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
 import { fetchJson } from "../lib/http";
 import "../../shared/css/main.css";
 import { useParams } from "react-router";
+import lock from "url:../../shared/img/locked.png";
 import { MISC, PARTS } from "../lib/images.jsx"
 
 export function AppWatchCourse({user, courseId}) {
+    let currentCourseName = user.courses[courseId].courseParts[0].name
+    let trimmedCourseName = currentCourseName.replace(/[^a-zA-Z ]/g, "");
 
     const { data, error, loading, reload } = useLoading(() =>
         fetchJson("/api/profile", {
@@ -30,7 +33,7 @@ export function AppWatchCourse({user, courseId}) {
     <>
         <div className="courseContainer">
             <div className="videoContainer">
-                <h1>1/8 Disassembling the battery</h1>
+                <h1>{trimmedCourseName}</h1>
                 <iframe src={user.courses[courseId].courseParts[0].contentUrl} frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen/>
@@ -49,7 +52,13 @@ export function AppWatchCourse({user, courseId}) {
                                 <div key={id.id} className="sideBarItem">
                                     <h4>{user.courses[courseId].courseParts[id.id].name}</h4>
                                     <div className="playButton">
-                                        <img className="playIcon" src={MISC[1].image}/>
+                                        {
+                                            user.courses[courseId].courseParts[id.id].access !== true
+                                                ?
+                                                <img id="lock" className="lockedIcon" src={lock} alt=""/>
+                                                :
+                                                <img className="playIcon" src={MISC[1].image}/>
+                                        }
                                     </div>
                                 </div>
                             ))}
