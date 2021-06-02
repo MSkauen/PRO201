@@ -7,10 +7,18 @@ import "../../shared/css/main.css";
 import { useParams } from "react-router";
 import lock from "url:../../shared/img/locked.png";
 import { MISC, PARTS } from "../lib/images.jsx"
+import Youtube from "react-youtube"
 
 export function AppWatchCourse({user, courseId}) {
     let currentCourseName = user.courses[courseId].courseParts[0].name
-    let trimmedCourseName = currentCourseName.replace(/[^a-zA-Z ]/g, "");
+    let trimmedCourseName = currentCourseName.replace(/[^a-zA-Z ]/g, "")
+
+    let videoUrl = user.courses[courseId].courseParts[0].contentUrl
+    let videoCode
+
+    if (videoUrl) {
+        videoCode = videoUrl.split("embed/")[1].split("&")[0]
+    }
 
     const { data, error, loading, reload } = useLoading(() =>
         fetchJson("/api/profile", {
@@ -21,6 +29,15 @@ export function AppWatchCourse({user, courseId}) {
             },
         })
     );
+
+    const checkElapsedTime = (e) => {
+        console.log(e.target.getCurrentTime());
+        const duration = e.target.getDuration();
+        const currentTime = e.target.getCurrentTime();
+        if (currentTime / duration > 0.95) {
+            console.log("completed")
+        }
+    };
 
     if (error) {
         return <ErrorView error={error} reload={reload} />;
@@ -34,9 +51,8 @@ export function AppWatchCourse({user, courseId}) {
         <div className="courseContainer">
             <div className="videoContainer">
                 <h1>{trimmedCourseName}</h1>
-                <iframe src={user.courses[courseId].courseParts[0].contentUrl} frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen/>
+                <Youtube className="youtubePlayer" videoId={videoCode} onStateChange={(e) => checkElapsedTime(e)}
+                />
             </div>
             <div className="sideBar">
 

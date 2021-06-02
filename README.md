@@ -2,6 +2,7 @@
 OKEI DA KJØRERN
 
 ## TODO
+* POST request on video completion
 * Disable alle buttons etter klikk
 * Add numbers to all parts respectively in LogPage
 * Check if course and its courseParts are unlocked or not
