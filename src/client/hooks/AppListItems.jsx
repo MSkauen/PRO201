@@ -27,7 +27,7 @@ export function AppListItems({item}) {
 
 
     useEffect(() => {
-        if (!timeLeft && isCounting === true) history.push("/home");
+        if (!timeLeft && isCounting === true) history.push(`/home/${data.username}`);
 
         if (isCounting === true) {
             const intervalId = setInterval(() => {

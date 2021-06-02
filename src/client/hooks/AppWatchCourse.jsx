@@ -30,7 +30,7 @@ export function AppWatchCourse({user, courseId}) {
     <>
         <div className="courseContainer">
             <div className="videoContainer">
-                <h1>2/8 Disassembling the battery</h1>
+                <h1>1/8 Disassembling the battery</h1>
                 <iframe src={user.courses[courseId].courseParts[0].contentUrl} frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen/>
@@ -40,14 +40,14 @@ export function AppWatchCourse({user, courseId}) {
                 <div className="course">
                     <div className="courseDetails">
                         <h2>{user.courses[courseId].name}</h2>
-                        <h2>2/{user.courses[courseId].courseParts.length}</h2>
+                        <h2>1/{user.courses[courseId].courseParts.length}</h2>
                     </div>
                     <div className="allVideosContainer">
 
                         {
                             user.courses[courseId].courseParts.map((id) => (
-                                <div key={id} className="sideBarItem">
-                                    <h4>1/8 Disassembling the battery</h4>
+                                <div key={id.id} className="sideBarItem">
+                                    <h4>{user.courses[courseId].courseParts[id.id].name}</h4>
                                     <div className="playButton">
                                         <img className="playIcon" src={MISC[1].image}/>
                                     </div>
