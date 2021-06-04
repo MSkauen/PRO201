@@ -3,18 +3,22 @@ OKEI DA KJØRERN
 
 ## TODO
 * POST request on video completion
+ 
    (In progress!)
 * Disable alle buttons etter klikk
 * Add numbers to all parts respectively in LogPage
 * Check if course and its courseParts are unlocked or not
     * Add lock image as in homepage
-    (In progress)
+     
+    (In progress, use PROPS)
 * Add back button to all pages for easier navigation
 * Add tab indexes to all elements for easier navigation
 * Implement tracking of courseprogress
+ 
    (Completion of video implemented!)
 * Refactor some css and variable names
 * Modal needs rework, use useState and components instead of a function call
+ 
    (Use UseEffect!)
    
 ## Troubleshooting
