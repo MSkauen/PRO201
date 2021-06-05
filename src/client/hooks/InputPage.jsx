@@ -87,6 +87,8 @@ export function InputPage() {
               </div>
           </div>
 
+          <button id="backButton" type="button" name="button"/>
+
         <div id="inputContainer" align="center">
           <br/>
             <img id="barcode" src={Barcode} alt=""/>
