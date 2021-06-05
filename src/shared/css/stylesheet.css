@@ -69,7 +69,8 @@ img {
     height: 7em;
 }
 #partNumber {
-
+    font-size: 2em;
+    color: #324954;
 }
 #lock {
     opacity: 60%;
@@ -232,6 +233,7 @@ main {
     row-gap: 2em;
     column-gap: 0.1em;
     align-items: center;
+    text-align: center;
 }
 
 .partsContainer, #loginButton {
@@ -346,6 +348,7 @@ main {
     height: 3.25em;
 }
 .dot {
+    overflow: visible;
     position: relative;
     min-height: 8em;
     min-width: 8em;
@@ -372,6 +375,9 @@ main {
     padding: 15px;
     max-height: 100%;
     max-width: 100%;
+}
+.dot > h5 {
+
 }
 .miniDot {
     display: block;

@@ -10,8 +10,9 @@ import "../../shared/css/main.css";
 import React from "react";
 
 export function LogPage({ item }) {
-    const itemSerial = item.serial;
-    const history = useHistory();
+    const itemSerial = item.serial
+    const itemParts = PARTS
+    const history = useHistory()
 
     const { data, error, loading, reload } = useLoading(() =>
         fetchJson("/api/profile", {
@@ -58,68 +59,19 @@ export function LogPage({ item }) {
                           <h2>SELECT PART USED FOR REPAIR</h2>
                       </div>
               </div>
+
               <div className="partsContainer">
-                  <div id={PARTS[0].id} className="dot" data-value="0" onClick={check}>
-                      <h5 id="partNumber" className="main-h5">{PARTS[0].id+1}</h5>
-                      <img src={PARTS[0].image} alt=""/>
-                          <div>
+                  {
+                      itemParts.map((id) => (
+                          <div key={id.id}>
+                              <h5 id="partNumber" className="main-h5">{id.id+1}</h5>
+                              <div id={id.id} className="dot" data-value="0" onClick={check}>
+                                  <img src={id.image} alt=""/>
+                                  <span>
+                              </span>
+                              </div>
                           </div>
-                  </div>
-                  <div id={PARTS[1].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[1].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[2].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[2].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[3].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[3].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[4].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[4].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[5].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[5].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[6].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[6].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[7].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[7].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[8].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[8].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[9].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[9].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[10].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[10].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
-                  <div id={PARTS[11].id} className="dot" data-value="0" onClick={check}>
-                      <img src={PARTS[11].image} alt=""/>
-                          <div>
-                          </div>
-                  </div>
+                      ))}
               </div>
               <form onSubmit={submit} method="get">
                   <button type="submit" name="submitButton" id="loginButton"/>
@@ -147,9 +99,8 @@ export function EditItem({ itemApi }) {
 }
 
 function storeSelections() {
-    let checkboxes
+    const checkboxes = Array.from(document.getElementsByClassName('dot'));
     let selections = []
-    checkboxes = document.getElementsByClassName("dot")
 
     for(let i = 0; i <= checkboxes.length - 1; i++) {
         if(checkboxes[i].getAttribute("data-value") === "1") {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
@@ -8,8 +8,20 @@ import { PRODUCTS } from "../lib/images.jsx"
 import { fetchJson } from "../lib/http";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
+import { closeModal } from "../components/ModalView";
+import lock from "url:../../shared/img/locked.png";
 
 export function AppListCourses({user}) {
+
+  useEffect(() => {
+    window.onclick = function(event) {
+      const modal = document.getElementById("myModal")
+
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  })
 
   const { data, error, loading, reload } = useLoading(() =>
       fetchJson("/api/profile", {
@@ -28,31 +40,35 @@ export function AppListCourses({user}) {
     return <LoadingView />;
   }
 
+
   return (
     <>
+
+      <div id="myModal" className="modal">
+        <div className="modal-content">
+          <span onClick={closeModal} className="close">x</span>
+          <p>
+            Please enter your username in the field below.
+          </p>
+        </div>
+      </div>
+
       <div className="chooseCourseContainer">
         <div className="productsContainer">
-
-          <Link to={`/courses/${user.username}/watch/${user.courses[0].id}`}>
-            <div tabIndex="0" className="bigDot">
-              <img src={PRODUCTS[0].image} alt=""/>
-            </div>
-          </Link>
-
-          <Link to={`/courses/${user.username}/watch/${user.courses[1].id}`}>
-          <div tabIndex="0" className="bigDot">
-              <img src={PRODUCTS[1].image} alt=""/>
-                <div/>
-            </div>
-          </Link>
-
-          <Link to={`/courses/${user.username}/watch/${user.courses[2].id}`}>
-            <div tabIndex="0" className="bigDot">
-              <img src={PRODUCTS[2].image} alt=""/>
-                <div/>
-            </div>
-          </Link>
-
+          {
+            user.courses.map((id) => (
+                  id.access !== true
+                      ?
+                        <div key={id.id} tabIndex="0" className="bigDot">
+                          <img id="lock" src={lock} alt=""/>
+                        </div>
+                      :
+                      <Link key={id.id} to={`/courses/${user.username}/watch/${id.id}`}>
+                        <div tabIndex="0" className="bigDot">
+                          <img src={PRODUCTS[id.id].image} alt=""/>
+                        </div>
+                      </Link>
+            ))}
         </div>
       </div>
     </>

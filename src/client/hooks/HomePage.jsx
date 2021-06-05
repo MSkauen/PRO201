@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect } from "react";
 import { LoadingView } from "../components/LoadingView";
 import { closeModal } from "../components/ModalView";
 import { useLoading } from "../lib/useLoading";
@@ -10,7 +10,6 @@ import logImage from "url:../../shared/img/logImg.png";
 import courseImage from "url:../../shared/img/courseImg.png";
 import lock from "url:../../shared/img/locked.png";
 import {useParams} from "react-router";
-import {AppWatchCourse} from "./AppWatchCourse";
 
 export function HomePage({ user }) {
 
@@ -24,6 +23,16 @@ export function HomePage({ user }) {
     })
   );
 
+    useEffect(() => {
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal")
+
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    })
+
   if (error) {
     return <ErrorView error={error} reload={reload} />;
   }
@@ -34,13 +43,7 @@ export function HomePage({ user }) {
   const { username } = data;
   return (
       <>
-          {window.onclick = function(event) {
-              const modal = document.getElementById("myModal")
 
-              if (event.target === modal) {
-                  modal.style.display = "none";
-              }
-          }}
           <div id="myModal" className="modal">
               <div className="modal-content">
                   <span onClick={closeModal} className="close">x</span>
@@ -55,9 +58,6 @@ export function HomePage({ user }) {
           <div className="optionContainer">
             <div id="buttonContainer" align="center">
 
-                    {
-                        user.certification !== ""
-                    ?
                         <Link to={`/courses/${username}/`}>
                             <div id="course" className="bigButton">
                                 <img src={courseImage} alt="" className="logImage"/>
@@ -65,13 +65,6 @@ export function HomePage({ user }) {
                             </div>
                         </Link>
 
-
-                            :
-                        <div id="course" className="bigButton">
-                            <img id="lock" src={lock} alt=""/>
-                            <h5 className="main-h5">LEARN</h5>
-                        </div>
-                    }
 
                   {
                       user.certification !== ""

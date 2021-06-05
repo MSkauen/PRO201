@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect } from "react";
 import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
@@ -6,8 +6,9 @@ import { fetchJson } from "../lib/http";
 import "../../shared/css/main.css";
 import { useParams } from "react-router";
 import lock from "url:../../shared/img/locked.png";
-import { MISC, PARTS } from "../lib/images.jsx"
+import { MISC } from "../lib/images.jsx"
 import Youtube from "react-youtube"
+import {closeModal} from "../components/ModalView";
 
 export function AppWatchCourse({user, courseId}) {
     let currentCourseName = user.courses[courseId].courseParts[0].name
@@ -19,6 +20,16 @@ export function AppWatchCourse({user, courseId}) {
     if (videoUrl) {
         videoCode = videoUrl.split("embed/")[1].split("&")[0]
     }
+
+    useEffect(() => {
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal")
+
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    })
 
     const { data, error, loading, reload } = useLoading(() =>
         fetchJson("/api/profile", {
@@ -48,6 +59,16 @@ export function AppWatchCourse({user, courseId}) {
 
     return (
     <>
+
+        <div id="myModal" className="modal">
+            <div className="modal-content">
+                <span onClick={closeModal} className="close">x</span>
+                <p>
+                    Please enter your username in the field below.
+                </p>
+            </div>
+        </div>
+
         <div className="courseContainer">
             <div className="videoContainer">
                 <h1>{trimmedCourseName}</h1>
@@ -66,14 +87,14 @@ export function AppWatchCourse({user, courseId}) {
                         {
                             user.courses[courseId].courseParts.map((id) => (
                                 <div key={id.id} className="sideBarItem">
-                                    <h4>{user.courses[courseId].courseParts[id.id].name}</h4>
+                                    <h4>{id.name}</h4>
                                     <div className="playButton">
                                         {
-                                            user.courses[courseId].courseParts[id.id].access !== true
+                                            id.access !== true
                                                 ?
                                                 <img id="lock" className="lockedIcon" src={lock} alt=""/>
                                                 :
-                                                <img className="playIcon" src={MISC[1].image}/>
+                                                <img className="playIcon" src={MISC[1].image} alt=""/>
                                         }
                                     </div>
                                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { InputField } from "../components/InputField";
 import Barcode from "url:../../shared/img/barcode.png";
 import { useHistory } from "react-router";
@@ -6,17 +6,27 @@ import { ErrorView } from "../components/ErrorView";
 import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { fetchJson } from "../lib/http";
+import { closeModal } from "../components/ModalView";
 
 export function InputPage() {
     const [serial, setSerial] = useState("");
     const history = useHistory();
+
+        useEffect(() => {
+            window.onclick = function(event) {
+                const modal = document.getElementById("myModal")
+
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+        })
 
        const getLocation = async() => {
         let location = {}
         if (!navigator.geolocation) {
             console.log('Geolocation is not supported by your browser');
         } else {
-            console.log('Locating...');
             navigator.geolocation.getCurrentPosition((position) => {
                 location = {location: {lat: position.coords.latitude, lng: position.coords.longitude}}
             }, () => {
@@ -43,6 +53,7 @@ export function InputPage() {
         return <LoadingView/>;
     }
 
+
     async function submit(e) {
         e.preventDefault();
 
@@ -65,6 +76,17 @@ export function InputPage() {
 
 
   return (
+      <>
+
+          <div id="myModal" className="modal">
+              <div className="modal-content">
+                  <span onClick={closeModal} className="close">x</span>
+                  <p>
+                      Please enter your username in the field below.
+                  </p>
+              </div>
+          </div>
+
         <div id="inputContainer" align="center">
           <br/>
             <img id="barcode" src={Barcode} alt=""/>
@@ -81,5 +103,6 @@ export function InputPage() {
                   <button type="submit" name="submitButton" id="loginButton"/>
               </form>
         </div>
+          </>
   );
 }

@@ -8,6 +8,7 @@ import "../../shared/css/confirmation.css";
 import "../../shared/css/modal.css";
 import { PARTS } from "../lib/images.jsx"
 import { fetchJson } from "../lib/http";
+import { check } from "../lib/checkbox";
 
 export function AppListItems({item}) {
     const partsChanged = item.partsChanged
@@ -27,7 +28,7 @@ export function AppListItems({item}) {
 
 
     useEffect(() => {
-        if (!timeLeft && isCounting === true) history.push(`/home/${data.username}`);
+        if (!timeLeft && isCounting === true) history.push(`/input`);
 
         if (isCounting === true) {
             const intervalId = setInterval(() => {
@@ -54,13 +55,20 @@ export function AppListItems({item}) {
     return (
     <>
       <h1>PARTS REPLACED FOR {item.serial}</h1>
-      <div className="partsReplacedContainer">
+      <div className="partsContainer">
+
+
           {
               partsChanged.map((id) => (
-                  <div key={id} className="dot">
+                  <div key={id}>
+                  <h5 id="partNumber" className="main-h5">{id+1}</h5>
+                  <div id={id} className="dot" data-value="0" onClick={check}>
                       <img src={PARTS[id].image} alt=""/>
-                      <div/>
+                      <span>
+                              </span>
                   </div>
+              </div>
+
               ))}
       </div>
 

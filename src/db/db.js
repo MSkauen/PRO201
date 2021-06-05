@@ -31,7 +31,6 @@ const addNewRepairSchema = async (username, serial, location, partsChanged) => {
         location: location,
         serial: serial
     })
-    console.log(newSunbellRepairSchema)
 
      await newSunbellRepairSchema.save().then(() => {
         console.log('item was saved successfully')
@@ -57,17 +56,15 @@ const updateRepairSchema = async (username, serial, partsChanged, location) => {
         },
     ).then((i) => {
         console.log('item was updated successfully')
+        console.log(i)
         return i
     }).catch( (err) => {
         console.log(err.message)
     })
 }
 
-// FUNKSJON FOR Å SJEKKE OM BRUKEREN FINS I DATABASEN
-
 const checkIfValidUser = async (username) => {
     return await User.findOne({username}).then( (u) => {
-        console.log("U: "+JSON.stringify(u, null, 2))
         return u
     }).catch( (err) => {
         console.log(err.message)

@@ -75,8 +75,6 @@ app.get("/api/item/:id", async (req, res) => {
   const item = await db.checkIfLampIsPreviouslyRepaired(id)
 
   if(item) {
-    console.log("ID" + id)
-    console.log("ITEM SERIAL" + JSON.stringify(item.serial))
     res.json(item);
   }
 });
@@ -88,9 +86,7 @@ app.put("/api/item/:id", async (req, res) => {
   const { user, itemSerial, selections, location } = req.body;
 
   if(exists) {
-    const updatedItem = await db.updateRepairSchema(user, itemSerial, selections, id);
-    console.log("UPDATED ITEM: "+updatedItem)
-    //res.json(updatedItem)
+    await db.updateRepairSchema(user, itemSerial, selections, id);
     res.status(200).end();
   }
 });
@@ -101,9 +97,8 @@ app.post("/api/item", async (req, res) => {
 
   const existingItem = await db.checkIfLampIsPreviouslyRepaired(parseInt(serial))
   if(!existingItem) {
-    const item = await db.addNewRepairSchema(user, serial, location = req.body.location, [])
+    await db.addNewRepairSchema(user, serial, location = req.body.location, [])
 
-    console.log("POSTED ITEM" + JSON.stringify(item))
   }
   res.status(201).end();
 });
@@ -113,8 +108,6 @@ app.get("/api/user/:id", async (req, res) => {
   const user = await db.checkIfValidUser(id)
 
   if(user) {
-    console.log("ID" + id)
-    console.log("USER: " + JSON.stringify(user))
     res.json(user);
   }
 });
