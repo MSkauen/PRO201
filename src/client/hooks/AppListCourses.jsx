@@ -7,11 +7,12 @@ import "../../shared/css/chooseCourse.css";
 import { PRODUCTS } from "../lib/images.jsx"
 import { fetchJson } from "../lib/http";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router";
+import {useHistory, useParams} from "react-router";
 import { closeModal } from "../components/ModalView";
 import lock from "url:../../shared/img/locked.png";
 
 export function AppListCourses({user}) {
+    const history = useHistory();
 
   useEffect(() => {
     window.onclick = function(event) {
@@ -43,6 +44,7 @@ export function AppListCourses({user}) {
 
   return (
     <>
+      <div id="backButton" onClick={()=> (history.push(`/home/${user.username}`))}/>
 
       <div id="myModal" className="modal">
         <div className="modal-content">

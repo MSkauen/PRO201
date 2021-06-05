@@ -7,7 +7,6 @@ OKEI DA KJØRERN
    (In progress!)
 * Disable alle buttons etter klikk
 * Add numbers to all parts respectively in LogPage
-* Add back button to all pages for easier navigation
 * Add tab indexes to all elements for easier navigation
 * Implement tracking of courseprogress
  

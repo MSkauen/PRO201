@@ -4,7 +4,7 @@ import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
 import { fetchJson } from "../lib/http";
 import "../../shared/css/main.css";
-import { useParams } from "react-router";
+import {useHistory, useParams} from "react-router";
 import lock from "url:../../shared/img/locked.png";
 import { MISC } from "../lib/images.jsx"
 import Youtube from "react-youtube"
@@ -12,6 +12,8 @@ import {closeModal} from "../components/ModalView";
 import {Link} from "react-router-dom";
 
 export function AppWatchCourse({user, courseId, coursePartId}) {
+    const history = useHistory();
+
     let currentCourseName = user.courses[courseId].courseParts[0].name
     let trimmedCourseName = currentCourseName.replace(/[^a-zA-Z ]/g, "")
 
@@ -60,6 +62,7 @@ export function AppWatchCourse({user, courseId, coursePartId}) {
 
     return (
     <>
+        <div id="backButton" onClick={()=> (history.push(`/courses/${user.username}`))}/>
 
         <div id="myModal" className="modal">
             <div className="modal-content">

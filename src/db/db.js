@@ -56,7 +56,6 @@ const updateRepairSchema = async (username, serial, partsChanged, location) => {
         },
     ).then((i) => {
         console.log('item was updated successfully')
-        console.log(i)
         return i
     }).catch( (err) => {
         console.log(err.message)

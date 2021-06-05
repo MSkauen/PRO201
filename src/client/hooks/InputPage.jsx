@@ -87,7 +87,7 @@ export function InputPage() {
               </div>
           </div>
 
-          <button id="backButton" type="button" name="button"/>
+      <div id="backButton" onClick={()=> (history.push(`/home/${data.username}`))}/>
 
         <div id="inputContainer" align="center">
           <br/>

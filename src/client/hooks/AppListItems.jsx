@@ -54,7 +54,9 @@ export function AppListItems({item}) {
 
     return (
     <>
-      <h1>PARTS REPLACED FOR {item.serial}</h1>
+        <div id="backButton" onClick={()=> (history.push(`/item/${item.serial}/edit`))}/>
+
+        <h1>PARTS REPLACED FOR {item.serial}</h1>
       <div className="partsContainer">
 
 

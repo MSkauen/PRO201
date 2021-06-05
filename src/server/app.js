@@ -21,7 +21,6 @@ app.use(cookieParser());
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     const user = await db.checkIfValidUser(username)
-    console.log(user)
     if(user) {
       if (username === user.username) {
         done(null, {username, is_admin: true});

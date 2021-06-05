@@ -32,7 +32,7 @@ iframe {
     box-shadow: 0 0 23px 0 rgb(158 158 158);
 
 }
-button {
+button, #backButton {
     letter-spacing: 0.1em;
     outline: inherit;
     background: none;
@@ -46,11 +46,11 @@ button {
     font-size: 1em;
     cursor: pointer;
 }
-button:hover {
+button:hover, #backButton:hover {
     transition:.1s ease-in-out;
     background-color: #324954;
 }
-button:active {
+button:active, #backButton:active {
     transition:.1s ease-in-out;
     background-color: #9fd18b;
 }
@@ -69,6 +69,7 @@ img {
     height: 7em;
 }
 #backButton {
+    z-index: 99;
     min-width: 7em;
     min-height: 3em;
     background-image: url(../img/back_arrow.png);
@@ -78,6 +79,8 @@ img {
     background-size: contain;
     margin: 2em;
     align-self: flex-start;
+    position: absolute;
+    background-color: #55405c;
 }
 #partNumber {
     font-size: 2em;
@@ -216,6 +219,7 @@ ul.breadcrumb:hover li a p {
     width: 100%;
 }
 main {
+    padding-top: 1em;
     grid-column: 1 / 1;
     height: calc(100vh - 174px);
     width: 100%;

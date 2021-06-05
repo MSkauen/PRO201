@@ -51,7 +51,10 @@ export function LogPage({ item }) {
   }
 
   return (
-          <div id="logContainer" align="center">
+      <>
+      <div id="backButton" onClick={()=> (history.push(`/input`))}/>
+
+    <div id="logContainer" align="center">
               <div className="logHeader">
                   <img src={MISC[0].image} alt=""/>
                       <div className="logDetails">
@@ -77,6 +80,7 @@ export function LogPage({ item }) {
                   <button type="submit" name="submitButton" id="loginButton"/>
               </form>
           </div>
+          </>
   );
 }
 
