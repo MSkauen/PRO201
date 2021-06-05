@@ -80,7 +80,7 @@ export function Application() {
             <GetCourses userApi={userApi} />
           </Route>
 
-          <Route exact path={"/courses/:id/watch/:courseId"}>
+          <Route exact path={"/courses/:id/watch/:courseId/:coursePartId"}>
             <GetUser userApi={userApi} />
           </Route>
 

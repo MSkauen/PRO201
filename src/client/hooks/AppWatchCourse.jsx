@@ -9,12 +9,13 @@ import lock from "url:../../shared/img/locked.png";
 import { MISC } from "../lib/images.jsx"
 import Youtube from "react-youtube"
 import {closeModal} from "../components/ModalView";
+import {Link} from "react-router-dom";
 
-export function AppWatchCourse({user, courseId}) {
+export function AppWatchCourse({user, courseId, coursePartId}) {
     let currentCourseName = user.courses[courseId].courseParts[0].name
     let trimmedCourseName = currentCourseName.replace(/[^a-zA-Z ]/g, "")
 
-    let videoUrl = user.courses[courseId].courseParts[0].contentUrl
+    let videoUrl = user.courses[courseId].courseParts[coursePartId].contentUrl
     let videoCode
 
     if (videoUrl) {
@@ -80,7 +81,7 @@ export function AppWatchCourse({user, courseId}) {
                 <div className="course">
                     <div className="courseDetails">
                         <h2>{user.courses[courseId].name}</h2>
-                        <h2>1/{user.courses[courseId].courseParts.length}</h2>
+                        <h2>{(parseInt(coursePartId) + 1)}/{user.courses[courseId].courseParts.length}</h2>
                     </div>
                     <div className="allVideosContainer">
 
@@ -94,7 +95,9 @@ export function AppWatchCourse({user, courseId}) {
                                                 ?
                                                 <img id="lock" className="lockedIcon" src={lock} alt=""/>
                                                 :
-                                                <img className="playIcon" src={MISC[1].image} alt=""/>
+                                                <Link key={id.id} to={`/courses/${user.username}/watch/${courseId}/${id.id}`}>
+                                                    <img className="playIcon" src={MISC[1].image} alt=""/>
+                                                </Link>
                                         }
                                     </div>
                                 </div>
@@ -111,6 +114,8 @@ export function AppWatchCourse({user, courseId}) {
 export function GetUser({ userApi }) {
     const { id } = useParams()
     const { courseId } = useParams()
+    const { coursePartId } = useParams()
+
     const { data: user, loading, error, reload } = useLoading(
         async () => await userApi.getUserData(id),
         [id]
@@ -123,5 +128,5 @@ export function GetUser({ userApi }) {
         return <LoadingView />;
     }
 
-    return <AppWatchCourse user={user} courseId={courseId} />;
+    return <AppWatchCourse user={user} courseId={courseId} coursePartId={coursePartId} />;
 }

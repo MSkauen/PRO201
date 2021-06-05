@@ -63,7 +63,7 @@ export function AppListCourses({user}) {
                           <img id="lock" src={lock} alt=""/>
                         </div>
                       :
-                      <Link key={id.id} to={`/courses/${user.username}/watch/${id.id}`}>
+                      <Link key={id.id} to={`/courses/${user.username}/watch/${id.id}/0`}>
                         <div tabIndex="0" className="bigDot">
                           <img src={PRODUCTS[id.id].image} alt=""/>
                         </div>
