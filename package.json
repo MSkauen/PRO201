@@ -10,6 +10,7 @@
     "start:express": "nodemon --watch src/server src/server/server.js",
     "start:parcel": "parcel src/shared/html/index.html",
     "start:clean": "node ./node_modules/parcel-dist-cleaner/distCleaner",
+    "build": "react-scripts build",
     "test": "jest",
     "format": "prettier --write src"
   },
@@ -38,6 +39,7 @@
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
     "react-youtube": "^7.13.1"
   },
   "browserslist": [
