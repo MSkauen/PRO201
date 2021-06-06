@@ -10,7 +10,7 @@ import {LoadingView} from "../components/LoadingView";
 
 export function LoginPage() {
   const [username, setUsername] = useState("");
-  const history = useHistory();
+  const history = useHistory("");
 
   const { handleSubmit: handleLogin, submitting, error } = useSubmit(
     async () => {
@@ -40,17 +40,7 @@ export function LoginPage() {
               </div>
           </div>
 
-
         <div id="inputContainer" align="center">
-
-          {
-            submitting &&
-            <div className="loading">Please wait</div>
-          }
-          {
-            error &&
-            <div className="error">{error.toString()}</div>
-          }
 
           <img className="user" src={userImage} alt=""/>
           <h1>Login</h1>
@@ -61,6 +51,7 @@ export function LoginPage() {
                 id="usernameInput"
                 type="text"
                 placeholder="Username"
+                onfocus="this.placeholder = ''"
                 onChangeValue={setUsername}
                 value={username}
                 maxLength="12"

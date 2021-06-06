@@ -8,6 +8,7 @@ export function InputField({ id, onChangeValue, value, type, placeholder }) {
       value={value}
       placeholder={placeholder}
       onChange={(e) => onChangeValue(e.target.value)}
+      required
     />
   );
 }

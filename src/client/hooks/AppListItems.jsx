@@ -64,7 +64,7 @@ export function AppListItems({item}) {
               partsChanged.map((id) => (
                   <div key={id}>
                   <h5 id="partNumber" className="main-h5">{id+1}</h5>
-                  <div id={id} className="dot" data-value="0" onClick={check}>
+                  <div id={id} className="dot">
                       <img src={PARTS[id].image} alt=""/>
                       <span>
                               </span>

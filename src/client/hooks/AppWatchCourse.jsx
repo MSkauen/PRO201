@@ -14,7 +14,7 @@ import {Link} from "react-router-dom";
 export function AppWatchCourse({user, courseId, coursePartId}) {
     const history = useHistory();
 
-    let currentCourseName = user.courses[courseId].courseParts[0].name
+    let currentCourseName = user.courses[courseId].courseParts[coursePartId].name
     let trimmedCourseName = currentCourseName.replace(/[^a-zA-Z ]/g, "")
 
     let videoUrl = user.courses[courseId].courseParts[coursePartId].contentUrl
