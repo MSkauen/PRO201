@@ -5,12 +5,10 @@
   opacity: 40%;
   mix-blend-mode: difference;
   transform: rotateZ(-90deg);
-  transition: ease-in-out 0.2s;
-
+  transition: ease-out 0.2s;
 }
 #arrow:hover {
-  transition: ease-in-out 0.2s;
-
+  transition: ease-in 0.2s;
   opacity: 100%;
 }
 #modalImages {

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import logImage from "url:../../shared/img/logImg.png";
 import courseImage from "url:../../shared/img/courseImg.png";
 import lock from "url:../../shared/img/locked.png";
-import {useParams} from "react-router";
+import { useParams } from "react-router";
 import { MODAL } from "../components/ModalView";
 import { MISC } from "../lib/images.jsx"
 
