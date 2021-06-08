@@ -13,6 +13,12 @@ export const MISC = [
         name: "play",
         image: require('url:../../shared/img/play.png')
     },
+    {
+        id: 2,
+        name: "arrow",
+        image: require('url:../../shared/img/back_arrow.png')
+
+},
 ]
 export const PRODUCTS = [
     {

@@ -8,7 +8,7 @@
     background-color: #405c6a;
     font-family: inherit;
     border-radius: 5px;
-    box-shadow: 0 0 23px 0 rgb(158, 158, 158);
+    box-shadow: 0 0 23px 0 rgba(158, 158, 158, 0.4);
     padding: 10px;
     font-size: 3em;
     min-width: 10em;

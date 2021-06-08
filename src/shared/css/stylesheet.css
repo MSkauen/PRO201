@@ -104,17 +104,14 @@ img {
 }
 #usernameInput {
     background-image: url(../img/user.png);
-    background-image: url(../img/user.png);
 }
 #passwordInput {
-    background-image: url(../img/key.png);
     background-image: url(../img/key.png);
 }
 #loginButton {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(../img/login.png);
     background-image: url(../img/login.png);
 }
 #inputContainer {
@@ -256,7 +253,7 @@ main {
     text-align: center;
 }
 
-.partsContainer, #loginButton {
+.partsContainer {
     width: 60%;
 }
 
@@ -481,7 +478,52 @@ a {
 #input-desc {
     color: #324954;
 }
-
+/* MOBIL/TABLET VISNING */
+@media only screen
+and (min-device-width : 320px) and (max-device-width: 1366px) {
+    h1 {
+        font-size: 4em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    h5 {
+        font-size: 1em;
+    }
+    button {
+        font-size: 3em;
+    }
+    #loginButton {
+        width: 80%;
+        height: 30%;
+    }
+    #inputContainer {
+        width: 80%;
+        height: 100%;
+    }
+    #inputContainer> .user {
+        padding: 0;
+        min-width: 24em;
+        min-height: 24em;
+    }
+    #usernameInput {
+        font-size: 3em;
+        width: 80%;
+    }
+    #buttonContainer {
+        margin-top: 1em;
+    }
+    #buttonContainer > a {
+        width: 100%;
+    }
+    .inputForm {
+        height: 30em;
+        justify-content: space-evenly;
+    }
+    .bigButton {
+        min-width: 8.5em;
+    }
+}
 @keyframes slideIn {
     0% {
         padding: 0;

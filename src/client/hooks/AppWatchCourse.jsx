@@ -48,7 +48,6 @@ export function AppWatchCourse({user, courseId, coursePartId}) {
     );
 
     const checkElapsedTime = (e) => {
-        console.log(e.target.getCurrentTime());
         const duration = e.target.getDuration();
         const currentTime = e.target.getCurrentTime();
         if (currentTime / duration > 0.95) {

@@ -33,8 +33,8 @@ export function LoginPage() {
       <>
           <div id="myModal" className="modal">
               <div className="modal-content">
-                  <span onClick={closeModal} className="close">x</span>
-                  <p>
+                  <span onClick={closeModal} className="close">X</span>
+
                       <h1>{MODAL.login.text}</h1>
                       <div id = "modalImages">
                           <div id = "modalImagesContainer">
@@ -54,7 +54,7 @@ export function LoginPage() {
                               <img id="modalCheckmarkImg" src={MODAL.login.images.checkmark.image}/>
                           </div>
                       </div>
-                  </p>
+
               </div>
           </div>
 

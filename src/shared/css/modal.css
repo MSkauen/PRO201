@@ -1,6 +1,18 @@
 #help {
   cursor: pointer;
 }
+#arrow {
+  opacity: 40%;
+  mix-blend-mode: difference;
+  transform: rotateZ(-90deg);
+  transition: ease-in-out 0.2s;
+
+}
+#arrow:hover {
+  transition: ease-in-out 0.2s;
+
+  opacity: 100%;
+}
 #modalImages {
   justify-content: center;
   display: flex;
@@ -9,14 +21,19 @@
   min-width: 50%;
   align-items: center;
 }
-#modalImagesContainer {
+#modalImagesContainer, #modalImagesContainerColumn {
   padding-left: 2em;
+  padding-right: 2em;
   right: 2em;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
+#modalImagesContainerColumn {
+  flex-direction: column;
+}
+
 #modalImg {
   width: unset;
   height: unset;
@@ -25,8 +42,10 @@
 }
 #modalErrorImg, #modalCheckmarkImg {
   padding: 1em;
-  max-height: 5em;
-  max-width: 5em;
+  width: unset;
+  height: unset;
+  max-width: 20%;
+  max-height: 100%;
 }
 
 /* The Modal (background) */
@@ -45,11 +64,14 @@
 
 /* Modal Content/Box */
 .modal-content {
+  display: flex;
   background-color: #fefefe;
-  margin: 2.5% auto; /* 15% from the top and centered */
+  margin: 2.5% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 65%; /* Could be more or less, depending on screen size */
+  width: 65%;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* The Close Button */
@@ -68,3 +90,4 @@
   text-decoration: none;
   cursor: pointer;
 }
+

@@ -10,6 +10,8 @@ import logImage from "url:../../shared/img/logImg.png";
 import courseImage from "url:../../shared/img/courseImg.png";
 import lock from "url:../../shared/img/locked.png";
 import {useParams} from "react-router";
+import { MODAL } from "../components/ModalView";
+import { MISC } from "../lib/images.jsx"
 
 export function HomePage({ user }) {
 
@@ -46,12 +48,21 @@ export function HomePage({ user }) {
 
           <div id="myModal" className="modal">
               <div className="modal-content">
-                  <span onClick={closeModal} className="close">x</span>
-                  <p>
-                      Please choose LEARN to get started with your certification.
-                        <br/>
-                      If you are already certified to repair Bright lamps, please choose REPORT to start logging your repairs.
-                  </p>
+                  <span onClick={closeModal} className="close">X</span>
+                  <div id="modalImagesContainerColumn">
+                      <h2>
+                          {MODAL.home.text}
+                      </h2>
+                      <img id="modalImg" src={MODAL.home.images[0].image}/>
+                  </div>
+                  <div id="modalImagesContainerColumn">
+                      <h2>
+                          {MODAL.home.text2}
+                      </h2>
+                      <img id="arrow" src={MISC[2].image}/>
+                      <img id="modalImg" src={MODAL.home.images[1].image}/>
+                  </div>
+
               </div>
           </div>
 
@@ -76,10 +87,13 @@ export function HomePage({ user }) {
                               </div>
                           </Link>
                       :
-                          <div id="log" className="bigButton">
-                              <img id="lock" src={lock} alt=""/>
-                              <h5 className="main-h5">REPORT</h5>
-                          </div>
+                          <a>
+                              <div id="log" className="bigButton">
+                                  <img id="lock" src={lock} alt=""/>
+                                  <h5 className="main-h5">REPORT</h5>
+                              </div>
+                          </a>
+
                   }
 
             </div>

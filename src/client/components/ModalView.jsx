@@ -46,6 +46,22 @@ export const MODAL = {
         },
 
     }
+  },
+  home: {
+      text: "Please choose LEARN to get started with your certification.",
+      text2: "REPORT will unlock on completion of course.",
+      images: [
+           {
+              id: 0,
+              name: "Learn image",
+              image: require('url:../../shared/img/modal/home_process_uncertified.png')
+          },
+          {
+              id: 1,
+              name: "Report image",
+              image: require('url:../../shared/img/modal/home_process_certified.png')
+          }
+      ]
   }
 
 }
