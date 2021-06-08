@@ -37,17 +37,21 @@ export function LoginPage() {
                   <p>
                       <h1>{MODAL.login.text}</h1>
                       <div id = "modalImages">
-                          <div>
-                              <img className="modalImg" src={MODAL.login.images.badLogins[0].image}/>
-                              <img className="modalErrorImg" src={MODAL.login.images.error.image}/>
+                          <div id = "modalImagesContainer">
+                              <img id="modalImg" src={MODAL.login.images.badLogins[0].image}/>
+                              <img id="modalErrorImg" src={MODAL.login.images.error.image}/>
                           </div>
-                          <div>
-                              <img className="modalImg" src={MODAL.login.images.badLogins[1].image}/>
-                              <img className="modalErrorImg" src={MODAL.login.images.error.image}/>
+                          <div id = "modalImagesContainer">
+                              <img id="modalImg" src={MODAL.login.images.badLogins[1].image}/>
+                              <img id="modalErrorImg" src={MODAL.login.images.error.image}/>
                           </div>
-                          <div>
-                              <img className="modalImg" src={MODAL.login.images.goodLogins[1].image}/>
-                              <img className="modalCheckmarkImg" src={MODAL.login.images.checkmark.image}/>
+                          <div id = "modalImagesContainer">
+                              <img id="modalImg" src={MODAL.login.images.goodLogins[0].image}/>
+                              <img id="modalCheckmarkImg" src={MODAL.login.images.checkmark.image}/>
+                          </div>
+                          <div id = "modalImagesContainer">
+                              <img id="modalImg" src={MODAL.login.images.goodLogins[1].image}/>
+                              <img id="modalCheckmarkImg" src={MODAL.login.images.checkmark.image}/>
                           </div>
                       </div>
                   </p>
