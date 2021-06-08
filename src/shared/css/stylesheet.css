@@ -63,6 +63,9 @@ input, #loginButton{
     height: 3em;
     font-size: 16pt;
 }
+input:focus::placeholder {
+    color: transparent;
+}
 img {
     padding: 25px;
     width: 7em;
@@ -101,14 +104,17 @@ img {
 }
 #usernameInput {
     background-image: url(../img/user.png);
+    background-image: url(../img/user.png);
 }
 #passwordInput {
+    background-image: url(../img/key.png);
     background-image: url(../img/key.png);
 }
 #loginButton {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    background-image: url(../img/login.png);
     background-image: url(../img/login.png);
 }
 #inputContainer {
@@ -219,7 +225,6 @@ ul.breadcrumb:hover li a p {
     width: 100%;
 }
 main {
-    padding-top: 1em;
     grid-column: 1 / 1;
     height: calc(100vh - 174px);
     width: 100%;
@@ -407,6 +412,7 @@ main {
     background-size: contain;
     background-position: center;
     background-image: url(../img/login.png);
+    background-image: url(../img/login.png);
 }
 .count {
     font-size: 2.5em;
@@ -451,7 +457,8 @@ main {
 
 @font-face {
     font-family: Roboto;
-    src: url(fonts/Roboto-Light.ttf);
+    src: url(../css/fonts/Roboto-Light.ttf);
+    src: url(../css/fonts/Roboto-Light.ttf);
 }
 
 a {

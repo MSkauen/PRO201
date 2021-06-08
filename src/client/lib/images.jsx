@@ -1,3 +1,7 @@
+export const SPINNER =  {
+        id: 0,
+        image: require('url:../../shared/img/spinner.svg')
+}
 export const MISC = [
     {
         id: 0,
@@ -9,6 +13,7 @@ export const MISC = [
         name: "play",
         image: require('url:../../shared/img/play.png')
     },
+
 ]
 export const PRODUCTS = [
     {

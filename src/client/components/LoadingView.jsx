@@ -1,8 +1,8 @@
 import React from "react";
-import loadingIcon from "url:../../shared/img/Spinner.svg";
+import { SPINNER } from "../lib/images.jsx"
 
 export function LoadingView() {
   return <div>
-    <img src={loadingIcon} alt="React Logo" />
+    <img src={SPINNER.image} alt="React Logo" />
   </div>;
 }

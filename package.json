@@ -10,7 +10,6 @@
     "start:express": "nodemon --watch src/server src/server/server.js",
     "start:parcel": "parcel src/shared/html/index.html",
     "start:clean": "node ./node_modules/parcel-dist-cleaner/distCleaner",
-    "build": "react-scripts build",
     "test": "jest",
     "format": "prettier --write src"
   },

@@ -5,7 +5,7 @@ import { postJson } from "../lib/http";
 import { useHistory } from "react-router";
 import { useSubmit } from "../lib/useSubmit";
 import userImage from "url:../../shared/img/user.png";
-import {ErrorView} from "../components/ErrorView";
+import { MODAL } from "../components/ModalView";
 import {LoadingView} from "../components/LoadingView";
 
 export function LoginPage() {
@@ -35,7 +35,21 @@ export function LoginPage() {
               <div className="modal-content">
                   <span onClick={closeModal} className="close">x</span>
                   <p>
-                      Please enter your username in the field below.
+                      <h1>{MODAL.login.text}</h1>
+                      <div id = "modalImages">
+                          <div>
+                              <img className="modalImg" src={MODAL.login.images.badLogins[0].image}/>
+                              <img className="modalErrorImg" src={MODAL.login.images.error.image}/>
+                          </div>
+                          <div>
+                              <img className="modalImg" src={MODAL.login.images.badLogins[1].image}/>
+                              <img className="modalErrorImg" src={MODAL.login.images.error.image}/>
+                          </div>
+                          <div>
+                              <img className="modalImg" src={MODAL.login.images.goodLogins[1].image}/>
+                              <img className="modalCheckmarkImg" src={MODAL.login.images.checkmark.image}/>
+                          </div>
+                      </div>
                   </p>
               </div>
           </div>
@@ -51,7 +65,6 @@ export function LoginPage() {
                 id="usernameInput"
                 type="text"
                 placeholder="Username"
-                onfocus="this.placeholder = ''"
                 onChangeValue={setUsername}
                 value={username}
                 maxLength="12"

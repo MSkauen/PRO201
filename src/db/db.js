@@ -99,7 +99,7 @@ const findUserWithName = async (name) => {
 module.exports = {
     connectDB: connectDB,
     checkIfValidUser: checkIfValidUser,
-    checkIfLampIsPreviouslyRepaired: checkIfLampIsPreviouslyRepaired,
+checkIfLampIsPreviouslyRepaired: checkIfLampIsPreviouslyRepaired,
     addNewRepairSchema: addNewRepairSchema,
     updateRepairSchema: updateRepairSchema,
     getAllProducts: getAllProducts

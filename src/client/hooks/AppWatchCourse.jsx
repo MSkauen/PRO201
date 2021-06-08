@@ -14,14 +14,17 @@ import {Link} from "react-router-dom";
 export function AppWatchCourse({user, courseId, coursePartId}) {
     const history = useHistory();
 
-    let currentCourseName = user.courses[courseId].courseParts[coursePartId].name
-    let trimmedCourseName = currentCourseName.replace(/[^a-zA-Z ]/g, "")
+    const currentCourseName = user.courses[courseId].courseParts[coursePartId].name
+    const trimmedCourseName = currentCourseName.replace(/[^a-zA-Z ]/g, "")
 
-    let videoUrl = user.courses[courseId].courseParts[coursePartId].contentUrl
+    const videoUrl = user.courses[courseId].courseParts[coursePartId].contentUrl
     let videoCode
 
     if (videoUrl) {
         videoCode = videoUrl.split("embed/")[1].split("&")[0]
+        if(!videoCode){
+            videoCode = videoUrl.split("v=")[1].split("&")[0]
+        }
     }
 
     useEffect(() => {

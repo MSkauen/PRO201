@@ -36,8 +36,8 @@ passport.use(
 
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((id, done) => done(null, id));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize(undefined));
+app.use(passport.session(undefined));
 
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
 
@@ -96,8 +96,11 @@ app.post("/api/item", async (req, res) => {
 
   const existingItem = await db.checkIfLampIsPreviouslyRepaired(parseInt(serial))
   if(!existingItem) {
-    await db.addNewRepairSchema(user, serial, location = req.body.location, [])
-
+    if (!serial) {
+      await db.addNewRepairSchema(user, "Unidentified", location = req.body.location, [])
+    } else if (serial) {
+      await db.addNewRepairSchema(user, serial, location = req.body.location, [])
+    }
   }
   res.status(201).end();
 });
