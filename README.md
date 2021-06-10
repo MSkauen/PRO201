@@ -1,5 +1,10 @@
 ## Welcome
-OKEI DA KJØRERN
+
+## How to run
+* Run command ' npm install '
+* Run command ' npm run start '
+* Go to localhost:8080 in browser.
+* For troubleshooting, see "troubleshooting" in this file
 
 ## TODO
 * POST request on video completion
@@ -20,6 +25,7 @@ OKEI DA KJØRERN
 * Restart parcel (npm start)
 * Delete .cache directory
 * Run `npm install` - perhaps also delete `node_modules` directory
+* Check that dbconfig.js is present in src/db/
 
 ## Known Issues
 * react-dom.development.js:67 Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
