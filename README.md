@@ -1,4 +1,4 @@
-## Welcome
+# Welcome!
 
 ## How to run
 * Run command ' npm install '
@@ -7,17 +7,17 @@
 * For troubleshooting, see "troubleshooting" in this file
 
 ## TODO
-* POST request on video completion
- 
-   (In progress!)
-* Disable alle buttons etter klikk
+
+* Disable all buttons on click
 * Add numbers to all parts respectively in LogPage
 * Add tab indexes to all elements for easier navigation
-* Implement tracking of courseprogress
- 
-   (Completion of video implemented!)
+* Implement tracking of course progression
+    * POST request on video completion
+        * (In progress)
+    * Callback on video completion implemented!
 * Refactor some css and variable names
 * Modal now uses useEffect, a lot of duplicate code still, should be extracted
+* Jest!
    
 ## Troubleshooting
 
