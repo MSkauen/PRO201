@@ -6,7 +6,8 @@ import { ErrorView } from "../components/ErrorView";
 import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { fetchJson } from "../lib/http";
-import { closeModal } from "../components/ModalView";
+import {closeModal, MODAL} from "../components/ModalView";
+import {MISC} from "../lib/images";
 
 export function InputPage() {
     const [serial, setSerial] = useState("");
@@ -80,10 +81,19 @@ export function InputPage() {
 
           <div id="myModal" className="modal">
               <div className="modal-content">
-                  <span onClick={closeModal} className="close">x</span>
-                  <p>
-                      Please enter your username in the field below.
-                  </p>
+                  <span onClick={closeModal} className="close">X</span>
+                  <div id="modalImagesContainerColumn">
+                      <img id="modalImg" src={MODAL.input.images[0].image} alt=""/>
+                      <img id="modalImg" src={MODAL.input.images[1].image} alt=""/>
+                  </div>
+                  <div id="modalImagesContainerColumn">
+                      <h2>
+                          {MODAL.input.text}
+                      </h2>
+                      <img id="arrow" src={MISC[2].image} alt=""/>
+                      <img id="modalImg" src={MODAL.input.images[2].image} alt=""/>
+                  </div>
+
               </div>
           </div>
 

@@ -87,6 +87,9 @@ export function Application() {
           <Route>Page not found</Route>
         </Switch>
       </main>
+      <footer>
+
+      </footer>
     </BrowserRouter>
   );
 }

@@ -158,63 +158,8 @@ img {
     background-color: #405c6a;
     min-height: 3.25rem;
 }
-.subNavbar {
-    background: #9fd18b;
-    font-size: 1rem;
-    overflow: hidden;
-    overflow-x: auto;
-    white-space: nowrap;
-    box-shadow: inset 0 7px 9px -7px #405c6a;
-    box-shadow:0 7px 9px -7px #405c6a;
-}
 
-ul.breadcrumb {
-    width: 100%;
-    height: 3.5em;
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
-}
-ul.breadcrumb img {
-    height: 2em;
-    width: 2em;
-}
-ul.breadcrumb li {
-    width: 100%;
-    text-align: center;
-    border-radius: 3px;
-    height: 100%;
-    box-shadow: 5px 0 6px 0 #779d68;
-    display: inline;
-    font-size: 18px;
-}
-
-ul.breadcrumb li a,Link {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    color: #000000;
-    text-decoration: none;
-
-}
-ul.breadcrumb li a, Link:hover {
-    box-shadow: 3px 0 6px 0 #405c6a;
-    text-decoration: underline;
-}
-
-ul.breadcrumb li a p {
-    visibility: hidden;
-}
-
-ul.breadcrumb:hover li a p {
-    visibility: visible;
-    color: #324954;
-    font-size: 25px;
-}
-
-.footer {
-    padding: 1em;
+footer {
     background-color: #405c6a;
     min-height: 3.25rem;
     position: absolute;
@@ -260,7 +205,6 @@ main {
 #serial {
     text-align: center;
     color: #324954;
-    text-decoration: underline;
 }
 
 .partsContainer, #input-desc {
@@ -346,7 +290,7 @@ main {
     width: 100%;
     align-items: center;
 }
-.error, loading {
+.error {
     padding: 25px;
     animation: 1s ease-out 0s 1 slideIn;
 }.error {
@@ -408,7 +352,6 @@ main {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    background-image: url(../img/login.png);
     background-image: url(../img/login.png);
 }
 .count {
@@ -504,6 +447,15 @@ and (min-device-width : 320px) and (max-device-width: 1366px) {
         height: 80%;
         width: 50%;
         font-size: 3em;
+    }
+    footer {
+        display: none;
+    }
+    .navbar {
+        min-height: 5rem;
+    }
+    .navItem img {
+        height: 5em;
     }
     .logPageButton {
         width: 100%;

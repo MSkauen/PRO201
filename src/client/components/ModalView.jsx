@@ -63,6 +63,27 @@ export const MODAL = {
           }
       ]
   },
+    input: {
+        text: "Please input Bright serial number as shown below.",
+        text2: "REPORT will unlock on completion of course.",
+        images: [
+            {
+                id: 0,
+                name: "Empty serial",
+                image: require('url:../../shared/img/modal/empty_serial.png')
+            },
+            {
+                id: 1,
+                name: "Bad serial",
+                image: require('url:../../shared/img/modal/bad_serial.png')
+            },
+            {
+                id: 2,
+                name: "Good serial",
+                image: require('url:../../shared/img/modal/good_serial.png')
+            }
+        ]
+    },
     courses: {
       text: "Please choose a course.",
       images: [
