@@ -6,7 +6,6 @@ import { useHistory } from "react-router";
 import { useSubmit } from "../lib/useSubmit";
 import userImage from "url:../../shared/img/user.png";
 import { MODAL } from "../components/ModalView";
-import {LoadingView} from "../components/LoadingView";
 
 export function LoginPage() {
   const [username, setUsername] = useState("");
@@ -38,20 +37,20 @@ export function LoginPage() {
                       <h1>{MODAL.login.text}</h1>
                       <div id = "modalImages">
                           <div id = "modalImagesContainer">
-                              <img id="modalImg" src={MODAL.login.images.badLogins[0].image}/>
-                              <img id="modalErrorImg" src={MODAL.login.images.error.image}/>
+                              <img id="modalImg" src={MODAL.login.images.badLogins[0].image} alt=""/>
+                              <img id="modalErrorImg" src={MODAL.login.images.error.image} alt=""/>
                           </div>
                           <div id = "modalImagesContainer">
-                              <img id="modalImg" src={MODAL.login.images.badLogins[1].image}/>
-                              <img id="modalErrorImg" src={MODAL.login.images.error.image}/>
+                              <img id="modalImg" src={MODAL.login.images.badLogins[1].image} alt=""/>
+                              <img id="modalErrorImg" src={MODAL.login.images.error.image} alt=""/>
                           </div>
                           <div id = "modalImagesContainer">
-                              <img id="modalImg" src={MODAL.login.images.goodLogins[0].image}/>
-                              <img id="modalCheckmarkImg" src={MODAL.login.images.checkmark.image}/>
+                              <img id="modalImg" src={MODAL.login.images.goodLogins[0].image} alt=""/>
+                              <img id="modalCheckmarkImg" src={MODAL.login.images.checkmark.image} alt=""/>
                           </div>
                           <div id = "modalImagesContainer">
-                              <img id="modalImg" src={MODAL.login.images.goodLogins[1].image}/>
-                              <img id="modalCheckmarkImg" src={MODAL.login.images.checkmark.image}/>
+                              <img id="modalImg" src={MODAL.login.images.goodLogins[1].image} alt=""/>
+                              <img id="modalCheckmarkImg" src={MODAL.login.images.checkmark.image} alt=""/>
                           </div>
                       </div>
 
@@ -59,6 +58,15 @@ export function LoginPage() {
           </div>
 
         <div id="inputContainer" align="center">
+
+            {
+                submitting &&
+                <div className="loading">Please wait</div>
+            }
+            {
+                error &&
+                <div className="error"/>
+            }
 
           <img className="user" src={userImage} alt=""/>
           <h1>Login</h1>
