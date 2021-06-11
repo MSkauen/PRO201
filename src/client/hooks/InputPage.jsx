@@ -92,7 +92,7 @@ export function InputPage() {
         <div id="inputContainer" align="center">
           <br/>
             <img id="barcode" src={Barcode} alt=""/>
-              <h1 id="input-desc">TYPE UNIT NUMBER</h1>
+              <h1 id="input-desc">Lamp Number</h1>
 
               <form className="inputForm" onSubmit={submit}>
                 <InputField id="serial"

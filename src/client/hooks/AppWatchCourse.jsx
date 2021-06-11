@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import { LoadingView } from "../components/LoadingView";
 import { useLoading } from "../lib/useLoading";
 import { ErrorView } from "../components/ErrorView";
@@ -13,12 +13,34 @@ import {Link} from "react-router-dom";
 
 export function AppWatchCourse({user, courseId, coursePartId}) {
     const history = useHistory();
+    const [timeLeft, setTimeLeft] = useState(user.courses[courseId].courseParts[coursePartId].courseProgress);
+
+    const [videoPlayer, setVideoPlayer] = useState(null);
+    const [isCounting, setIsCounting] = useState(false);
+    const [isCompleted, setIsCompleted] = useState(user.courses[courseId].courseParts[coursePartId].completed);
 
     const currentCourseName = user.courses[courseId].courseParts[coursePartId].name
     const trimmedCourseName = currentCourseName.replace(/[^a-zA-Z ]/g, "")
 
     const videoUrl = user.courses[courseId].courseParts[coursePartId].contentUrl
     let videoCode
+
+    const opts = {
+        playerVars: {
+            autoplay: 1,
+            mute: 1,
+        },
+    };
+
+    const { data, error, loading, reload } = useLoading(() =>
+        fetchJson("/api/profile", {
+            method: "POST",
+            body: JSON.stringify({}),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+    );
 
     if (videoUrl) {
         videoCode = videoUrl.split("embed/")[1].split("&")[0]
@@ -37,29 +59,76 @@ export function AppWatchCourse({user, courseId, coursePartId}) {
         }
     })
 
-    const { data, error, loading, reload } = useLoading(() =>
-        fetchJson("/api/profile", {
-            method: "POST",
-            body: JSON.stringify({}),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-    );
-
-    const checkElapsedTime = (e) => {
-        const duration = e.target.getDuration();
-        const currentTime = e.target.getCurrentTime();
-        if (currentTime / duration > 0.95) {
-            console.log("completed")
+    const checkElapsedTime = async (e) => {
+        const duration = e.target.getDuration()
+        const currentTime = e.target.getCurrentTime()
+        if (timeLeft / duration < 0.15 && timeLeft <= 0) {
+            setIsCompleted(true)
+            setIsCounting(false)
+        } else if (e.data === 2) {
+            //console.log("PAUSED")
+            setIsCounting(false)
+        } else if (e.data === 1) {
+            //console.log("PLAYING")
+            setIsCounting(true)
+        } else if (e.data === 0) {
+            //console.log("END")
+            setIsCounting(true)
+        } else if (e.data === 3) {
+            //console.log("BUFFERING")
+            setIsCounting(false)
+            }
         }
-    };
+
+    useEffect(  () => {
+
+        if (isCounting === true && user.username !== "") {
+            const intervalId = setInterval(() => {
+                setTimeLeft(timeLeft - 1);
+            }, 1000);
+
+            return () => {
+                clearInterval(intervalId);
+            }
+        }
+    }, [timeLeft, isCounting]);
+
+    useEffect(  () => {
+
+        if (isCompleted === true) {
+            submit().then(() => {
+                history.push(`/courses/${user.username}/watch/${courseId}/${coursePartId}`)
+            })
+        } else if (isCompleted === false) {
+            //console.log("Timeleft: " + timeLeft +" isCounting" + isCounting)
+        }
+        if (error) {
+            return <ErrorView error={error} reload={reload} />;
+        }
+        if (loading || !data) {
+            return <LoadingView />;
+        }
+    }, [ isCompleted ]);
 
     if (error) {
         return <ErrorView error={error} reload={reload} />;
     }
     if (loading || !data) {
         return <LoadingView />;
+    }
+
+    async function submit() {
+
+        const res = await fetch("/api/profile", {});
+        const json = await res.json();
+
+        await fetch(`/api/courses/${user.username}/${courseId}/${coursePartId}`, {
+            method: "PUT",
+            body: JSON.stringify({user, courseId, coursePartId}),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
     }
 
     return (
@@ -78,8 +147,13 @@ export function AppWatchCourse({user, courseId, coursePartId}) {
         <div className="courseContainer">
             <div className="videoContainer">
                 <h1>{trimmedCourseName}</h1>
-                <Youtube className="youtubePlayer" videoId={videoCode} onStateChange={(e) => checkElapsedTime(e)}
+                <Youtube
+                    className="youtubePlayer"
+                    videoId={videoCode}
+                    opts={opts}
+                    onStateChange={(e) => checkElapsedTime(e)}
                 />
+                <h1 id="timerTag"/>
             </div>
             <div className="sideBar">
 
@@ -91,16 +165,16 @@ export function AppWatchCourse({user, courseId, coursePartId}) {
                     <div className="allVideosContainer">
 
                         {
-                            user.courses[courseId].courseParts.map((id) => (
-                                <div key={id.id} className="sideBarItem">
-                                    <h4>{id.name}</h4>
+                            user.courses[courseId].courseParts.map((part) => (
+                                <div key={part.id} className="sideBarItem">
+                                    <h4>{part.name}</h4>
                                     <div className="playButton">
                                         {
-                                            id.access !== true
+                                            part.access !== true
                                                 ?
                                                 <img id="lock" className="lockedIcon" src={lock} alt=""/>
                                                 :
-                                                <Link key={id.id} to={`/courses/${user.username}/watch/${courseId}/${id.id}`}>
+                                                <Link key={part.id} to={`/courses/${user.username}/watch/${courseId}/${part.id}`}>
                                                     <img className="playIcon" src={MISC[1].image} alt=""/>
                                                 </Link>
                                         }

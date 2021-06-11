@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose')
 const schemas = require('./schemas')
 const mongodb = require('./dbconfig')
@@ -61,6 +62,40 @@ const updateRepairSchema = async (username, serial, partsChanged, location) => {
         console.log(err.message)
     })
 }
+const updateUserSchema = async (username, courseId, coursePartId) => {
+const user = await checkIfValidUser(username.username)
+const part = await getCoursePart(username, coursePartId)
+    console.log("PARTTTT: "+ part)
+let newUser = user.courses.map( async (p) => {
+    const courseParts = p.courseParts
+
+     return courseParts.map( async(t) => {
+        console.log("t"+t.id + " " + coursePartId)
+        if(t.id === coursePartId){
+            t.completed = true
+            console.log("PART: " + t)
+        } else {
+            return
+        }
+    })
+})
+    console.log("Newuser: " + JSON.stringify(newUser))
+    User.findOneAndUpdate({username: user.username}, {courses: courses})
+}
+const getCoursePart = async (username, coursePartId) => {
+    const user = await checkIfValidUser(username.username)
+    console.log(user)
+    return await user.courses.map((p) => {
+        const courseParts = p.courseParts
+
+        return courseParts.map((t) => {
+            if(t.id === coursePartId){
+                console.log("PART: " + t + t.completed)
+                return t
+            }
+        })
+    })
+}
 
 const checkIfValidUser = async (username) => {
     return await User.findOne({username}).then( (u) => {
@@ -102,5 +137,6 @@ module.exports = {
     checkIfLampIsPreviouslyRepaired: checkIfLampIsPreviouslyRepaired,
     addNewRepairSchema: addNewRepairSchema,
     updateRepairSchema: updateRepairSchema,
-    getAllProducts: getAllProducts
+    getAllProducts: getAllProducts,
+    updateUserCourseCompletion: updateUserSchema
     };

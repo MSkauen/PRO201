@@ -62,6 +62,16 @@ export const MODAL = {
               image: require('url:../../shared/img/modal/home_process_certified.png')
           }
       ]
-  }
+  },
+    courses: {
+      text: "Please choose a course.",
+      images: [
+           {
+              id: 0,
+              name: "Learn image",
+              image: require('url:../../shared/img/modal/course_options.png')
+          }
+      ]
+    }
 
 }

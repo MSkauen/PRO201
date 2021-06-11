@@ -57,10 +57,7 @@ export function LogPage({ item }) {
     <div id="logContainer" align="center">
               <div className="logHeader">
                   <img src={MISC[0].image} alt=""/>
-                      <div className="logDetails">
-                          <h2 id="serial">{itemSerial}</h2>
-                          <h2>SELECT PART USED FOR REPAIR</h2>
-                      </div>
+                  <h1 id="serial">{itemSerial}</h1>
               </div>
 
               <div className="partsContainer">
@@ -76,10 +73,10 @@ export function LogPage({ item }) {
                           </div>
                       ))}
               </div>
-              <form onSubmit={submit} method="get">
-                  <button type="submit" name="submitButton" id="loginButton"/>
-              </form>
           </div>
+          <form className="logPageButton" onSubmit={submit} method="get">
+              <button type="submit" name="submitButton" id=""/>
+          </form>
           </>
   );
 }

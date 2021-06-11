@@ -108,7 +108,7 @@ img {
 #passwordInput {
     background-image: url(../img/key.png);
 }
-#loginButton {
+#loginButton, .logPageButton > button {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -420,7 +420,7 @@ main {
 }
 .logHeader {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -451,7 +451,17 @@ main {
     height: 10em;
 }
 
-
+.logPageButton {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 25px;
+    text-align: center;
+}
+.logPageButton > button {
+     height: 80%;
+     width: 50%;
+     font-size: 3em;
+}
 @font-face {
     font-family: Roboto;
     src: url(../css/fonts/Roboto-Light.ttf);
@@ -491,11 +501,29 @@ and (min-device-width : 320px) and (max-device-width: 1366px) {
         font-size: 1em;
     }
     button {
+        height: 80%;
+        width: 50%;
         font-size: 3em;
+    }
+    .logPageButton {
+        width: 100%;
+        height: 100%;
+        padding-bottom: 25px;
+        text-align: center;
+    }
+    .logPageButton > button {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(../img/login.png);
     }
     #loginButton {
         width: 80%;
         height: 30%;
+    }
+    #backButton {
+        min-width: 8em;
+        min-height: 4em;
     }
     #inputContainer {
         width: 80%;
@@ -506,7 +534,15 @@ and (min-device-width : 320px) and (max-device-width: 1366px) {
         min-width: 24em;
         min-height: 24em;
     }
-    #usernameInput {
+    #logContainer > button {
+        width: 100%;
+        height: 100%;
+    }
+    #barcode {
+        min-width: 24em;
+        min-height: 16em;
+    }
+    input {
         font-size: 3em;
         width: 80%;
     }
@@ -522,6 +558,9 @@ and (min-device-width : 320px) and (max-device-width: 1366px) {
     }
     .bigButton {
         min-width: 8.5em;
+    }
+    .partsContainer {
+        width: 70%;
     }
 }
 @keyframes slideIn {

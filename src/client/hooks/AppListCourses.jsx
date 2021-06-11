@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import {useHistory, useParams} from "react-router";
 import { closeModal } from "../components/ModalView";
 import lock from "url:../../shared/img/locked.png";
+import { MODAL } from "../components/ModalView";
+import { MISC } from "../lib/images.jsx"
 
 export function AppListCourses({user}) {
     const history = useHistory();
@@ -41,7 +43,6 @@ export function AppListCourses({user}) {
     return <LoadingView />;
   }
 
-
   return (
     <>
       <div id="backButton" onClick={()=> (history.push(`/home/${user.username}`))}/>
@@ -49,25 +50,31 @@ export function AppListCourses({user}) {
       <div id="myModal" className="modal">
         <div className="modal-content">
           <span onClick={closeModal} className="close">x</span>
-          <p>
-            Please enter your username in the field below.
-          </p>
+            <div id="modalImagesContainerColumn">
+                <h2>
+                    {MODAL.courses.text}
+                </h2>
+                <img id="modalImg" src={MODAL.courses.images[0].image} alt=""/>
+            </div>
         </div>
       </div>
 
       <div className="chooseCourseContainer">
         <div className="productsContainer">
           {
-            user.courses.map((id) => (
-                  id.access !== true
+            user.courses.map((course) => (
+                  course.access !== true
                       ?
-                        <div key={id.id} tabIndex="0" className="bigDot">
-                          <img id="lock" src={lock} alt=""/>
-                        </div>
+                      <a key={course.id} >
+                          <div tabIndex="0" className="bigDot">
+                              <img id="lock" src={lock} alt=""/>
+                          </div>
+                      </a>
                       :
-                      <Link key={id.id} to={`/courses/${user.username}/watch/${id.id}/0`}>
+                      <Link key={course.id} to={`/courses/${user.username}/watch/${course.id}/${course.courseParts[0].id}`}>
+                          <h5 id="partNumber" className="main-h5"/>
                         <div tabIndex="0" className="bigDot">
-                          <img src={PRODUCTS[id.id].image} alt=""/>
+                          <img src={PRODUCTS[course.id].image} alt=""/>
                         </div>
                       </Link>
             ))}

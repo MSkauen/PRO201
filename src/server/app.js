@@ -104,6 +104,19 @@ app.post("/api/item", async (req, res) => {
   }
   res.status(201).end();
 });
+app.put(`/api/courses/:id/:courseId/:coursePartId`, async (req, res) => {
+  const id = req.params.id;
+  const courseId = req.params.courseId;
+  const coursePartId = req.params.coursePartId;
+  const user = await db.checkIfValidUser(id)
+  if (user) {
+        if (coursePartId) {
+          await db.updateUserCourseCompletion(user, courseId, coursePartId)
+          res.status(201).end();
+        }
+
+      }
+});
 
 app.get("/api/user/:id", async (req, res) => {
   const id = req.params.id;
