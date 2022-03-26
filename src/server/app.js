@@ -134,6 +134,5 @@ app.use((req, res, next) => {
     next();
   }
 });
-app.use('/favicon.ico', express.static('../shared/img/favicon.ico'));
 
 module.exports = app;
