@@ -3,6 +3,5 @@
 node_modules/
 .cache/
 dist/
-/src/db/dbconfig.js
 *.crt
 *.key
