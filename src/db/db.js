@@ -4,6 +4,7 @@ const schemas = require('./schemas')
 
 const connectDB = async ( ) => {
     try {
+        console.log(process.env.mongodbpasscode);
         await mongoose.connect(process.env.mongodbpasscode, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
