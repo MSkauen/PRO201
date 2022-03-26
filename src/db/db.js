@@ -1,11 +1,10 @@
 
 const mongoose = require('mongoose')
 const schemas = require('./schemas')
-const mongodb = require('./dbconfig')
 
 const connectDB = async ( ) => {
     try {
-        await mongoose.connect(mongodb.mongodbpasscode, {
+        await mongoose.connect(process.env.mongodbpasscode, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
