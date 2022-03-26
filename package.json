@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently npm:start:express npm:start:clean npm:start:parcel",
-    "start-alt": "concurrently npm:start:express npm:start:parcel",
+    "start-alt": "node src/server/server.js",
     "start:express": "nodemon --watch src/server src/server/server.js",
     "start:parcel": "parcel src/shared/html/index.html",
     "start:clean": "node ./node_modules/parcel-dist-cleaner/distCleaner",
@@ -14,7 +14,6 @@
     "format": "prettier --write src"
   },
   "devDependencies": {
-
     "parcel": "^2.0.0-nightly.708",
     "parcel-dist-cleaner": "^1.0.6",
     "prettier": "^2.3.1",
