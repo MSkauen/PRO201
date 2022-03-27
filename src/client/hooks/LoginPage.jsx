@@ -76,7 +76,7 @@ export function LoginPage() {
               <InputField
                 id="usernameInput"
                 type="text"
-                placeholder="Username"
+                placeholder='Type "demo" for access'
                 onChangeValue={setUsername}
                 value={username}
                 maxLength="12"

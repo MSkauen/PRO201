@@ -19,7 +19,7 @@ const connectDB = async ( ) => {
 }
 
 
-const User = mongoose.model('User', schemas.userSchema)
+const Users = mongoose.model('Users', schemas.userSchema)
 const RepairedSunbell = mongoose.model('Repaired_Sunbell', schemas.repairedProductSchema)
 
 // FUNSKJON FOR Å SENDE INN SKJEMA OM REPARERT LAMPE
@@ -63,10 +63,10 @@ const updateRepairSchema = async (username, serial, partsChanged, location) => {
     })
 }
 const updateUserSchema = async (username, courseId, coursePartId) => {
-const user = await checkIfValidUser(username.username)
+const users = await checkIfValidUser(username.username)
 const part = await getCoursePart(username, coursePartId)
     console.log("PARTTTT: "+ part)
-let newUser = user.courses.map( async (p) => {
+let newUser = users.courses.map( async (p) => {
     const courseParts = p.courseParts
 
      return courseParts.map( async(t) => {
@@ -80,12 +80,12 @@ let newUser = user.courses.map( async (p) => {
     })
 })
     console.log("Newuser: " + JSON.stringify(newUser))
-    User.findOneAndUpdate({username: user.username}, {courses: courses})
+    Users.findOneAndUpdate({username: users.username}, {courses: courses})
 }
 const getCoursePart = async (username, coursePartId) => {
     const user = await checkIfValidUser(username.username)
     console.log(user)
-    return await user.courses.map((p) => {
+    return await Users.courses.map((p) => {
         const courseParts = p.courseParts
 
         return courseParts.map((t) => {
@@ -98,7 +98,7 @@ const getCoursePart = async (username, coursePartId) => {
 }
 
 const checkIfValidUser = async (username) => {
-    return await User.findOne({username}).then( (u) => {
+    return await Users.findOne({username: username}).then( (u) => {
         return u
     }).catch( (err) => {
         console.log(err.message)
@@ -122,7 +122,7 @@ const getAllProducts = async () => {
 
 // Testing
 const findUserWithName = async (name) => {
-    await User.findOne({username: name}, ( err, res ) => {
+    await Users.findOne({username: name}, ( err, res ) => {
         if (err) {
             console.log('kunne ikke finne noe')
         }

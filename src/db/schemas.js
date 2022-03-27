@@ -59,12 +59,8 @@ const UserSchema = new mongoose.Schema({
     certification: {
         type: String,
         required: false
-    },
-    courses: {
-        type: [Course],
-        required: false,
     }
-})
+}, { collection : 'Users' })
 
 const RepairedProductSchema = new mongoose.Schema({
     user: {
