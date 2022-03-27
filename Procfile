@@ -1,1 +1,1 @@
-web: npm run "start-alt"
+web: npm start
