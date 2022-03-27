@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const LocalStrategy = require("passport-local").Strategy;
 const db = require("../db/db")
 const app = express();
+require('dotenv').config()
 
 app.use(
   session({

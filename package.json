@@ -3,12 +3,12 @@
   "homepage": "https://mskauen.github.io/PRO201/",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "concurrently npm:start:express npm:start:clean npm:start:parcel",
+    "start": "concurrently npm:build npm:start:express",
     "start-alt": "node src/server/server.js",
-    "start:express": "nodemon --watch src/server src/server/server.js",
+    "start:express": "node src/server/server.js",
     "start:parcel": "parcel src/shared/html/index.html",
+    "build": "parcel build src/shared/html/index.html",
     "start:clean": "node ./node_modules/parcel-dist-cleaner/distCleaner",
     "test": "jest",
     "format": "prettier --write src"
