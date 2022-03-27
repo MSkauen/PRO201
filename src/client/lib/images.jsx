@@ -1,6 +1,6 @@
 export const SPINNER =  {
         id: 0,
-        image: require('url:../../shared/img/spinner.svg')
+        image: require('url:../../shared/img/Spinner.svg')
 }
 export const MISC = [
     {
